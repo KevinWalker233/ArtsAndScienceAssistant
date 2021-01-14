@@ -1,0 +1,7 @@
+<!--pages/login1/login1-3.wxml-->
+<button id="2020级" open-type="getUserInfo" bindgetuserinfo="_userInfo">2020级</button>
+<button id="2019级" open-type="getUserInfo" bindgetuserinfo="_userInfo">2019级</button>
+<button id="2018级" open-type="getUserInfo" bindgetuserinfo="_userInfo">2018级</button>
+<button id="2017级" open-type="getUserInfo" bindgetuserinfo="_userInfo">2017级</button>
+
+

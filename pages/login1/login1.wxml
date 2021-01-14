@@ -1,0 +1,5 @@
+<!--pages/login1/login1.wxml-->
+<view>请选择专业</view>
+<block wx:for="{{major}}">
+<navigator url="/pages/login1/login1-2?major={{item}}"><button bindtap="_handlerTap1">{{item}}</button></navigator>
+</block>
