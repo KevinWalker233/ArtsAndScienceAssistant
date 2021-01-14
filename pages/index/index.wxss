@@ -1,4 +1,5 @@
 /**index.wxss**/
+<<<<<<< HEAD
 .flex-item {
   width: 95rpx;
   height: 80px;
@@ -56,3 +57,25 @@
   -webkit-line-clamp: 4;
   overflow: hidden;
 }
+=======
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #aaa;
+}
+
+.usermotto {
+  margin-top: 200px;
+}
+>>>>>>> 413c20125b31c6d86d53788423bcc432e6f969b3

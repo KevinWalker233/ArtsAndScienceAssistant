@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // index.js
 // 获取应用实例
 const app = getApp()
@@ -28,10 +29,26 @@ Page({
   },
   // 事件处理函数
   bindViewTap() {
+=======
+//index.js
+//获取应用实例
+const app = getApp()
+
+Page({
+  data: {
+    motto: 'Hello World',
+    userInfo: {},
+    hasUserInfo: false,
+    canIUse: wx.canIUse('button.open-type.getUserInfo')
+  },
+  //事件处理函数
+  bindViewTap: function() {
+>>>>>>> 413c20125b31c6d86d53788423bcc432e6f969b3
     wx.navigateTo({
       url: '../logs/logs'
     })
   },
+<<<<<<< HEAD
   onLoad() {
     const db2 = wx.cloud.database().collection("schedule");
     //添加云数据库课表记录
@@ -139,12 +156,19 @@ Page({
     
     
 /************************************************************** */
+=======
+  onLoad: function () {
+>>>>>>> 413c20125b31c6d86d53788423bcc432e6f969b3
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
         hasUserInfo: true
       })
+<<<<<<< HEAD
     } else if (this.data.canIUse) {
+=======
+    } else if (this.data.canIUse){
+>>>>>>> 413c20125b31c6d86d53788423bcc432e6f969b3
       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
       // 所以此处加入 callback 以防止这种情况
       app.userInfoReadyCallback = res => {
@@ -165,9 +189,14 @@ Page({
         }
       })
     }
+<<<<<<< HEAD
     
   },
   getUserInfo(e) {
+=======
+  },
+  getUserInfo: function(e) {
+>>>>>>> 413c20125b31c6d86d53788423bcc432e6f969b3
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
