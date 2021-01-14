@@ -1,0 +1,10 @@
+<!--pages/login1/login1-2.wxml-->
+<view>请选择班级</view>
+<navigator url="/pages/login1/login1-3?major={{major}}&classes=1"><button >1</button></navigator>
+<navigator url="/pages/login1/login1-3?major={{major}}&classes=2"><button >2</button></navigator>
+<navigator url="/pages/login1/login1-3?major={{major}}&classes=3"><button >3</button></navigator>
+<navigator url="/pages/login1/login1-3?major={{major}}&classes=4"><button >4</button></navigator>
+<navigator url="/pages/login1/login1-3?major={{major}}&classes=5"><button >5</button></navigator>
+<navigator url="/pages/login1/login1-3?major={{major}}&classes=6"><button >6</button></navigator>
+<navigator url="/pages/login1/login1-3?major={{major}}&classes=7"><button >7</button></navigator>
+<navigator url="/pages/login1/login1-3?major={{major}}&classes=8"><button >8</button></navigator>

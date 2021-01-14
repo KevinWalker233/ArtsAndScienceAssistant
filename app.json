@@ -1,0 +1,50 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/login/login",
+    "pages/login1/login1",
+    "pages/login1/login1-2",
+    "pages/tongxun/tongxun",
+    "pages/xiaoxi/xiaoxi",
+    "pages/wo/wo",
+    
+    "pages/login1/login1-3"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#00FF00",
+    "navigationBarTitleText": "文理助手",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "assets/tabBarimages/首页2.png",
+        "selectedIconPath": "assets/tabBarimages/首页1.png"
+      },
+      {
+        "pagePath": "pages/tongxun/tongxun",
+        "text": "通讯录",
+        "iconPath": "assets/tabBarimages/通讯录2.png",
+        "selectedIconPath": "assets/tabBarimages/通讯录1.png"
+      },
+      {
+        "pagePath": "pages/xiaoxi/xiaoxi",
+        "text": "消息",
+        "iconPath": "assets/tabBarimages/消 息2.png",
+        "selectedIconPath": "assets/tabBarimages/消 息1.png"
+      },
+      {
+        "pagePath": "pages/wo/wo",
+        "text": "我",
+        "iconPath": "assets/tabBarimages/我2.png",
+        "selectedIconPath": "assets/tabBarimages/我2.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}
