@@ -1,0 +1,16 @@
+<input placeholder="请输入id" bindinput="putID" type="text"></input>
+<input placeholder="请输入内容" bindinput="putText" type="text"></input>
+<button bindtap="setClick" type="primary">添加数据库</button>
+<button bindtap="getClick" type="primary">查询数据库</button>
+<input placeholder="请输入删除id" bindinput="del" type="text"></input>
+<button bindtap="delClick" type="primary">删除数据库</button>
+<map id="map" longitude="{{longitude}}" latitude="{{latitude}}" show-scale="true" scale="14" bindcontroltap="controltap" markers="{{markers}}" circles="{{circles}}" bindmarkertap="markertap" polyline="{{polyline}}" bindregionchange="regionchange" show-location style="width: 100%; height: 300px;"></map>
+<button bindtap="getMap" type="primary">获取位置</button>
+<view><text>longitude: {{longitude}} </text></view>
+<view><text>latitude:{{latitude}}</text></view>
+<view><text>距离:{{long}}</text></view>
+<input placeholder="请输入签到范围半径" type="number" bindinput="putRadius"></input>
+<button bindtap="setRadius" type="primary">修改半径</button>
+<slider bindchanging="sliderChange" min="50" max="1000" show-value/>
+<button bindtap="getLong" type="primary">判断是否在圈内</button>
+<view><text>是否在圈内: {{isin}} </text></view>

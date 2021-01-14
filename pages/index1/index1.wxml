@@ -1,0 +1,87 @@
+<!--pages/index/index.wxml-->
+<view class="table">
+  <view class="tr">
+   <view class="tr1">时间</view>
+   <view class="tr2">星期一</view>
+   <view class="tr2">星期二</view>
+   <view class="tr2">星期三</view>
+   <view class="tr2">星期四</view>
+   <view class="tr2">星期五</view>
+  </view>
+ <view class="td">
+   <view class="td1">
+     <view class="th1">第一节</view>
+     <view class="th2" wx:for="{{5}}">
+      <view>课</view>
+     </view>
+   </view>
+   <view class="td1">
+     <view class="th1">第二节</view>
+     <view class="th2" wx:for="{{5}}">
+      <view>课</view>
+     </view>
+    </view>
+   <view class="td1">
+    <view class="th1">第三节</view>
+     <view class="th2" wx:for="{{5}}">
+      <view>课</view>
+     </view>
+   </view>
+   <view class="td1">
+    <view class="th1">第四节</view>
+     <view class="th2" wx:for="{{5}}">
+      <view>课</view>
+     </view>
+   </view>
+   <view class="td1">
+    <view class="th1">第五节</view>
+     <view class="th2" wx:for="{{5}}">
+      <view>课</view>
+     </view>
+   </view>
+ </view>
+</view>
+
+<view class="schoolCalendar">
+  <view class="mouseHead">
+    <text style="font-weight:bold;color:rgba(29,29,29,1);line-height:100rpx;font-size:65rpx;">{{year}}年</text>
+    <view style="width:300rpx;height:100%;display:flex;flex-direction:column;justify-content:center;">
+      <view style="width:100%;height:20rpx;">
+        <view style="width:15rpx;height:15rpx;background-color:rgb(230,95,23);border-radius:10rpx;position:relative;left:20rpx;float:left;"></view>
+        <text wx:if="{{showStudyDay}}" style="line-height:15rpx;font-size:15rpx;position:relative;left:30rpx;float:left;">放假-距离下次放假还有{{studyDay}}天</text>
+        <text wx:else style="line-height:20rpx;font-size:15rpx;position:relative;left:30rpx;float:left;">放假</text>
+      </view>
+      <view style="width:100%;height:20rpx;">
+        <view style="width:15rpx;height:15rpx;background-color:rgb(56,120,194);border-radius:10rpx;position:relative;left:20rpx;float:left;"></view>
+        <text style="line-height:15rpx;font-size:15rpx;position:relative;left:30rpx;float:left;">考试</text>
+      </view>
+    </view>
+    <view style="width:200rpx;line-height:35rpx;font-size:18rpx;">
+      <text>{{information.headInform}}</text>
+    </view>
+  </view>
+  <view class="mouthC" wx:for="{{schoolCalendar}}" wx:for-item="item" wx:for-index="index">
+    <view style="width:90%;height:15%;margin:0 auto;border-bottom: 1.5rpx solid rgba(29,29,29,0.8);">
+      <text style="color:rgba(29,29,29,1);font-weight:bold;">{{item.mouth}}月</text>
+    </view>
+    <view style="width:90%;height:85%;margin:0 auto;font-size:16rpx;">
+      <view style="width:100%;height:14.2%;margin:0 auto;display:flex;justify-content:center;">
+        <view style="width:14.2%;height:100%;text-align:center;font-size:18rpx;">日</view>
+        <view style="width:14.2%;height:100%;text-align:center;font-size:18rpx;">一</view>
+        <view style="width:14.2%;height:100%;text-align:center;font-size:18rpx;">二</view>
+        <view style="width:14.2%;height:100%;text-align:center;font-size:18rpx;">三</view>
+        <view style="width:14.2%;height:100%;text-align:center;font-size:18rpx;">四</view>
+        <view style="width:14.2%;height:100%;text-align:center;font-size:18rpx;">五</view>
+        <view style="width:14.2%;height:100%;text-align:center;font-size:18rpx;">六</view>
+      </view>
+      <view style="width:100%;height:14.2%;text-align:center;display:flex;flex-wrap:wrap;">
+        <view style="width:14.2%;height:100%;text-align:center;line-height:230%;color:{{items.color}};background-color:{{items.bgColor}};border-radius:30rpx;" wx:for="{{item.days}}" wx:for-item="items" wx:for-index="indexs" >{{items.days}}</view>
+      </view>
+    </view>
+  </view>
+    
+  <view class="mouseBottom">
+    <view style="width:90%;height:120rpx;margin:10rpx auto;border-radius:10rpx;background-color:pink;">
+    </view>
+  </view>
+</view>

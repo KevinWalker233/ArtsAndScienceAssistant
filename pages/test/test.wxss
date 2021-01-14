@@ -1,0 +1,44 @@
+/* pages/test/test.wxss */
+.test {
+  width: 100%;
+}
+.btnBody {
+  float: left;
+  position: relative;
+  top: 50rpx;
+  width: 50%;
+  background-color: salmon;
+  display: flex;
+}
+.conternBody {
+  float: left;
+  width: 50%;
+  position: relative;
+  top: 50rpx;
+  background-color: red;
+}
+.banner {
+  position: relative;
+  left: 5%;
+  width: 90%;
+  height: 200rpx;
+  margin: 20rpx 0rpx;
+  background-color: salmon;
+}
+.buttonBody {
+  /* float: left; */
+  width: 50%;
+  height: 120rpx;
+  border-radius: 5rpx;
+  margin: 10rpx 0rpx;
+}
+.btn {
+  left: 10%;
+  position: relative;
+  width: 80%;
+  height: 100%;
+  background-color: green;
+}
+.btn:hover {
+  background-color: red;
+}

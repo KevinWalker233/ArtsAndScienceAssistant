@@ -1,0 +1,18 @@
+<!--pages/test/test.wxml-->
+<view class="title"><image src="/icon/head.jpg" class="test"></image></view>
+<view class="dsBody">
+    <view class="conternBody">
+        <view class="banner">banner1</view>
+        <view class="banner">banner1</view>
+    </view>
+    <view class="btnBody">
+        <view class="buttonBody"><view class="btn">1</view></view>
+        <view class="buttonBody"><view class="btn">2</view></view>
+        <view class="buttonBody"><view class="btn">3</view></view>
+        <view class="buttonBody"><view class="btn">4</view></view>
+        <view class="buttonBody"><view class="btn">1</view></view>
+        <view class="buttonBody"><view class="btn">2</view></view>
+        <view class="buttonBody"><view class="btn">3</view></view>
+        <view class="buttonBody"><view class="btn">4</view></view>
+    </view>
+</view>
