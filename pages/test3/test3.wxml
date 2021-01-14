@@ -1,0 +1,25 @@
+<view>
+  <map
+    id="map"
+    longitude="{{longitude}}"
+    latitude="{{latitude}}"
+    show-scale="true"
+    scale="14"
+    markers="{{markers}}"
+    circles="{{circles}}"
+    show-location="true"
+    style="width: 100%; height: 300px;">
+  </map>
+</view>
+<view class="contern">
+
+</view>
+<view class="buttonList">
+  <button class="miniBtn" type="primary" bindtap="getMap" size="mini">
+    <mp-icon icon="location" type="field" color="white" size="{{20}}"></mp-icon>
+  </button>
+  <button class="miniBtn" type="primary" bindtap="getMap" size="mini">
+    <mp-icon icon="location" type="field" color="white" size="{{20}}"></mp-icon>
+  </button>
+  <view><button type="primary">签到</button></view>
+</view>

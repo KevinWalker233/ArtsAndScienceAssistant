@@ -1,5 +1,8 @@
 {
   "pages":[
+    "pages/index1/index1",
+    "pages/test4/test4",
+    "pages/test3/test3",
     "pages/test2/test2",
     "pages/test1/test1",
     "pages/test/test",
@@ -32,5 +35,8 @@
     "scope.userLocation": {
       "desc": "你的位置信息将用于小程序位置接口的效果展示"
     }
+  },
+  "useExtendedLib":{
+    "weui": true
   }
 }

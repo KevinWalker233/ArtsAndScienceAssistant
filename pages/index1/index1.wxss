@@ -1,0 +1,74 @@
+/* pages/index/index.wxss */
+
+.table{
+  width: 750rpx;
+  height: 1300rpx;
+  background-color: pink;
+  display:flex ;
+  flex-direction: column;
+}
+.tr{
+  flex: 10%;
+  display: flex;
+  background-color: rebeccapurple;
+}
+.tr1{
+  flex: 30%;
+}
+.tr2{
+  flex: 70%;
+}
+.td{
+  flex: 90%;
+  background-color: royalblue;
+  display: flex;
+  flex-direction: column;
+}
+.td1{
+  flex: 1;
+  background-color: salmon;
+  margin-top: 5rpx;
+  display: flex;
+}
+.th1{
+  border: seashell 1rpx solid;
+  flex: 30%;
+}
+.th2{
+  border: steelblue 1rpx solid;
+  flex: 70%;
+}
+.schoolCalendar{
+  width: 100%;
+  display: flex;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+.mouseHead{
+  width: 100%;
+  height:100rpx;
+  display: flex;
+}
+.calendar{
+  width: 100%;
+  display: flex;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+.mouthC{
+  position: relative;
+  margin: 5rpx;
+  width: 31%;
+  height: 300rpx;
+}
+.mouseBottom{
+  width: 100%;
+  height:300rpx;
+  margin: 5rpx;
+}
+.ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  display: block;
+}
