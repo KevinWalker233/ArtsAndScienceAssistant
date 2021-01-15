@@ -1,4 +1,3 @@
-// pages/login1/login1-2.js
 const db = wx.cloud.database().collection("account");
 
 Page({

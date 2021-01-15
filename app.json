@@ -1,7 +1,6 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/logs/logs",
     "pages/login/login",
     "pages/login1/login1",
     "pages/login1/login1-2",
@@ -13,9 +12,9 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#00FF00",
+    "navigationBarBackgroundColor": "#3878C2",
     "navigationBarTitleText": "文理助手",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "white"
   },
   "tabBar": {
     "list": [

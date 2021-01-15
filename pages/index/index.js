@@ -1,177 +1,295 @@
-// index.js
-// 获取应用实例
 const app = getApp()
-
+const db = wx.cloud.database().collection("schoolCalendar")
+const db1 = wx.cloud.database().collection("account");
+const db2 = wx.cloud.database().collection("schedule");
+const db3 = wx.cloud.database().collection("config");
 
 Page({
- 
-  /*getopenid(){
-    var that = this
-    wx.cloud.callFunction({
-      name:"getopenid",
-      success(res){
-        that.setData({
-          openid:res.result.openid
-        })
-       console.log("获取openid成功",res.result.openid)
-      }
-    })
-  },*/
   data: {
-      
-       account:[],
-        // 颜色数组，用于课程的背景颜色
+    //课表
+    account: [],
+    // 颜色数组，用于课程的背景颜色
     colorArrays:["#85B8CF","#90C652","#D8AA5A","#FC9F9D","#0A9A84","#61BC69","#12AEF3","#E29AAD"],
     // 课表数组
-    wlist: [
-     
-    ]
+    wlist: [],
+    leftClass: [],
+    //校历
+    year:0,
+    schoolCalendar:[],
+    information:{
+      headInform:"",
+      informs:[]
+    },
+    showStudyDay:false,//是否展示放假天数
+    studyDay:0//距离放假还有多少天
   },
-  // 事件处理函数
-  bindViewTap() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
+  //判断是否为闰年并返回月份的数组
+  isOlympicYear:function(year){
+    var month_olympic = [31,29,31,30,31,30,31,31,30,31,30,31];
+    var month_normal = [31,28,31,30,31,30,31,31,30,31,30,31];
+    var tmp = year % 4;
+    if (tmp == 0) {
+      return month_olympic;
+    } else {
+      return month_normal;
+    }
   },
   onLoad() {
-    
-    //添加云数据库课表记录
-   /*db2.add({
-       data:{
-         grade:"2020级",
-                    college:"计算机学院",
-                    major:"物联网工程",
-                    classes:"1",
-                    wlist: [
-                      { "weekTime": 1, "jieCi": 1, "courseName": "大学英语2","address": "综合楼702"},
-         { "weekTime": 1, "jieCi": 3, "courseName": "大学英语2","address": "成教楼102"},
-         { "weekTime": 1, "jieCi": 5, "courseName": "线性代数","address": "教学主楼601"},
-         { "weekTime": 1, "jieCi": 7, "courseName": "大学生心理健康教育","address": "电气楼401"},
-         { "weekTime": 1, "jieCi": 9, "courseName": "大学物理1","address": "综合楼702"},
-                      { "weekTime": 2, "jieCi": 1, "courseName": "高等数学", "address": "电气楼501" },
-                      { "weekTime": 2, "jieCi": 3, "courseName": "离散数学", "address": "综合楼702"},
-         { "weekTime": 2, "jieCi": 5, "courseName": "中国近代史纲要", "address": "综合楼701"}, 
-                      { "weekTime": 3, "jieCi": 3, "courseName": "线性代数 ","address": "电气楼501"},
-         { "weekTime": 3, "jieCi": 5, "courseName": "python程序设计", "address": "综合楼702"},
-                      { "weekTime": 3, "jieCi": 7, "courseName": "形势与政策2", "address": "综合楼701"},
-         { "weekTime": 3, "jieCi": 9, "courseName": "大学物理1", "address": "综合楼702"},
-                      { "weekTime": 4, "jieCi": 1, "courseName": "物联网工程导论", "address": "综合楼701" },
-         { "weekTime": 4, "jieCi": 3, "courseName": "离散数学", "address": "综合楼702" },
-         { "weekTime": 4, "jieCi": 7, "courseName": "大学体育2", "address": "老校区操场" },
-         { "weekTime": 5, "jieCi": 5, "courseName": "python程序设计", "address": "计算机中心10层" },
-         { "weekTime": 5, "jieCi": 7, "courseName": "高等数学2", "address": "教学主楼601" },]
-                    
-       }
-    })*/
-    
-    /*var that = this
-    wx.cloud.callFunction({
-      name:"getopenid",
-      success(res){
-        that.setData({
-          'user_info.openid':res.result.openid ,
-        })
-       //console.log("获取openid成功",res.result.openid)
-      }
-    })
-    console.log(options)
-    var college = options.college
-    var major = options.major
-    var classes = options.class 
-    this.setData({
-      'user_info.college':college,
-      'user_info.major':major,
-      'user_info.classes':classes
-    })
-    console.log(this.data)
-    /*db.add({
-        data:{
-          college:this.data.user_info.college,
-          major:this.data.user_info.major,
-          classes:this.data.user_info.classes,
-          openid:this.data.user_info.openid
+    var self = this;
 
-        }
-    })*/
-    
-    
-    //console.log(this)
-    /**************************查询课表************************************** */
-  
+    //获取日期
+    var timestamp = Date.parse(new Date());
+    var date = new Date(timestamp);
+    var my_year = date.getFullYear();
+    var my_month = date.getMonth();
+    var my_day = date.getDate();
+
+    //每个月第一天是周几的数组
+    var weeks = [];
+
+    //用来给data的schoolCalendar赋值
+    var p = [];
+
+    //计算是否为闰年并赋值月份
+    var month = this.isOlympicYear(my_year);
 
     
-   
-    
-    
-/************************************************************** */
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    } else if (this.data.canIUse) {
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
+    // 指定日期和时间
+    var EndTime = new Date();
+    // 当前系统时间
+    var NowTime = new Date();
+    var t = EndTime.getTime() - NowTime.getTime();
+
+
+    //这里是遍历12个月份
+    for(var i=0;i<12;i++){
+      var days = [];//要赋值给days的数组
+      var week = new Date(my_year, i, 1).getDay();//得到每月的第一天是周几
+      weeks[i] = week;
+      //这里是每个月份有42个盒子，并给盒子赋值
+      for(var j=0;j<42;j++){
+        if(j%7==0||(j-6)%7==0){
+          days[j]={
+            days:"",
+            color:"rgba(102,102,102,1)"
+          };
+        }else{
+          days[j]={
+            days:"",
+            color:"rgba(0,0,0,1)"
+          };
         }
-      })
+      }
+
+      //通过获取到每月第一天周几后通过每个月的天数设置显示的数字
+      for(var k=week,l=1;l<=month[i];k++,l++){
+        days[k]={
+          days:l,
+          color:days[k].color
+        };
+      }
+
+      //这边是给p数组写入需要的数据
+      p[i]={
+        mouth:i+1,
+        day:month[i],
+        days: days
+      };
     }
-    
+    this.setData({
+      year:my_year,
+      schoolCalendar:p
+    });
+    //加载假期
+    db.doc("holiday").get({
+      success(res){
+        console.log(res.data.holidays);
+        var holidays = res.data.holidays;
+        var calendar = self.data.schoolCalendar;
+        //遍历假期
+        for(var i = 0;i<res.data.holidays.length;i++){
+          var holiday = holidays[i];
+          var yearBegin = holiday.holidayBegin.year;//暂时没用
+          var monthBegin = holiday.holidayBegin.month;
+          var dayBegin = holiday.holidayBegin.day;
+          var yearEnd = holiday.holidayEnd.year;//暂时没用
+          var monthEnd = holiday.holidayEnd.month;
+          var dayEnd = holiday.holidayEnd.day;
+          if((monthBegin-monthEnd)==0){//当假期开始月份和结束月份为同一个月时
+            for(var j=dayBegin-1;j<dayEnd;j++){//遍历开始当天到结束当天
+              var week1 = weeks[monthBegin-1]//得到放假当月第一天是周几
+              calendar[monthBegin-1].days[week1+j]={
+                days:calendar[monthBegin-1].days[week1+j].days,
+                color:"rgb(255,255,255)",
+                bgColor:"rgba(230,95,23,0.8)"
+              };
+            }
+          }else{//当假期开始月份和结束月份为不同一个月时
+            for(var k=dayBegin-1;k<month[monthBegin-1];k++){//遍历开始当天到月底
+              var week2 = weeks[monthBegin-1]//得到放假当月第一天是周几
+              calendar[monthBegin-1].days[week2+k]={
+                days:calendar[monthBegin-1].days[week2+k].days,
+                color:"rgb(255,255,255)",
+                bgColor:"rgba(230,95,23,0.8)"
+              };
+            }
+            for(var z=monthBegin+1;z<monthEnd;z++){
+              for(var x=weeks[z-1];x<month[z-1]+weeks[z-1];x++){
+                console.log(month[z-1]);
+                calendar[z-1].days[x]={
+                  days:calendar[z-1].days[x].days,
+                  color:"rgb(255,255,255)",
+                  bgColor:"rgba(230,95,23,0.8)"
+                };
+              }
+            }
+            for(var l=weeks[monthEnd-1];l<dayEnd+weeks[monthEnd-1];l++){//遍历开始当天到结束当天
+              calendar[monthEnd-1].days[l]={
+                days:calendar[monthEnd-1].days[l].days,
+                color:"rgb(255,255,255)",
+                bgColor:"rgba(230,95,23,0.8)"
+              };
+            }
+          }
+        }
+        self.setData({
+          schoolCalendar:calendar
+        });
+      }
+    })
+    //加载考试
+    db.doc("examination").get({
+      success(res){
+        console.log(res.data.examinations);
+        var examinations = res.data.examinations;
+        var calendar = self.data.schoolCalendar;
+        //遍历考试
+        for(var i = 0;i<res.data.examinations.length;i++){
+          var examination = examinations[i];
+          var yearBegin = examination.examinationBegin.year;//暂时没用
+          var monthBegin = examination.examinationBegin.month;
+          var dayBegin = examination.examinationBegin.day;
+          var yearEnd = examination.examinationEnd.year;//暂时没用
+          var monthEnd = examination.examinationEnd.month;
+          var dayEnd = examination.examinationEnd.day;
+          if((monthBegin-monthEnd)==0){//当假期开始月份和结束月份为同一个月时
+            for(var j=dayBegin-1;j<dayEnd;j++){//遍历开始当天到结束当天
+              var week1 = weeks[monthBegin-1]//得到放假当月第一天是周几
+              calendar[monthBegin-1].days[week1+j]={
+                days:calendar[monthBegin-1].days[week1+j].days,
+                color:"rgb(255,255,255)",
+                bgColor:"rgba(56,120,194,0.8)"
+              };
+            }
+          }else{//当假期开始月份和结束月份为不同一个月时
+            for(var k=dayBegin-1;k<month[monthBegin-1];k++){//遍历开始当天到月底
+              var week2 = weeks[monthBegin-1]//得到放假当月第一天是周几
+              calendar[monthBegin-1].days[week2+k]={
+                days:calendar[monthBegin-1].days[week2+k].days,
+                color:"rgb(255,255,255)",
+                bgColor:"rgba(56,120,194,0.8)"
+              };
+            }
+            for(var z=monthBegin+1;z<monthEnd;z++){
+              for(var x=weeks[z-1];x<month[z-1]+weeks[z-1];x++){
+                console.log(month[z-1]);
+                calendar[z-1].days[x]={
+                  days:calendar[z-1].days[x].days,
+                  color:"rgb(255,255,255)",
+                  bgColor:"rgba(56,120,194,0.8)"
+                };
+              }
+            }
+            for(var l=weeks[monthEnd-1];l<dayEnd+weeks[monthEnd-1];l++){//遍历开始当天到结束当天
+              calendar[monthEnd-1].days[l]={
+                days:calendar[monthEnd-1].days[l].days,
+                color:"rgb(255,255,255)",
+                bgColor:"rgba(56,120,194,0.8)"
+              };
+            }
+          }
+        }
+        self.setData({
+          schoolCalendar:calendar
+        });
+      }
+    })
+    db.doc("information").get({
+      success(res){
+        self.setData({
+          information:{
+            headInform:res.data.headInform
+          }
+        })
+      }
+    });
+    db.doc("holiday").get({
+      success(res){
+      // 指定日期和时间
+      var EndTime = new Date(res.data.nextHoliday.year,res.data.nextHoliday.month,res.data.nextHoliday.day);
+      console.log(EndTime);
+      // 当前系统时间
+      var NowTime = new Date();
+      console.log(NowTime);
+      var t = parseInt((EndTime.getTime() - NowTime.getTime()) / 1000 / 60 / 60 / 24);
+      console.log(t);
+        self.setData({
+          showStudyDay:res.data.showStudyDay,
+          studyDay:t
+        })
+      }
+    });
   },
   onShow(){
-    const db = wx.cloud.database().collection("account");
-    const db2 = wx.cloud.database().collection("schedule");
-    var that = this
+    var that = this;
+
+    db3.doc("schoolTime").get({
+      success(res){
+        var leftClass = [];
+        for(var i=0;i<10;i++){
+          leftClass[i]={
+            jieCi:res.data.times[i].jieCi,
+            time:res.data.times[i].time
+          }
+        }
+        that.setData({
+          leftClass:leftClass
+        })
+      }
+    })
+
+    //调用云函数获取用户openid
     wx.cloud.callFunction({
       name:"getopenid",
       success(res){
         that.setData({
           _openid:res.result.openid
         })
-        
        console.log("获取openid成功",res.result.openid)
       }
     })
-    db.where({
-      _openid:this.data._openid
+    //通过openid查询
+    db1.where({
+      _openid:that.data._openid
     }).get().then(res=>{
-      console.log("查询成功",res.data[0])
-      this.setData({   //设置data中的account数据
+      console.log("查询openid成功",res.data[0])
+      that.setData({//设置data中的account数据
         account:res.data
       })
-      //console.log("1111",this.data.account[0].classes)
       db2.where({
-        grade:this.data.account[0].grade,
-        major:this.data.account[0].major,
-        classes:this.data.account[0].classes
-     })
-     .get().then(res=>{
-       console.log("查询成功233",res)
-       this.setData({
+        grade:that.data.account[0].grade,
+        major:that.data.account[0].major,
+        classes:that.data.account[0].classes
+     }).get().then(res=>{
+       console.log("查询课表数据成功",res);
+       that.setData({//设置data中课表数据
          wlist: res.data[0].wlist
        })
      }).catch(err=>{
-       console.log("查询失败",err)
+       console.log("查询课表数据失败",err);
      })
-     
-      
     }).catch(err=>{
-      console.log("查询失败",err)
+      console.log("查询openid失败",err);
     })
   },
- 
 })

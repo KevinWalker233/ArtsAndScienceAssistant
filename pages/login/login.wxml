@@ -1,20 +1,5 @@
 <!--pages/login/login.wxml-->
-<view>
-  请选择学院
+<view style="font-weight:bold;">
+  请选择学院:
 </view>
- <navigator url="/pages/login1/login1?college=计算机学院"><button  bindtap="_handlerTap">计算机学院</button></navigator>
- <navigator url="/pages/login1/login1?college=政法学院"><button  bindtap="_handlerTap">政法学院</button></navigator>
- <navigator url="/pages/login1/login1?college=教育学院"><button bindtap="_handlerTap">教育学院</button></navigator>
- <navigator url="/pages/login1/login1?college=文学与新闻传播学院"><button  bindtap="_handlerTap">文学与新闻传播学院</button></navigator>
- <navigator url="/pages/login1/login1?college=外国语学院"><button  bindtap="_handlerTap">外国语学院</button></navigator>
- <navigator url="/pages/login1/login1?college=历史文化与旅游学院"><button  bindtap="_handlerTap">历史文化与旅游学院</button></navigator>
- <navigator url="/pages/login1/login1?college=经济管理学院"><button  bindtap="_handlerTap">经济管理学院</button></navigator>
- <navigator url="/pages/login1/login1?college=美术学院"><button  bindtap="_handlerTap">美术学院</button></navigator>
- <navigator url="/pages/login1/login1?college=音乐学院"><button  bindtap="_handlerTap">音乐学院</button></navigator>
- <navigator url="/pages/login1/login1?college=数学与信息科学学院"><button  bindtap="_handlerTap">数学与信息科学学院</button></navigator>
- <navigator url="/pages/login1/login1?college=物理与光电技术学院"><button  bindtap="_handlerTap">物理与光电技术学院</button></navigator>
- <navigator url="/pages/login1/login1?college=化学化工学院"><button  bindtap="_handlerTap">化学化工学院</button></navigator>
- <navigator url="/pages/login1/login1?college=地理与环境学院"><button  bindtap="_handlerTap">地理与环境学院</button></navigator>
- <navigator url="/pages/login1/login1?college=机械工程学院"><button  bindtap="_handlerTap">机械工程学院</button></navigator>
- <navigator url="/pages/login1/login1?college=电子电气工程学院"><button  bindtap="_handlerTap">电子电气工程学院</button></navigator>
- <navigator url="/pages/login1/login1?college=体育学院"><button  bindtap="_handlerTap">体育学院</button></navigator>
+<navigator wx:for="{{college}}" url="/pages/login1/login1?college={{item}}"><button>{{item}}</button></navigator>

@@ -21,10 +21,10 @@
     "checkInvalidKey": true,
     "checkSiteMap": true,
     "uploadWithSourceMap": true,
-    "compileHotReLoad": false,
+    "compileHotReLoad": true,
     "useMultiFrameRuntime": true,
     "useApiHook": true,
-    "useApiHostProcess": true,
+    "useApiHostProcess": false,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
@@ -42,8 +42,8 @@
   },
   "compileType": "miniprogram",
   "libVersion": "2.14.3",
-  "appid": "wx2fe3180d1c553b01",
-  "projectname": "%E5%BC%B9%E7%AA%97",
+  "appid": "wx8063fc3c933b8ddc",
+  "projectname": "文理助手",
   "debugOptions": {
     "hidedInDevtools": []
   },
