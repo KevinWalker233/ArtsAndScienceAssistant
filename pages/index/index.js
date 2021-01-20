@@ -7,18 +7,21 @@ const db3 = wx.cloud.database().collection("config");
 Page({
   data: {
     //课表
-    account: [],
+    account: [],//用户数据
     // 颜色数组，用于课程的背景颜色
     colorArrays:["#85B8CF","#90C652","#D8AA5A","#FC9F9D","#0A9A84","#61BC69","#12AEF3","#E29AAD"],
-    // 课表数组
-    wlist: [],
-    leftClass: [],
+    wlist: [],// 课表色块数组
+    leftClass: [],//左侧课表时间
+    weekPicker:[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],
+    week:-1,//最顶部显示的周次
+    error:"",//错误提醒
     //校历
-    year:0,
-    schoolCalendar:[],
+    year:0,//校历显示的年
+    schoolCalendar:[],//月份信息
+    //校历上的信息
     information:{
-      headInform:"",
-      informs:[]
+      headInform:"",//校历上面提示的信息
+      informs:[]//还未使用
     },
     showStudyDay:false,//是否展示放假天数
     studyDay:0//距离放假还有多少天
@@ -243,20 +246,91 @@ Page({
   onShow(){
     var that = this;
 
-    db3.doc("schoolTime").get({
-      success(res){
-        var leftClass = [];
-        for(var i=0;i<10;i++){
-          leftClass[i]={
-            jieCi:res.data.times[i].jieCi,
-            time:res.data.times[i].time
+    var configVersions=0;
+    wx.getStorage({
+      key: 'configVersion',
+      success(res) {
+        console.log(res.data)
+        db3.doc("update").get({
+          success(res){
+            console.log("[查询]配置文件版本加载成功：",res.data.version);
+            configVersions=res.data.version;
           }
-        }
-        that.setData({
-          leftClass:leftClass
         })
       }
     })
+
+    wx.getStorage({
+      key: 'times',
+      success(res) {
+        console.log("[查询]左侧课表时间加载成功：",res.data)
+        that.setData({
+          leftClass:res.data
+        })
+        db3.doc("update").get({
+          success(res){
+            console.log("[查询]配置文件版本加载成功：",res.data.version);
+            if(configVersions!=res.data.version){
+              //获取云数据库中左侧课表中的时间
+              db3.doc("schoolTime").get({
+                success(res){
+                  var leftClass = [];
+                  for(var i=0;i<10;i++){
+                    leftClass[i]={
+                      jieCi:res.data.times[i].jieCi,
+                      time:res.data.times[i].time
+                    }
+                  }
+                  db3.doc("update").get({
+                    success(res){
+                      console.log("[查询]配置文件版本加载成功：",res.data.version);
+                      app.globalData.configVersion=res.data.version;
+                    }
+                  })
+                  that.setData({
+                    leftClass:leftClass
+                  })
+                  wx.setStorage({
+                    key: 'times',
+                    data: leftClass
+                  })
+              }
+            })
+            }
+          }
+        })
+      },
+      fail(res){
+        console.log(res.data)
+        //获取云数据库中左侧课表中的时间
+        db3.doc("schoolTime").get({
+          success(res){
+            var leftClass = [];
+            for(var i=0;i<10;i++){
+              leftClass[i]={
+                jieCi:res.data.times[i].jieCi,
+                time:res.data.times[i].time
+              }
+            }
+            db3.doc("update").get({
+              success(res){
+                console.log("[查询]配置文件版本加载成功：",res.data.version);
+                app.globalData.configVersion=res.data.version;
+              }
+            })
+            that.setData({
+              leftClass:leftClass
+            })
+            wx.setStorage({
+              key: 'times',
+              data: leftClass
+            })
+        }
+      })
+      }
+    });
+
+
 
     //调用云函数获取用户openid
     wx.cloud.callFunction({
@@ -265,14 +339,14 @@ Page({
         that.setData({
           _openid:res.result.openid
         })
-       console.log("获取openid成功",res.result.openid)
+       console.log("[查询]获取openid成功：",res.result.openid)
       }
     })
     //通过openid查询
     db1.where({
       _openid:that.data._openid
     }).get().then(res=>{
-      console.log("查询openid成功",res.data[0])
+      console.log("[查询]获取openid成功：",res.data[0])
       that.setData({//设置data中的account数据
         account:res.data
       })
@@ -281,15 +355,34 @@ Page({
         major:that.data.account[0].major,
         classes:that.data.account[0].classes
      }).get().then(res=>{
-       console.log("查询课表数据成功",res);
+       console.log("[查询]课表数据加载成功：",res);
        that.setData({//设置data中课表数据
          wlist: res.data[0].wlist
        })
      }).catch(err=>{
-       console.log("查询课表数据失败",err);
-     })
+       console.log("[错误]查询课表数据失败：",err);
+     });
     }).catch(err=>{
-      console.log("查询openid失败",err);
+      console.log("[错误]查询openid失败：",err);
+    })
+
+    //周次的判断
+    wx.getStorage({
+      key: 'week',
+      success(res) {
+        console.log(res.data);
+      },
+      fail(res){
+        that.setData({
+          week:-1,
+          showOneButtonDialog: true,
+          error:"请在顶部设置周次"
+        });
+      }
     })
   },
+  classClick(e){
+    this.setData({
+    });
+  }
 })

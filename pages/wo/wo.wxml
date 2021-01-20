@@ -1,2 +1,17 @@
-<!--pages/wo/wo.wxml-->
-<text>pages/wo/wo.wxml</text>
+<view class="page">
+  <mp-cells>
+    <mp-cell style="display:flex;flex-direction:row;">
+      <image style="width:200rpx;height:200rpx;border-radius:100rpx;float:left; "src="{{userInfo.avatarUrl}}"></image>
+      <view style="float:right;position:relative;left:50rpx;">
+        <view>你好，{{userInfo.nickName}}</view>
+      </view>
+    </mp-cell>
+    <mp-cell link>
+      <view>标题文字（使用slot）</view>
+      <view slot="footer">说明文字</view>
+    </mp-cell>
+    <mp-cell>
+      11233
+    </mp-cell>
+  </mp-cells>
+</view>

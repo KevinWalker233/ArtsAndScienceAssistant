@@ -1,0 +1,15 @@
+<view>
+  <text>请输入账号：</text>
+  <input bindinput="accountInput"></input>
+</view>
+<view>
+  <text>请输入密码：</text>
+  <input bindinput="passwordInput"></input>
+</view>
+<view>
+  <image style="width:144rpx;height:54rpx;" src="{{code}}"></image>
+</view>
+<input bindinput="codeInput"></input>
+<button bindtap="loginClick">刷新</button>
+<button bindtap="login">登陆</button>
+<text>{{welcome}}</text>

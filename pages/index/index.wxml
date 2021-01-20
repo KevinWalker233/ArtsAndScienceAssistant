@@ -1,5 +1,10 @@
-<!--index.wxml-->
-<!--index.wxml-->
+<view style="width:100%;height:50rpx;margin:0 auto;position:sticky;top:0rpx;z-index:100;background-color:white;">
+  <picker mode="selector" range="{{weekPicker}}" style="width:20%;margin:0 auto;display:flex;justify-content:center;font-size:20rpx;line-height:50rpx;border-bottom:1.5px solid #000;">
+    <view wx:if="{{week!=-1}}">第{{week}}周</view>
+    <view wx:else>设置周次</view>
+  </picker>
+</view>
+<!-- <mp-toptips msg="{{error}}" type="info" show="{{error}}"></mp-toptips> -->
 <view class="top">
   <view wx:for="{{['一','二','三','四','五','六','日']}}" class="top-text">
     周{{item}}
@@ -22,7 +27,7 @@
     </view>
 
     <view wx:for="{{wlist}}">
-        <view class="flex-item kcb-item" data-index="{{index}}" style="margin-left:{{(item.weekTime-1)*100+5}}rpx;background-color:{{colorArrays[index%8]}};margin-top:{{(item.jieCi-1)*100+5}}rpx;">
+        <view class="flex-item kcb-item" data-index="{{index}}" bindtap="classClick" style="margin-left:{{(item.weekTime-1)*100}}rpx;background-color:{{colorArrays[index%8]}};margin-top:{{(item.jieCi-1)*100+5}}rpx;">
           <view class="smalltext">
             <view class="kbtext-style">{{item.courseName}}</view>
             <view class="kbaddress-style" style="padding-top:5rpx;">

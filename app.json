@@ -1,13 +1,13 @@
 {
   "pages": [
+    "pages/loginL/loginL",
     "pages/index/index",
+    "pages/xiaoxi/xiaoxi",
     "pages/login/login",
     "pages/login1/login1",
     "pages/login1/login1-2",
     "pages/tongxun/tongxun",
-    "pages/xiaoxi/xiaoxi",
     "pages/wo/wo",
-    
     "pages/login1/login1-3"
   ],
   "window": {
@@ -45,5 +45,8 @@
     ]
   },
   "style": "v2",
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "useExtendedLib": {
+    "weui": true
+  }
 }
