@@ -1,17 +1,62 @@
-<view class="page">
-  <mp-cells>
-    <mp-cell style="display:flex;flex-direction:row;">
-      <image style="width:200rpx;height:200rpx;border-radius:100rpx;float:left; "src="{{userInfo.avatarUrl}}"></image>
-      <view style="float:right;position:relative;left:50rpx;">
-        <view>你好，{{userInfo.nickName}}</view>
+<view>
+  <view>
+    <view style="width:100%;height:300rpx;position:absolute;background-color:rgb(56,120,194);">
+      <view animation="{{welcomeAnimation}}" bindtap="welcomeClick" style="width:90%;margin:0 auto;text-align:center;color:white;font-size:36rpx;font-weight:bold;">{{welcome}}</view>
+    </view>
+    <view class="headContent">
+      <view class="head">
+        <open-data type="userAvatarUrl"></open-data>
       </view>
-    </mp-cell>
-    <mp-cell link>
-      <view>标题文字（使用slot）</view>
-      <view slot="footer">说明文字</view>
-    </mp-cell>
-    <mp-cell>
-      11233
-    </mp-cell>
-  </mp-cells>
+      <view class="content">
+        <text style="font-size:34rpx;font-weight:bold;">😊{{user[6]}}</text>
+        <text style="font-size:20rpx;">✨学院：{{user[3]}}</text>
+        <text style="font-size:20rpx;">🎀专业：{{user[4]}}</text>
+        <text style="font-size:20rpx;">🎉班级：{{user[5]}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="bodyContent">
+    <view animation="{{cardShow}}" class="bodyCard">
+      <text style="font-size:34rpx;font-weight:bold;">😀用户账户</text>
+      <text style="font-size:20rpx;line-height:10rpx;">受限于教务系统版本问题，更新数据需要再次登陆，敬请见谅</text>
+      <view class="viewContent" style="background-color:#F09609;" bindtap="loginL">
+        <text style="width:80%;line-height:80rpx;">登陆教务系统更新数据</text>
+        <view style="line-height:80rpx;">
+          <mp-icon type="outline" icon="arrow" color="white" size="{{13}}"></mp-icon>
+        </view>
+      </view>
+      <view class="viewContent" style="background-color:#1BA1E2;">
+        <text style="width:80%;line-height:80rpx;">登陆卡务系统(暂未开发)</text>
+        <view style="line-height:80rpx;">
+          <mp-icon type="outline" icon="arrow" color="white" size="{{13}}"></mp-icon>
+        </view>
+      </view>
+    </view>
+    <view animation="{{cardShow}}" class="bodyCard" style="height:440rpx;">
+      <text style="font-size:34rpx;font-weight:bold;">😋消息提示</text>
+      <view class="viewContent" style="color:black;">
+        <text style="width:70%;line-height:80rpx;">是否开启上课提醒</text>
+        <switch checked="{{classTip}}" bindchange="changeClassTip" style="line-height:75rpx;" color="#3878C2"></switch>
+      </view>
+      <view class="viewContent" style="color:black;">
+        <text style="width:70%;line-height:80rpx;">是否开启每日打卡提醒</text>
+        <switch checked="{{clockTip}}" bindchange="changeClockTip" style="line-height:75rpx;" color="#3878C2"></switch>
+      </view>
+      <text style="font-size:17rpx;">😄关闭了即使订阅了也不会推送消息</text>
+      <view class="viewContent">
+        <button style="width:100%;height:75rpx;background-color:#339933;color:white;margin-bottom:10rpx;" bindtap="addTip">授权上课提醒</button>
+      </view>
+      <view class="viewContent">
+        <button style="width:100%;height:75rpx;background-color:#FF0097;color:white;" bindtap="addClockTip">授权打卡提醒</button>
+      </view>
+      <text style="font-size:17rpx;">点击授权一次，只能提醒一次（建议打开总是保持以上选项，不在询问）</text>
+      <text style="font-size:17rpx;">需要提醒几次就点击订阅几次，需要提醒哪个订阅哪个</text>
+    </view>
+    <view animation="{{cardShow}}" class="bodyCard" style="height:350rpx;">
+      <text style="font-size:34rpx;font-weight:bold;">😅一些功能</text>
+      <button style="width:90%;height:75rpx;background-color:#00ABA9;color:white;" open-type="feedback">提交意见</button>
+      <button style="width:90%;height:75rpx;background-color:#8CBF26;color:white;" open-type="contact">联系客服</button>
+      <button style="width:90%;height:75rpx;background-color:#A200FF;color:white;" bindtap="about">关于我们</button>
+    </view>
+  </view>
 </view>

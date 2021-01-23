@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "iconv-lite": "^0.6.2",
+    "jsdom": "^16.4.0",
     "request": "^2.88.2",
     "wx-server-sdk": "^2.3.2"
   }

@@ -1,15 +1,30 @@
-<view>
-  <text>请输入账号：</text>
-  <input bindinput="accountInput"></input>
+<mp-toptips msg="{{error.text}}" type="{{error.type}}" show="{{error.text}}" delay="1000"></mp-toptips>
+<view class="context">
+  <view style="text-align:center;font-size:50rpx;font-weight:bold;">教务系统登陆</view>
+  <view style="width:90%;margin:20rpx auto;display:flex;">
+    <view class="inputHead">
+      <mp-icon style="line-height: 90rpx;" type="outline" icon="me" color="rgba(29,29,29,1)" size="20"></mp-icon>
+      <view style="" class="textHead">账号</view>
+    </view>
+    <view class="inputC">
+      <input type="number" value="{{account}}" placeholder="请输入账号" class="inputI" bindinput="accountInput"></input>
+    </view>
+
+  </view>
+  <view style="width:90%;margin:20rpx auto;display:flex;">
+    <view class="inputHead">
+      <mp-icon style="line-height: 90rpx;" type="outline" icon="lock" color="rgba(29,29,29,1)" size="20"></mp-icon>
+      <view class="textHead">密码</view>
+    </view>
+    <view class="inputC">
+      <input value="{{password}}" placeholder="请输入密码" class="inputI" bindinput="passwordInput"></input>
+    </view>
+  </view>
+  <view class="codeC">
+    <input placeholder="验证码" style="width:350rpx;height:100rpx;text-align:center;font-size:40rpx;" bindinput="codeInput"></input>
+    <image bindtap="loginClick" style="width:250rpx;height:100rpx;" src="{{code}}"></image>
+  </view>
+  <button class="loginButton" loading="{{loginB}}" bindtap="login">登陆</button>
 </view>
-<view>
-  <text>请输入密码：</text>
-  <input bindinput="passwordInput"></input>
-</view>
-<view>
-  <image style="width:144rpx;height:54rpx;" src="{{code}}"></image>
-</view>
-<input bindinput="codeInput"></input>
-<button bindtap="loginClick">刷新</button>
-<button bindtap="login">登陆</button>
-<text>{{welcome}}</text>
+<text>下面是临时用来测试的数据，正式版会删除：</text>
+<textarea value="{{welcome}}" maxlength='-1' auto-height='true'></textarea>

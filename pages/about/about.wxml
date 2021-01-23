@@ -1,0 +1,26 @@
+<view class="page">
+  <view class="card">
+    <view style="width:90%;margin:0 auto;font-size:50rpx;font-weight: bold;">关于</view>
+    <view class="h2">放在前面说的：</view>
+    <view class="h3">小程序是为了服务宝文理学生而开发的，开发团队为计算机学院学生。</view>
+    <view class="h3">
+      受限于学校2017版正方教务系统登陆需要输入验证码的问题，我们暂时无法通过自主更新来获取并更新最新的课表校历及成绩信息，
+      所以每次更新数据都需要用户再次登陆教务系统才能实现数据的更新。
+    </view>
+    <view class="h3">
+      最新版的正方教务系统登陆无需输入验证码，所以也希望学校教务处的老师可以升级教务系统的版本，
+      以便我们更好的为广大学生提供生活信息服务。
+    </view>
+    <view class="h2">数据安全问题：</view>
+    <view class="h3">
+      本小程序采用微信云开发来制作的后端，数据安全可以放心，并且开发团队也会保证大家的数据隐私，并且我们也会在用户端及内部
+      强化隐私管理，努力保护大家的数据安全。
+    </view>
+    <view class="h2">特别鸣谢：</view>
+    <view class="h3">
+      本小程序开发期间每一位对小程序提供体验上的建议和帮助的同学。
+    </view>
+    <view class="h2">参与交流：</view>
+    <view class="h3" bindtap='copyText' data-text="{{contents}}">🐧群：{{contents}} </view>
+  </view>
+</view>
