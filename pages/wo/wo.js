@@ -1,4 +1,4 @@
-var app = getApp
+var app = getApp()
 const accountDb = wx.cloud.database().collection("account")
 const configDb = wx.cloud.database().collection("config");
 
@@ -21,7 +21,7 @@ Page({
   },
   loginL() { //授权教务系统
     wx.navigateTo({
-      url: "/pages/loginL/loginL?home=wo",
+      url: "/pages/loginL/loginL?home=index",
     })
   },
   addTip(res) { //授权上课提醒
@@ -90,7 +90,7 @@ Page({
       })
     }, 500)
   },
-  about(res){
+  about(res) {//关于我们按钮点击
     wx.navigateTo({
       url: "/pages/about/about",
     })
@@ -139,6 +139,8 @@ Page({
    */
   onShow: function () {
     var that = this
+
+    console.log(app.globalData)
 
     var animation = wx.createAnimation({
       duration: 1000

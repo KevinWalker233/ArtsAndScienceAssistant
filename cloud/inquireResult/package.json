@@ -1,0 +1,17 @@
+{
+  "name": "inquireResult",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "iconv-lite": "^0.6.2",
+    "jsdom": "^16.4.0",
+    "request": "^2.88.2",
+    "wx-server-sdk": "^2.3.2"
+  }
+}

@@ -1,0 +1,17 @@
+<!--components/notice/notice.wxml-->
+<!-- 公告 -->
+<view class="notice">
+  <view class="notice_title">公告</view>
+  <view class="notice_line"></view>
+  <!-- 纵向轮播 -->
+  <swiper autoplay="true" interval="2000" circular="true" vertical="true" class="notice_content">
+    <swiper-item class="notice_content_item">
+      <text style="color: rgb(100, 62, 102);">文理助手小程序上线啦！！!</text>
+    </swiper-item>
+    <swiper-item class="notice_content_item">
+      <text style="color: rgb(100, 62, 102);">asfadgeadafdsfasda</text>
+    </swiper-item>
+  </swiper>
+  <view class="notice_line"></view>
+  <view class="notice_more">查看更多</view>
+</view>

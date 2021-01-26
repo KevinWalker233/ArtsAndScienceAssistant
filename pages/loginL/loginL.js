@@ -11,12 +11,13 @@ Page({
     codeInput: '', //验证码
     code: '', //验证码的base64
     inform: [], //从服务端get返回来的数据
+    type: '', //请求的内容，wlist为课表，result为成绩
     error: { //这个是头顶的反馈
       type: '',
       text: ''
     },
-    loginB: false, //这个是登陆按钮loding动画的设置
-    welcome: '请登录' //这个目前只是负责显示数据，后面会删掉
+    buttonName: '未知错误', //登陆按钮的名承
+    loginB: false //这个是登陆按钮loding动画的设置
   },
   //用户名输入
   accountInput(res) {
@@ -49,41 +50,64 @@ Page({
         password: that.data.password,
         code: that.data.codeInput,
         cookie: that.data.inform[1],
-        __VIEWSTATE: that.data.inform[0]
+        __VIEWSTATE: that.data.inform[0],
+        type: that.data.type
       },
       success(res) {
         console.log(res.result)
         that.setData({ //登陆成功返回内容
           loginB: false, //关闭登陆按钮loading
-          welcome: JSON.stringify(res.result[1]), //设置下面textarea内容
           error: res.result[0] //弹出提醒
         })
         if (res.result[0].type === "success") {
-          // if(res.result[0].text)
-          app.globalData.wlist = [].concat(res.result[1]); //设置全局课表数据
+          if (that.data.type === 'wlist') { //当请求的是更新课表时
+            app.globalData.wlist = [].concat(res.result[1]); //设置全局课表数据
 
-          var wlistString = JSON.stringify(res.result[1])
-          var userString = JSON.stringify(res.result[2])
-          console.log(wlistString)
-          wx.setStorage({ //储存课表数据到本地
-            key: 'wlist',
-            data: wlistString
-          })
-          wx.setStorage({ //储存账号数据到本地
-            key: 'account',
-            data: that.data.account
-          })
-          wx.setStorage({ //储存密码数据到本地
-            key: 'password',
-            data: that.data.password
-          })
-          wx.setStorage({ //储存用户数据到本地
-            key: 'user',
-            data: userString
-          })
-          setTimeout(function () { //延时返回首页
-            wx.navigateBack({}) //返回首页
-          }, 1500)
+            var wlistString = JSON.stringify(res.result[1])
+            var userString = JSON.stringify(res.result[2])
+            console.log(wlistString)
+            wx.setStorage({ //储存课表数据到本地
+              key: 'wlist',
+              data: wlistString
+            })
+            wx.setStorage({ //储存账号数据到本地
+              key: 'account',
+              data: that.data.account
+            })
+            wx.setStorage({ //储存密码数据到本地
+              key: 'password',
+              data: that.data.password
+            })
+            wx.setStorage({ //储存用户数据到本地
+              key: 'user',
+              data: userString
+            })
+            setTimeout(function () { //延时返回首页
+              wx.navigateBack({}) //返回首页
+            }, 1500)
+          } else if (that.data.type === 'result') { //当请求的是更新成绩时
+            app.globalData.results = [].concat(res.result[1]); //设置全局课表数据
+
+            var resultsString = JSON.stringify(res.result[1])
+            console.log(resultsString)
+
+            wx.setStorage({ //储存成绩数据到本地
+              key: 'results',
+              data: resultsString
+            })
+            wx.setStorage({ //储存账号数据到本地
+              key: 'account',
+              data: that.data.account
+            })
+            wx.setStorage({ //储存密码数据到本地
+              key: 'password',
+              data: that.data.password
+            })
+
+            setTimeout(function () { //延时返回首页
+              wx.navigateBack({}) //返回首页
+            }, 1500)
+          }
         }
       },
       fail(res) {
@@ -91,8 +115,7 @@ Page({
           error: {
             type: 'error',
             text: '出错了！'
-          },
-          welcome: '出错了！\n\n' + res
+          }
         })
         console.log(res)
       }
@@ -106,10 +129,11 @@ Page({
       data: {},
       success(res) {
         that.setData({
-          welcome: '__VIEWSTATE:' + res.result[0] + '\n\ncookie:' + res.result[1],
           inform: res.result,
           code: res.result[2]
         })
+        app.globalData.cookie = res.result[1]
+        console.log(app.globalData.cookie)
         console.log(res.result)
       },
       fail(res) {
@@ -133,7 +157,6 @@ Page({
       data: {},
       success(res) {
         that.setData({
-          welcome: '__VIEWSTATE:' + res.result[0] + '\n\ncookie:' + res.result[1],
           inform: res.result,
           code: res.result[2]
         })
@@ -150,43 +173,54 @@ Page({
       }
     })
 
-    if (options.id === 'index') { //打开这个页面传过来的值
-
+    console.log(options.home)
+    if (options.home === 'index') { //打开这个页面传过来的值为index，则登陆后请求课表
+      console.log(options.home)
+      that.setData({
+        buttonName: '更新课表',
+        type: 'wlist'
+      })
+    } else if (options.home === 'result') { //打开这个页面传过来的值为result，则登陆后请求成绩
+      that.setData({
+        buttonName: '更新成绩',
+        type: 'result'
+      })
     }
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-  },
+  onReady: function () {},
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
     var that = this
+
     wx.getStorage({ //获取本地账号数据
       key: 'account',
-      success(res){
+      success(res) {
         console.log(res)
         that.setData({
-          account:res.data
+          account: res.data
         })
       },
-      fail(res){
+      fail(res) {
         console.log(res)
       }
     })
+
     wx.getStorage({ //获取本地密码数据
       key: 'password',
-      success(res){
+      success(res) {
         console.log(res)
         that.setData({
-          password:res.data
+          password: res.data
         })
       },
-      fail(res){
+      fail(res) {
         console.log(res)
       }
     })

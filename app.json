@@ -1,16 +1,21 @@
 {
   "pages": [
-    "pages/commutingBus/commutingBus",
     "pages/index/index",
     "pages/about/about",
-    "pages/learn/learn",
     "pages/loginL/loginL",
     "pages/login/login",
     "pages/login1/login1",
     "pages/login1/login1-2",
     "pages/application/application",
     "pages/wo/wo",
-    "pages/login1/login1-3"
+    "pages/infoCheck/schoolMap/schoolMap",
+    "pages/infoCheck/exam/exam",
+    "pages/infoCheck/commutingBus/commutingBus",
+    "pages/infoCheck/holiday/holiday",
+    "pages/login1/login1-3",
+    "pages/checkGrades/checkGrades",
+    "pages/checkCourse/checkCourse",
+    "pages/checkScores/checkScores"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -21,7 +26,8 @@
   "tabBar": {
     "color": "#2c2c2c",
     "selectedColor": "#3878C2",
-    "list": [{
+    "list": [
+      {
         "pagePath": "pages/index/index",
         "text": "首页",
         "iconPath": "assets/tabBarimages/首页2.png",
@@ -32,12 +38,6 @@
         "text": "应用",
         "iconPath": "assets/tabBarimages/应用2.png",
         "selectedIconPath": "assets/tabBarimages/应用1.png"
-      },
-      {
-        "pagePath": "pages/learn/learn",
-        "text": "学习",
-        "iconPath": "assets/tabBarimages/学习2.png",
-        "selectedIconPath": "assets/tabBarimages/学习1.png"
       },
       {
         "pagePath": "pages/wo/wo",

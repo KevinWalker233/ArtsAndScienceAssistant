@@ -5,7 +5,9 @@ App({
     configVersion: -1, //配置文件版本
     times: [], //课表时间
     user: [], //用户信息
-    wlist: [] // 课表色块数组
+    wlist: [], // 课表色块数组
+    results: [], //成绩数组
+    xfNum: 0 //目前已修学分
   },
   onLaunch() {
     var that = this;
@@ -50,11 +52,20 @@ App({
               })
               wx.getStorage({ //获取本地账号数据
                 key: 'user',
-                success(res){
+                success(res) {
                   // console.log(res)
                   that.globalData.user = [].concat(JSON.parse(res.data))
                 },
-                fail(res){
+                fail(res) {
+                  console.log(res)
+                }
+              })
+              wx.getStorage({ //获取本地成绩数据
+                key: 'results',
+                success(res) {
+                  that.globalData.results = [].concat(JSON.parse(res.data))
+                },
+                fail(res) {
                   console.log(res)
                 }
               })

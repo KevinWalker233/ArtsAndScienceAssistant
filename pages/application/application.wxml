@@ -1,2 +1,79 @@
 <!--pages/application/application.wxml-->
-<text>pages/application/application.wxml</text>
+<custom-swiper imgUrls="{{carouselImgUrls}}" /> 
+<!-- 公告 -->
+<!-- <notice></notice> -->
+<!-- 功能导航区 -->
+<functions/>
+<!-- 1.一键查询 -->
+<view class="function">
+  <!-- 顶部 -->
+  <view class="function_top">
+    <view style="background-color: blueviolet;" class="function_top_line"></view>
+    <text class="function_top_text">一键查询</text>
+  </view>
+  <!-- 中间分割线 -->
+  <view class="function_centerLine"></view>
+  <!-- 主体内容 -->
+  <view class="function_content">
+    <view style="border: 1rpx red solid;">
+      <image class="function_content_icon" src="../../assets/tabBarimages/学习1.png" ></image>
+    <view class="function_content_text">wenxi</view>
+    </view>
+    <view>
+      <image class="function_content_icon" src="../../assets/tabBarimages/学习1.png" ></image>
+    <view class="function_content_text">wenxi</view>
+    </view>
+    <view>
+      <image class="function_content_icon" src="../../assets/tabBarimages/学习1.png" ></image>
+    <view class="function_content_text">wenxi</view>
+    </view>
+  </view>
+</view>
+<!-- 2.信息查询 -->
+<view class="function">
+  <view class="function_top">
+    <view style="background-color: green;" class="function_top_line"></view>
+    <text class="function_top_text">信息查询</text>
+  </view>
+  <view class="function_centerLine"></view>
+  <view class="function_content">
+    <view bindtap="jumpSchoolMap">
+      <image src="cloud://wlzs-2gtlu9u2a909b08e.776c-wlzs-2gtlu9u2a909b08e-1304646404/infoCheck/map.png" class="function_content_icon"></image>
+    <view class="function_content_text">地图</view>
+    </view>
+    <view bindtap="jumpExam">
+      <image class="function_content_icon" src="cloud://wlzs-2gtlu9u2a909b08e.776c-wlzs-2gtlu9u2a909b08e-1304646404/infoCheck/exam.png"></image>
+    <view class="function_content_text">考试安排</view>
+    </view>
+    <view bindtap="jumpCommutingBus">
+      <image src="cloud://wlzs-2gtlu9u2a909b08e.776c-wlzs-2gtlu9u2a909b08e-1304646404/infoCheck/schoolBus.png" class="function_content_icon"></image>
+    <view class="function_content_text">校车</view>
+    </view>
+    <view bindtap="jumpHoliday">
+      <image src="cloud://wlzs-2gtlu9u2a909b08e.776c-wlzs-2gtlu9u2a909b08e-1304646404/infoCheck/holiday.png" class="function_content_icon"></image>
+    <view class="function_content_text">放假安排</view>
+    </view>
+  </view>
+</view>
+<!-- 3.拓展功能 -->
+<view class="function">
+  <view class="function_top">
+    <view style="background-color: greenyellow;" class="function_top_line"></view>
+    <text class="function_top_text">拓展功能</text>
+  </view>
+  <view class="function_centerLine"></view>
+  <view class="function_content">
+    <view>
+      <image class="function_content_icon" src="../../assets/tabBarimages/学习1.png" ></image>
+    <view class="function_content_text">wenxi</view>
+    </view>
+    <view>
+      <image class="function_content_icon" src="../../assets/tabBarimages/学习1.png" ></image>
+    <view class="function_content_text">wenxi</view>
+    </view>
+    <view>
+      <image class="function_content_icon" src="../../assets/tabBarimages/学习1.png" ></image>
+    <view class="function_content_text">wenxi</view>
+    </view>
+  </view>
+</view>

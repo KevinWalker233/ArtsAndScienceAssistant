@@ -1,3 +1,7 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+     "custom-swiper": "../../components/customSwiper/customSwiper",
+     "notice": "../../components/notice/notice",
+     "functions":"../../components/customFunction/customFunction"
+  }
 }
