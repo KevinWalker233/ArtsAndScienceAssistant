@@ -59,6 +59,18 @@ Page({
       url: '../infoCheck/holiday/holiday',
     })
   },
+  // 跳转至 记账本 功能
+  jumpMoneybook:function(){
+    wx.navigateTo({
+      url: '../moneybook/moneybook',
+    })
+  },
+  // 跳转至 任务清单 功能
+  jumpToDos:function(){
+    wx.navigateTo({
+      url: '../ToDos/ToDos',
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
