@@ -1,1 +1,59 @@
-/* pages/checkCourse/checkCourse.wxss */
+.head {
+  width: 100%;
+  height: 400rpx;
+  background: linear-gradient(to top, rgb(16, 80, 154), rgb(56, 120, 194));
+}
+
+.refresh {
+  width: 60rpx;
+  height: 60rpx;
+  position: absolute;
+  top: 10rpx;
+  right: 10%;
+}
+
+.cardContext {
+  width: 85%;
+  height: 120rpx;
+  margin: 0 auto;
+  position: relative;
+  top: 120rpx;
+  border-radius: 20rpx;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0 2rpx 20rpx 5rpx rgba(0, 0, 0, 0.3);
+  background: linear-gradient(to right bottom, rgb(255, 255, 255), rgb(210, 223, 236));
+}
+
+.moneyCard {
+  width: 33%;
+  height: 70%;
+  margin: auto;
+  text-align: center;
+  font-size: 25rpx;
+}
+
+.cardStatus {
+  width: 50%;
+  height: 120rpx;
+  margin: 0 auto;
+  position: relative;
+  top: 140rpx;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-size: 25rpx;
+}
+
+.card {
+  width: 50%;
+  height: 60rpx;
+  line-height: 60rpx;
+  color: white;
+  text-align: center;
+}
+
+.money {
+  font-size: 30rpx;
+  font-weight: bold;
+}

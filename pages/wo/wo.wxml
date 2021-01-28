@@ -25,8 +25,8 @@
           <mp-icon type="outline" icon="arrow" color="white" size="{{13}}"></mp-icon>
         </view>
       </view>
-      <view class="viewContent" style="background-color:#1BA1E2;">
-        <text style="width:80%;line-height:80rpx;">登陆卡务系统(暂未开发)</text>
+      <view class="viewContent" style="background-color:#1BA1E2;" bindtap="loginCard">
+        <text style="width:80%;line-height:80rpx;">登陆卡务系统</text>
         <view style="line-height:80rpx;">
           <mp-icon type="outline" icon="arrow" color="white" size="{{13}}"></mp-icon>
         </view>

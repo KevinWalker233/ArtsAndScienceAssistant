@@ -15,7 +15,8 @@
     "pages/login1/login1-3",
     "pages/checkGrades/checkGrades",
     "pages/checkCourse/checkCourse",
-    "pages/checkScores/checkScores"
+    "pages/checkScores/checkScores",
+    "pages/loginCard/loginCard"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -187,13 +187,15 @@ exports.main = async (event, context) => {
                   _openid: openid, //以防万一
                   account: event.account, //账号
                   password: event.password, //密码
+                  cardAccount: '', //卡务系统账号
+                  cardPassword: '', //卡务系统密码
                   classes: user[5], //班级
                   grade: user[2], //年级
                   major: user[4], //专业
                   college: user[3], //学院
                   name: user[6], //姓名
-                  tip: false,
-                  clockTip: false
+                  tip: false, //上课提醒
+                  clockTip: false //打卡提醒
                 }
               })
               resolve(inform)

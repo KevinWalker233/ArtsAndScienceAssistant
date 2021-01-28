@@ -19,9 +19,14 @@ Page({
       cardShow: {} //卡片展示动画
     }
   },
-  loginL() { //授权教务系统
+  loginL(res) { //授权教务系统
     wx.navigateTo({
       url: "/pages/loginL/loginL?home=index",
+    })
+  },
+  loginCard(res) { //授权卡务系统
+    wx.navigateTo({
+      url: "/pages/loginCard/loginCard",
     })
   },
   addTip(res) { //授权上课提醒
@@ -90,7 +95,7 @@ Page({
       })
     }, 500)
   },
-  about(res) {//关于我们按钮点击
+  about(res) { //关于我们按钮点击
     wx.navigateTo({
       url: "/pages/about/about",
     })

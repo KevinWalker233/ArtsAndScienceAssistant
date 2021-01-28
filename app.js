@@ -7,7 +7,8 @@ App({
     user: [], //用户信息
     wlist: [], // 课表色块数组
     results: [], //成绩数组
-    xfNum: 0 //目前已修学分
+    xfNum: 0, //目前已修学分,
+    cardInform: [] //卡务信息
   },
   onLaunch() {
     var that = this;
@@ -64,6 +65,15 @@ App({
                 key: 'results',
                 success(res) {
                   that.globalData.results = [].concat(JSON.parse(res.data))
+                },
+                fail(res) {
+                  console.log(res)
+                }
+              })
+              wx.getStorage({ //获取本地教务系统信息
+                key: "cardInform",
+                success(res) { //本地课表有数据，则显示课表
+                  that.globalData.cardInform = [].concat(JSON.parse(res.data))
                 },
                 fail(res) {
                   console.log(res)

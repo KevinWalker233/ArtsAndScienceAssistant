@@ -6,7 +6,7 @@
   </view>
   <view bindtap="jumpCheckCourse">
     <image src="cloud://wlzs-2gtlu9u2a909b08e.776c-wlzs-2gtlu9u2a909b08e-1304646404/FunctionIcon/CheckCourse.png" style="height:40px;width:40px"></image>
-    <view class="functionList_text">查课表</view>
+    <view class="functionList_text">查余额</view>
   </view>
   <view bindtap="jumpCheckScores">
     <image src="cloud://wlzs-2gtlu9u2a909b08e.776c-wlzs-2gtlu9u2a909b08e-1304646404/FunctionIcon/SchoolScores.png" style="height:40px;width:40px"></image>
