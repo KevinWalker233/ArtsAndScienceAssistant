@@ -16,7 +16,9 @@
     "pages/checkGrades/checkGrades",
     "pages/checkCourse/checkCourse",
     "pages/checkScores/checkScores",
-    "pages/loginCard/loginCard"
+    "pages/loginCard/loginCard",
+    "pages/moneybook/moneybook",
+    "pages/ToDos/ToDos"
   ],
   "window": {
     "backgroundTextStyle": "light",

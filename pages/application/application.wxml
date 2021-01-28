@@ -59,17 +59,17 @@
 <view class="function">
   <view class="function_top">
     <view style="background-color: greenyellow;" class="function_top_line"></view>
-    <text class="function_top_text">拓展功能</text>
+    <text class="function_top_text">生活服务</text>
   </view>
   <view class="function_centerLine"></view>
   <view class="function_content">
-    <view>
-      <image class="function_content_icon" src="../../assets/tabBarimages/学习1.png" ></image>
-    <view class="function_content_text">wenxi</view>
+    <view bindtap="jumpToDos">
+      <image class="function_content_icon" src="../../assets/ToDos.png" ></image>
+    <view class="function_content_text">ToDos</view>
     </view>
-    <view>
-      <image class="function_content_icon" src="../../assets/tabBarimages/学习1.png" ></image>
-    <view class="function_content_text">wenxi</view>
+    <view bindtap="jumpMoneybook">
+    <image class="function_content_icon" src="../../assets/moneybook.png" ></image>
+    <view class="function_content_text">记账本</view>
     </view>
     <view>
       <image class="function_content_icon" src="../../assets/tabBarimages/学习1.png" ></image>

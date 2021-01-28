@@ -1,0 +1,32 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="header">
+     <image bindtap="addTodoHandle" src="/assets/plus.png"></image>
+     <input bindinput="inputChangeHandle" bindconfirm="addTodoHandle" type="text" placeholder="Anything here...." value="{{input}}"/>
+  </view>
+
+  <block wx:if="{{todos.length}}">
+   <view class="todos">
+      <view class="bg" style="opacity:{{0.3}}">
+   
+  </view>
+
+    <view wx:for="{{todos}}" data-index="{{index}}" bindtap="toggleTodoHandle" class="item {{ item.completed ? 'completed':''}}">
+       <icon size="18" type="{{item.completed ? 'success':'circle' }}"/>
+       <text>{{item.name}}</text>
+       <icon size="18" type="clear"  catchtap="removeToDoHandle"  data-index="{{index}}"/>
+    </view>
+  
+</view>
+
+<view class="footer">
+   <text>{{leftCount}} items left</text>
+   <text bindtap="ClearHandle">Clear completed</text>
+</view>
+  </block>
+
+   <view wx:else class="null" >
+     
+   </view>
+
+</view>
