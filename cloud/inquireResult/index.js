@@ -156,15 +156,36 @@ exports.main = async (event, context) => {
                   //下面是有课的输出内容
                   if (text.indexOf("<br>") != -1) {
                     var arr1 = text.split("<br>");
-                    var ke = {
-                      "weekTime": zhouCi, //周几上课
-                      "weeks": arr1[1], //第几周到第几周
-                      "teacher": arr1[2], //课任老师
-                      "address": arr1[3], //上课教室
-                      "courseName": arr1[0], //课程名称
-                      "jieCi": keCi //课程是第几节
-                    };
-                    wlist.push(ke);
+                    if (arr1[5] != '') {
+                      var ke = {
+                        "weekTime": zhouCi, //周几上课
+                        "weeks": arr1[1], //第几周到第几周
+                        "teacher": arr1[2], //课任老师
+                        "address": arr1[3], //上课教室
+                        "courseName": arr1[0], //课程名称
+                        "jieCi": keCi //课程是第几节
+                      };
+                      var ke1 = {
+                        "weekTime": zhouCi, //周几上课
+                        "weeks": arr1[6], //第几周到第几周
+                        "teacher": arr1[7], //课任老师
+                        "address": arr1[8], //上课教室
+                        "courseName": arr1[5], //课程名称
+                        "jieCi": keCi //课程是第几节
+                      };
+                      wlist.push(ke);
+                      wlist.push(ke1);
+                    } else {
+                      var ke = {
+                        "weekTime": zhouCi, //周几上课
+                        "weeks": arr1[1], //第几周到第几周
+                        "teacher": arr1[2], //课任老师
+                        "address": arr1[3], //上课教室
+                        "courseName": arr1[0], //课程名称
+                        "jieCi": keCi //课程是第几节
+                      };
+                      wlist.push(ke);
+                    }
                   }
                 }
               }

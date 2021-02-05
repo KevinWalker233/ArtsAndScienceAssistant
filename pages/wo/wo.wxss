@@ -22,7 +22,7 @@
 .bodyCard {
   width: 90%;
   height: 300rpx;
-  margin: 10rpx auto;
+  margin: 15rpx auto;
   background-color: white;
   /* box-shadow: 0rpx 0rpx 20rpx 2rpx #888888; */
   box-shadow:0 2rpx 10rpx 2rpx rgba(0, 0, 0, .3);

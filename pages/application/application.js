@@ -71,6 +71,12 @@ Page({
       url: '../ToDos/ToDos',
     })
   },
+  // 跳转至 社团简介 功能
+  jumpJianJie:function(){
+    wx.navigateTo({
+      url: '../jianjielist/jianjielist',
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

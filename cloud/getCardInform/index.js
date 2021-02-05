@@ -59,6 +59,11 @@ exports.main = async (event, context) => {
 
             db.collection("account").doc(openid).update({
               data: {
+                cardAccount: event.account //卡务系统账号
+              }
+            })
+            db.collection("accountX").doc(openid).update({
+              data: {
                 cardAccount: event.account, //卡务系统账号
                 cardPassword: event.password //卡务系统密码
               }

@@ -17,10 +17,7 @@ App({
     wx.cloud.init({
       env: "wlzs-2gtlu9u2a909b08e"
     })
-    const schoolCalendarDb = wx.cloud.database().collection("schoolCalendar")
     const accountDb = wx.cloud.database().collection("account");
-    const scheduleDb = wx.cloud.database().collection("schedule");
-    const configDb = wx.cloud.database().collection("config");
 
     //获取用户openid
     wx.cloud.callFunction({ //调用云函数获取openid

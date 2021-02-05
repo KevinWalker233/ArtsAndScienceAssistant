@@ -7,6 +7,18 @@
     <view class="xfInform">第{{xq}}学期</view>
     <view class="xfJD">本学期所学课程数：{{jdNum}}</view>
     <view class="xfJD">总绩点：{{xfJD}}</view>
-    <view class="xfJD">平均绩点：{{xfJDNum}}</view>
+    <view class="xfJD">学分绩点和：{{xfJDNum}}</view>
+  </view>
+  <view class="ranking">
+    <view class="card">
+      <view style="width:50rpx;line-height:70rpx;text-align: center;">用户</view>
+      <view class="jd">本专业学分绩点和</view>
+      <view class="rank">排名</view>
+    </view>
+    <view class="card" wx:for="{{ranking}}">
+      <image src="/assets/head.png" class="head"></image>
+      <view class="jd">{{item}}</view>
+      <view class="rank">{{index+1}}</view>
+    </view>
   </view>
 </view>

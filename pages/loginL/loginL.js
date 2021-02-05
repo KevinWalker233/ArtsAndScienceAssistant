@@ -1,5 +1,4 @@
 const app = getApp()
-const db = wx.cloud.database().collection("account");
 
 Page({
   /**
@@ -62,6 +61,7 @@ Page({
         if (res.result[0].type === "success") {
           if (that.data.type === 'wlist') { //当请求的是更新课表时
             app.globalData.wlist = [].concat(res.result[1]); //设置全局课表数据
+            app.globalData.user = [].concat(res.result[2]); //设置全局用户数据
 
             var wlistString = JSON.stringify(res.result[1])
             var userString = JSON.stringify(res.result[2])

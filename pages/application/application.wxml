@@ -71,9 +71,9 @@
     <image class="function_content_icon" src="../../assets/moneybook.png" ></image>
     <view class="function_content_text">记账本</view>
     </view>
-    <view>
+    <view bindtap="jumpJianJie">
       <image class="function_content_icon" src="../../assets/tabBarimages/学习1.png" ></image>
-    <view class="function_content_text">wenxi</view>
+    <view class="function_content_text">社团简介</view>
     </view>
   </view>
 </view>

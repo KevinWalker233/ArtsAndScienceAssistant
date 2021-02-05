@@ -160,15 +160,36 @@ exports.main = async (event, context) => {
                     //下面是有课的输出内容
                     if (text.indexOf("<br>") != -1) {
                       var arr1 = text.split("<br>");
-                      var ke = {
-                        "weekTime": zhouCi, //周几上课
-                        "weeks": arr1[1], //第几周到第几周
-                        "teacher": arr1[2], //课任老师
-                        "address": arr1[3], //上课教室
-                        "courseName": arr1[0], //课程名称
-                        "jieCi": keCi //课程是第几节
-                      };
-                      wlist.push(ke);
+                      if (arr1.length > 5) {
+                        var ke = {
+                          "weekTime": zhouCi, //周几上课
+                          "weeks": arr1[1], //第几周到第几周
+                          "teacher": arr1[2], //课任老师
+                          "address": arr1[3], //上课教室
+                          "courseName": arr1[0], //课程名称
+                          "jieCi": keCi //课程是第几节
+                        };
+                        var ke1 = {
+                          "weekTime": zhouCi, //周几上课
+                          "weeks": arr1[7], //第几周到第几周
+                          "teacher": arr1[8], //课任老师
+                          "address": arr1[9], //上课教室
+                          "courseName": arr1[6], //课程名称
+                          "jieCi": keCi //课程是第几节
+                        };
+                        wlist.push(ke);
+                        wlist.push(ke1);
+                      } else {
+                        var ke = {
+                          "weekTime": zhouCi, //周几上课
+                          "weeks": arr1[1], //第几周到第几周
+                          "teacher": arr1[2], //课任老师
+                          "address": arr1[3], //上课教室
+                          "courseName": arr1[0], //课程名称
+                          "jieCi": keCi //课程是第几节
+                        };
+                        wlist.push(ke);
+                      }
                     }
                   }
                 }
@@ -186,6 +207,22 @@ exports.main = async (event, context) => {
                   _id: openid, //openid也存到id上，防止一个用户多次储存
                   _openid: openid, //以防万一
                   account: event.account, //账号
+                  cardAccount: '', //卡务系统账号
+                  classes: user[5], //班级
+                  grade: user[2], //年级
+                  major: user[4], //专业
+                  college: user[3], //学院
+                  name: user[6], //姓名
+                  tip: false, //上课提醒
+                  clockTip: false, //打卡提醒
+                  xfjd: 0 //学分绩点和
+                }
+              })
+              db.collection("accountX").add({ //添加用户信息
+                data: {
+                  _id: openid, //openid也存到id上，防止一个用户多次储存
+                  _openid: openid, //以防万一
+                  account: event.account, //账号
                   password: event.password, //密码
                   cardAccount: '', //卡务系统账号
                   cardPassword: '', //卡务系统密码
@@ -193,9 +230,7 @@ exports.main = async (event, context) => {
                   grade: user[2], //年级
                   major: user[4], //专业
                   college: user[3], //学院
-                  name: user[6], //姓名
-                  tip: false, //上课提醒
-                  clockTip: false //打卡提醒
+                  name: user[6] //姓名
                 }
               })
               resolve(inform)

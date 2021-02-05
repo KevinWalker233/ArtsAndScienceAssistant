@@ -1,7 +1,5 @@
 const app = getApp()
 const db = wx.cloud.database().collection("schoolCalendar")
-const db1 = wx.cloud.database().collection("account");
-const db2 = wx.cloud.database().collection("schedule");
 const db3 = wx.cloud.database().collection("config");
 
 Page({
@@ -11,11 +9,11 @@ Page({
     colorArrays: ["#85B8CF", "#90C652", "#D8AA5A", "#FC9F9D", "#0A9A84", "#61BC69", "#12AEF3", "#E29AAD"],
     wlist: [], // 课表色块数组
     leftClass: [], //左侧课表时间
-    week:-1,//周次
-    weekPicker: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], //周次
-    month:0,//顶部显示的月
-    day:0,//顶部显示的天
-    weekName:'',//顶部显示的周
+    week: 0, //周次
+    weekPicker: ['全部', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], //周次
+    month: 0, //顶部显示的月
+    day: 0, //顶部显示的天
+    weekName: '', //顶部显示的周
     //校历
     year: 0, //校历显示的年
     schoolCalendar: [], //月份信息
@@ -27,7 +25,17 @@ Page({
     showStudyDay: false, //是否展示放假天数
     studyDay: 0 //距离放假还有多少天
   },
-  login(res) {
+  changeWeek(res) { //选择周次
+    wx.setStorage({
+      data: (parseInt(res.detail.value)),
+      key: 'week',
+    })
+    this.setData({ //设置课表
+      wlist: this.wlistFactory(app.globalData.wlist, (parseInt(res.detail.value))),
+      week: (parseInt(res.detail.value))
+    })
+  },
+  login(res) { //点击更新课表按钮
     wx.navigateTo({
       url: "/pages/loginL/loginL?home=index",
     })
@@ -43,6 +51,34 @@ Page({
       return month_normal;
     }
   },
+  //解析处理wlist的函数
+  wlistFactory(wlist, week) {
+    if (parseInt(week) === 0) {
+      return wlist
+    } else {
+      var newWlist = []
+      var danShuangZhou
+      if (parseInt(week) % 2 === 0) {
+        danShuangZhou = '双'
+      } else {
+        danShuangZhou = '单'
+      }
+      for (var i = 0; i < wlist.length; i++) {
+        var start = parseInt(wlist[i]['weeks'].split('(')[0].split('-')[0])
+        var end = parseInt(wlist[i]['weeks'].split('(')[0].split('-')[1])
+        if (start <= parseInt(week) && parseInt(week) <= end) {
+          if (wlist[i]['weeks'].indexOf('单') != -1 || wlist[i]['weeks'].indexOf('双') != -1) {
+            if (wlist[i]['weeks'].indexOf(danShuangZhou) != -1) {
+              newWlist.push(wlist[i])
+            }
+          } else {
+            newWlist.push(wlist[i])
+          }
+        }
+      }
+      return newWlist
+    }
+  },
   onLoad() {
     var self = this;
 
@@ -53,12 +89,12 @@ Page({
     var my_month = date.getMonth();
     var my_day = date.getDate();
     var my_week = date.getDay();
-    var weekName = ['日','一','二','三','四','五','六']
+    var weekName = ['日', '一', '二', '三', '四', '五', '六']
 
     self.setData({
-      month: my_month+1,
+      month: my_month + 1,
       day: my_day,
-      weekName:weekName[my_week]
+      weekName: weekName[my_week]
     })
 
     //每个月第一天是周几的数组
@@ -257,13 +293,22 @@ Page({
       }
     });
 
+    wx.getStorage({
+      key: 'week',
+      success(res) {
+        self.setData({
+          week: res.data
+        })
+      }
+    })
+
     //加载课表
     wx.getStorage({ //获取本地课表
       key: "wlist",
       success(res) { //本地课表有数据，则显示课表
         // console.log('[查询]本地课表获取结果：', res.data)
         self.setData({ //设置课表
-          wlist: JSON.parse(res.data)
+          wlist: self.wlistFactory(JSON.parse(res.data), self.data.week)
         })
       },
       fail(res) {
@@ -361,8 +406,13 @@ Page({
   //onShowonShowonShowonShowonShowonShowonShowonShowonShowonShowonShowonShowonShowonShowonShow
   onShow() {
     var that = this
+
     that.setData({ //设置课表
       wlist: app.globalData.wlist
+    })
+
+    that.setData({ //设置课表
+      wlist: this.wlistFactory(app.globalData.wlist,that.data.week)
     })
 
     //调用云函数获取用户openid
@@ -373,14 +423,6 @@ Page({
           _openid: res.result.openid
         })
         console.log("[查询]获取openid成功：", res.result.openid)
-      }
-    })
-
-    //周次的判断
-    wx.getStorage({
-      key: 'week',
-      success(res) {
-        console.log(res.data);
       }
     })
   },

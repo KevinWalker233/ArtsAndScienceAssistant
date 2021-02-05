@@ -15,40 +15,8 @@ Page({
     cardInform: [] //用户数据
   },
   refresh(res) { //点击刷新按钮
-    var that = this
-    wx.cloud.callFunction({ //调用云函数登陆
-      name: 'getCardInform',
-      data: {
-        account: that.data.account,
-        password: that.data.password
-      },
-      success(res) {
-        var cardInformString = JSON.stringify(res.result[1])
-        cardInformString = cardInformString.replace('元（卡余额）', '').replace('元（当前过渡余额）', '').replace('元（上次过渡余额）', '')
-        if (res.result[0].type === "success") {
-          var success = {
-            type: 'success',
-            text: '刷新成功！'
-          }
-          that.setData({
-            error: success
-          })
-          wx.setStorage({ //储存卡务数据到本地
-            key: 'cardInform',
-            data: cardInformString
-          })
-          wx.getStorage({
-            key: 'cardInform',
-            success(res) {
-              app.globalData.cardInform = [].concat(JSON.parse(res.data))
-              that.setData({
-                cardInform: [].concat(JSON.parse(res.data))
-              })
-              console.log(that.data.cardInform)
-            }
-          })
-        }
-      }
+    wx.navigateTo({
+      url: "/pages/loginCard/loginCard",
     })
   },
   /**

@@ -1,5 +1,4 @@
 const app = getApp()
-const db = wx.cloud.database().collection("account");
 
 Page({
   /**
