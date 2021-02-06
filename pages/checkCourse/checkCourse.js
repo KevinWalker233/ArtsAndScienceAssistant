@@ -1,10 +1,6 @@
 var app = getApp()
 
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     account: '', //账号
     password: '', //密码
@@ -12,11 +8,86 @@ Page({
       type: '',
       text: ''
     },
+    guaShiBool: false, //挂失按钮loading
+    jieGuaBool: false, //解挂按钮loading
     cardInform: [] //用户数据
   },
   refresh(res) { //点击刷新按钮
     wx.navigateTo({
       url: "/pages/loginCard/loginCard",
+    })
+  },
+  guaShi(res) { //点击挂失按钮
+    var that = this
+    that.setData({
+      guaShiBool: true
+    })
+    wx.cloud.callFunction({
+      name: 'doSomeCard',
+      data: {
+        account: that.data.account,
+        password: that.data.password,
+        type: "挂失"
+      },
+      success: function (res) {
+        that.setData({
+          guaShiBool: false,
+          error: res.result[0]
+        })
+        that.updateCardInform()
+      },
+      fail(res) {
+        that.setData({
+          guaShiBool: false
+        })
+      }
+    })
+  },
+  jieGua(res) { //点击解挂按钮
+    var that = this
+    that.setData({
+      jieGuaBool: true
+    })
+    wx.cloud.callFunction({
+      name: 'doSomeCard',
+      data: {
+        account: that.data.account,
+        password: that.data.password,
+        type: "解挂"
+      },
+      success: function (res) {
+        that.setData({
+          jieGuaBool: false,
+          error: res.result[0]
+        })
+        that.updateCardInform()
+      },
+      fail(res) {
+        that.setData({
+          jieGuaBool: false
+        })
+      }
+    })
+  },
+  updateCardInform() { //更新用户数据
+    var that = this
+    wx.cloud.callFunction({ //调用云函数登陆
+      name: 'getCardInform',
+      data: {
+        account: that.data.account,
+        password: that.data.password
+      },
+      success(res) {
+        var cardInformString = JSON.stringify(res.result[1])
+        cardInformString = cardInformString.replace('元（卡余额）', '').replace('元（当前过渡余额）', '').replace('元（上次过渡余额）', '')
+        that.setData({ //登陆成功返回内容
+          cardInform: [].concat(JSON.parse(cardInformString))
+        })
+        wx.setStorage({ //储存卡务数据到本地
+          key: 'cardInform',
+          data: cardInformString
+        })
+      }
     })
   },
   /**
@@ -53,14 +124,6 @@ Page({
       }
     })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
   /**
    * 生命周期函数--监听页面显示
    */
@@ -73,7 +136,6 @@ Page({
         that.setData({
           cardInform: [].concat(JSON.parse(res.data))
         })
-        console.log(that.data.cardInform)
       }
     })
 
@@ -103,39 +165,4 @@ Page({
       }
     })
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

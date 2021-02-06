@@ -1,4 +1,4 @@
-<mp-toptips msg="{{error.text}}" type="{{error.type}}" show="{{error.text}}" delay="1000"></mp-toptips>
+<mp-toptips msg="{{error.text}}" type="{{error.type}}" show="{{error.text}}" delay="2000"></mp-toptips>
 
 <view class="head">
   <view class="refresh" bindtap="refresh">
@@ -24,4 +24,10 @@
     <view class="card">{{cardInform[5]}}</view>
     <view class="card">{{cardInform[6]}}</view>
   </view>
+</view>
+
+<view class="context">
+  <input class="passwordInput" value="{{password}}" placeholder="请输入卡务系统密码" />
+  <button loading="{{guaShiBool}}" style="background-color:#3878C2;color:white;" bindtap="guaShi">持卡人挂失</button>
+  <button loading="{{jieGuaBool}}" style="background-color:#3878C2;color:white;" bindtap="jieGua">持卡人解挂</button>
 </view>
