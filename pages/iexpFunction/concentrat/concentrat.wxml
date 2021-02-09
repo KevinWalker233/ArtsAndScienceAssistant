@@ -1,0 +1,80 @@
+<!--pages/iexpFunction/concentrat/concentrat.wxml-->
+<!-- 导航 -->
+<view class='top_nav'>
+  <view class="nav-name {{item.typeId == currentId ? 'nav-hover':''}}" wx:for="{{section}}" wx:key="id" id='{{item.typeId}}' catchtap='handleTap'>
+    {{item.name}}
+  </view>
+</view>
+
+<!-- 专注模块 -->
+<view hidden='{{currentId!=1}}'>
+  <!-- 时间滑块 -->
+  <view class="slider">
+    <slider min="1" max="60" show-value activeColor="#3878C2" backgroundColor="#666666" value="{{time}}" bindchange="silderChange"></slider>
+  </view>
+  <!-- 文字部分 -->
+  <view class="task_text">
+    <view class="task_title">选择一个任务</view>
+    <view class="task_desc">在接下来的{{time}}分钟内，专注做这件事</view>
+  </view>
+  <!-- 专注分类模块 -->
+  <view class="task_cate">
+    <view wx:for="{{cateArr}}" wx:key="item" class='cate_item' bindtap="clickCate" data-index="{{index}}">
+      <view class='cate_icon {{index == cateActive ? "cate_active":""}}'><image src='../../../assets/concentration/{{item.icon}}'></image></view>
+      <view class='cate_text {{index == cateActive ? "cate_active":""}}'>{{item.text}}</view>
+    </view>
+  </view>
+  <!-- 开始按钮 -->
+  <view class="startBtn" bindtap="toShowModal">开始专注</view>
+  <!--custom Modal模态框-->
+  <view class="modal-mask" wx:if="{{showModal}}"></view>
+  <view wx:if="{{showModal}}">
+    <!-- 模态框内容 -->
+    <view class="modal-content">
+      <view class="model-title">"拒绝拖延症"</view>
+      <view class="model-title2"># 只要坚持，就会成功！</view>
+      <view class="progress">
+        <canvas canvas-id="progress_active" class="progress_active"></canvas>
+        <image class="progress_icon" src="../../../assets/concentration/dianzan.png"></image>
+        <view class="progress_text">{{timeStr}}</view>
+      </view>
+      <!-- 操作按钮 -->
+      <view class="pauseBtn"wx:if="{{pauseShow}}" bindtap="pauseTime">暂 停</view>
+      <view class="handleBtns" wx:else>
+        <view class="continueBtn" bindtap="continueTime">继续</view>
+        <view class="cancleBtn" bindtap="cancleTime">放弃</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 统计模块 -->
+<view hidden='{{currentId!=2}}'>
+  <!-- 统计数据 -->
+  <view class="sum">
+    <view class="sum_item" wx:for="{{sum}}" wx:key="item">
+      <view class="sum_item_title">{{item.title}}</view>
+      <view class="sum_item_value">{{item.value}}</view>
+    </view>
+  </view>
+  <!-- 详情 -->
+  <view class="detail">
+    <view class="detail_title">
+      <view class="detail_title_text">分类统计</view>
+      <view class="detail_title_type">
+        <text class='{{actionIndex == 0 ? "active":""}}' bindtap="changeType" data-index="0">今日</text>
+        <text class='{{actionIndex == 1 ? "active":""}}' bindtap="changeType" data-index="1">历史</text>
+      </view>
+    </view>
+    <view class="detail_line"></view>
+    <view class="detail_list">
+      <view class="list_item" wx:for="{{list}}" wx:key="item">
+        <view class="list_item_data">{{item.data}}</view>
+        <view class="list_item_text">{{cateArr[item.cate].text}}</view>
+        <view class="list_item_time">{{item.time}}分钟</view>
+      </view>
+    </view>
+  </view>
+</view>
+    
+

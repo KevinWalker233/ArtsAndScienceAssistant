@@ -1,5 +1,0 @@
-<!--pages/login/login.wxml-->
-<view style="font-weight:bold;">
-  请选择学院:
-</view>
-<navigator wx:for="{{college}}" url="/pages/login1/login1?college={{item}}"><button>{{item}}</button></navigator>

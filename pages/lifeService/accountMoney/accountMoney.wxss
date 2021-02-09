@@ -1,0 +1,132 @@
+/* pages/lifeService/accountMoney/accountMoney.wxss */
+page {
+  width: 100%;
+  height: 100%;
+
+}
+
+.top{
+width: 100%;
+height: 180px;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+}
+
+.segmentBar{
+width: 100%;
+height: 100rpx;
+/*background: blue;*/
+display: flex;
+
+}
+.segmentBar .segmentItems{
+flex: 1;
+text-align: center;
+justify-content: center;
+display: flex;
+flex-direction: column;
+}
+.segmentBar .segmentItems .title{
+flex: 1;
+font-size: 30rpx;
+color: black;
+}
+.segmentBar .segmentItems .subTitle{
+flex: 1;
+font-size: 26rpx;
+color: #666;
+}
+.active .title{
+color: red !important;
+}
+.active .subTitle{
+color: red !important;
+border-bottom: red 1rpx solid;
+}
+.segmentPane{
+width: 100%;
+height: 100%;
+}
+.segmentPane .segmentContainer{
+height: 100%;
+
+}
+
+/*输入金额样式*/
+.inputNum input {
+height: 80px;
+font-size: 50px;
+}
+
+.line {
+border-bottom: 2px solid orange;
+}
+
+
+/*分类样式*/
+.inputChoose {
+display: flex;
+flex-direction: row;
+align-items: center;
+margin-top: 50rpx;
+padding: 10rpx 0 30rpx 10rpx;
+border-bottom: 1px solid rgb(216, 216, 208);
+}
+
+.inputChoose image {
+width: 35rpx;
+height: 35rpx;
+margin-right: 10rpx;
+}
+
+.inputChooseText {
+padding-right: 60rpx;
+color: gray;
+}
+.remark{
+width: 480rpx;
+}
+.saveBtn{
+margin-top: 40rpx;
+}
+
+
+/*账单*/
+
+.leftmoney{
+height: 80px;
+}
+.wallet{
+width: 25%;
+height: 100%;
+float: left;
+}
+
+.moneynum{
+margin-left: 200rpx;
+font-size: 100rpx;
+color:green;
+}
+.paylist{
+background-color: rgb(216, 216, 216,20%);
+display: flex;
+flex-direction: row;
+align-items: center;
+margin-top: 50rpx;
+padding: 10rpx 0 30rpx 10rpx;
+border-radius: 5rpx;
+border-bottom: 1px solid rgb(216, 216, 208);
+justify-items: center;
+height: 60rpx;
+}
+.paylist2{
+display: flex;
+
+}
+.paylistitem{
+flex: 1;
+margin-bottom: 10rpx;
+}

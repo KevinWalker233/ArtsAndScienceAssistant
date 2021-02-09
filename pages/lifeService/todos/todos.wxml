@@ -1,0 +1,43 @@
+<!--pages/lifeService/todos/todos.wxml-->
+<view class="container">
+  <view class="header">
+     <image bindtap="addTodoHandle" src="/assets/todosIcon/plus.png"></image>
+     <!-- maxlength='-1'   -->
+     <textarea bindinput="inputChangeHandle" bindconfirm="addTodoHandle" type="text" placeholder="Anything here...." value="{{input}}" auto-height bindblur="addTodoHandle"/>
+  </view>
+
+  <block wx:if="{{todos.length}}">
+   <view class="todos">
+      <view class="bg" style="opacity:{{0.3}}">
+  </view>
+
+    <view wx:for="{{todos}}" data-index="{{index}}" bindtap="toggleTodoHandle" class="item {{ item.completed ? 'completed':''}}">
+       <icon size="18" type="{{item.completed ? 'success':'circle' }}"/>
+       <view class="todo-item-content">
+         <text space>{{item.name}}</text>
+         <view class="todo-time">{{item.creatTime}}</view>
+       </view>
+       <icon size="18" type="clear"  catchtap="removeToDoHandle"  data-index="{{index}}"/>
+       
+    </view>
+  
+</view>
+
+<view class="footer">
+   <text class="footer-">剩余{{leftCount}}项未完成</text>
+   <button bindtap="ClearHandle"  class="footer-clear-btn" hover-class="plain-hover">清空完成事件</button>
+</view>
+  </block>
+
+   <view wx:else class="null" >
+     <view class="null-content">
+        <view class="null-content-title">ToDos备忘录</view>
+        <view class="nulll-content-line"></view>
+        <view class="null-text">○ 暑假暑假速度斯达舒</view>
+        <view class="null-text">● 暑假暑假速度斯达舒</view>
+        <view class="null-text">● 暑假暑假速度斯达舒</view>
+        <view class="null-text">● 暑假暑假速度斯达舒</view>
+     </view>
+   </view>
+
+</view>

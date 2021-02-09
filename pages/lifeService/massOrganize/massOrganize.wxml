@@ -1,0 +1,84 @@
+<!--pages/lifeService/massOrganize/massOrganize.wxml-->
+<!--index.wxml-->
+<!--导航条-->
+<view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+<view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal1}}"></view>
+<view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal2}}"></view>
+<view class="modalDlg" wx:if="{{showModal}}">
+  <image src="{{one.courseimg}}" mode="aspectfill" />
+  <text> {{one.inform}}</text>
+  <button bindtap="go">关闭</button>
+</view>
+<view class="modalDlg" wx:if="{{showModal1}}">
+  <image src="{{two.courseimg}}" mode="aspectfill" />
+  <text> {{two.inform}}</text>
+  <button bindtap="go1">关闭</button>
+</view>
+<view class="modalDlg" wx:if="{{showModal2}}">
+  <image src="{{three.courseimg}}" mode="aspectfill" />
+  <text> {{three.inform}}</text>
+  <button bindtap="go2">关闭</button>
+</view>
+<view class="paihang">
+  <view bindtap="submit" class="one">
+    <view class="up">
+      <image src="{{one.courseimg}}" mode="aspectfill" />
+    </view>
+    <text class="down">{{one.title}}</text>
+    <text>{{one.coursetitle}}</text>
+  </view>
+  <view bindtap="submit1" class="two">
+    <view class="up">
+      <image src="{{two.courseimg}}" mode="aspectfill" />
+    </view>
+    <text class="down">{{two.title}}</text>
+    <text>{{two.coursetitle}}</text>
+  </view>
+  <view bindtap="submit2" class="three">
+    <view class="up">
+      <image src="{{three.courseimg}}" mode="aspectfill" />
+    </view>
+    <text class="down">{{three.title}}</text>
+    <text>{{three.coursetitle}}</text>
+  </view>
+</view>
+
+<view class="navbar">
+  <text wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique"
+    bindtap="navbarTap">{{item}}</text>
+</view>
+
+<swiper class="swiper" current="{{currentTab}}" duration="200" bindchange="swiperChange">
+  <swiper-item>
+    <block wx:for="{{courseitems}}" wx:key="id">
+      <view class="courseitem {{item.isstar ? 'isstar':''}}">
+        <view class="fm">
+          <image src="{{item.courseimg}}" mode="aspectfill" />
+        </view>
+        <view class="desc">
+          <text class="first">{{item.coursetitle}}</text>
+          <text class="second">{{item.courseteacher}}<text class="isstar" wx:if="{{item.isstar}}">星级社团</text></text>
+          <text class="third">{{item.coursecount}}人</text>
+          <text class="fourth">简介:{{item.inform}}</text>
+        </view>
+      </view>
+    </block>
+  </swiper-item>
+  <swiper-item>
+    <view class='info'>
+      <block wx:for="{{courseitems1}}" wx:key="id">
+        <view class="courseitem {{item.isstar ? 'isstar':''}}">
+          <view class="fm">
+            <image src="{{item.courseimg}}" mode="aspectfill" />
+          </view>
+          <view class="desc">
+            <text class="first">{{item.coursetitle}}</text>
+            <text class="second">{{item.courseteacher}}<text class="isstar" wx:if="{{item.isstar}}">星级社团</text></text>
+            <text class="third">{{item.coursecount}}人</text>
+            <text class="fourth">简介:{{item.inform}}人</text>
+          </view>
+        </view>
+      </block>
+    </view>
+  </swiper-item>
+</swiper>

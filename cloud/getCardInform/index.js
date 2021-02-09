@@ -45,42 +45,53 @@ exports.main = async (event, context) => {
           }
         }, function (error, response, body) {
           // console.log(body.toString()) //{"resultCode":"00","resultMessage":"验证成功"}提示验证成功即登陆成功
-          var cookies = response.headers["set-cookie"]; //第二次获取cookie
-          request.get({ //请卡务数据
-            url: 'http://yktcx.bjwlxy.cn/User/User_Account.aspx ',
-            encoding: null,
-            headers: {
-              "Referer": "http://yktcx.bjwlxy.cn/User/User_Main.aspx",
-              "Cookie": cookies
-            }
-          }, function (e, r, b) {
-            const dom = new jsdom.JSDOM(b.toString())
-            const openid = cloud.getWXContext().OPENID
+          var success = body.toString()
+          if (success.indexOf('验证成功') != -1) {
+            var cookies = response.headers["set-cookie"]; //第二次获取cookie
+            request.get({ //请卡务数据
+              url: 'http://yktcx.bjwlxy.cn/User/User_Account.aspx ',
+              encoding: null,
+              headers: {
+                "Referer": "http://yktcx.bjwlxy.cn/User/User_Main.aspx",
+                "Cookie": cookies
+              }
+            }, function (e, r, b) {
+              const dom = new jsdom.JSDOM(b.toString())
+              const openid = cloud.getWXContext().OPENID
 
-            db.collection("account").doc(openid).update({
-              data: {
-                cardAccount: event.account //卡务系统账号
+              db.collection("account").doc(openid).update({
+                data: {
+                  cardAccount: event.account //卡务系统账号
+                }
+              })
+              db.collection("accountX").doc(openid).update({
+                data: {
+                  cardAccount: event.account, //卡务系统账号
+                  cardPassword: event.password //卡务系统密码
+                }
+              })
+              var arr = []
+              for (var i = 0; i < dom.window.document.getElementsByTagName('em').length; i++) {
+                arr.push(dom.window.document.getElementsByTagName('em')[i].innerHTML.replace('<cite>', '：').replace('</cite>', ''))
               }
-            })
-            db.collection("accountX").doc(openid).update({
-              data: {
-                cardAccount: event.account, //卡务系统账号
-                cardPassword: event.password //卡务系统密码
+              var inform = []
+              var success = {
+                type: 'success',
+                text: '登陆成功！'
               }
+              inform.push(success)
+              inform.push(arr)
+              resolve(inform)
             })
-            var arr = []
-            for (var i = 0; i < dom.window.document.getElementsByTagName('em').length; i++) {
-              arr.push(dom.window.document.getElementsByTagName('em')[i].innerHTML.replace('<cite>', '：').replace('</cite>', ''))
-            }
+          } else {
             var inform = []
-            var success = {
-              type: 'success',
-              text: '登陆成功！'
+            var error = {
+              type: 'error',
+              text: '登陆失败!可能是密码错误'
             }
-            inform.push(success)
-            inform.push(arr)
+            inform.push(error)
             resolve(inform)
-          })
+          }
         })
       })
     })

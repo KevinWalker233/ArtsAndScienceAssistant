@@ -1,0 +1,97 @@
+<!--pages/oneCheck/schoolTel/schoolTel.wxml-->
+<!--导航标题-->
+<view class="segmentBar">
+  <view id="0" class="segmentItems {{0 == currentTarget? 'active':''}} " bindtap="_handlerTap">
+         教学系统
+  </view>
+  <view id="1" class="segmentItems  {{1 == currentTarget? 'active':''}} " bindtap="_handlerTap">
+          后勤系统
+        </view>
+  <view id="2" class="segmentItems  {{2 == currentTarget? 'active':''}} " bindtap="_handlerTap">
+          党群系统
+        </view>
+  <view id="3" class="segmentItems  {{3 == currentTarget? 'active':''}} " bindtap="_handlerTap">
+         行政系统
+        </view>
+</view>
+<!--内容面板-->
+<view class="segmentPane">   
+   <swiper circular class="segmentContainer" current="{{currentIdx}}" bindchange="_handleChange">
+    <!--教学系统--> 
+     <swiper-item>
+       <view class="title">
+        <view class="titleitem">单位</view>
+        <view class="titleitem">新校区</view>
+        <view class="titleitem">老校区</view>
+       </view>
+      
+     <scroll-view class="sview" scroll-y>
+       <view  wx:for="{{arr1}}" wx:key="item" >
+         <view class="list" wx:if="{{(index)%6==0}}">
+         <view class="listitem active3">{{item.position}}</view>
+         <view class="listitem active2 active3" id="{{item.new}}" bindtap="call">{{item.new}}</view>
+         <view class="listitem active2 active3" id="{{item.old}}" bindtap="call">{{item.old}}</view>
+        </view>
+        <view class="list" wx:else>
+         <view class="listitem">{{item.position}}</view>
+         <view class="listitem active2" id="{{item.new}}" bindtap="call">{{item.new}}</view>
+         <view class="listitem active2 " id="{{item.old}}" bindtap="call">{{item.old}}</view>
+        </view>
+       </view>
+       
+      </scroll-view>
+      </swiper-item>
+
+
+    <!--后勤系统-->  
+      <swiper-item>
+        <view class="title">
+        <view class="titleitem">单位</view>
+        <view class="titleitem">新校区</view>
+        <view class="titleitem">老校区</view>
+       </view>
+      
+     <scroll-view class="sview" scroll-y>
+       <view  wx:for="{{arr2}}" wx:key="item" >
+        <view class="list"  wx:if="{{index == 0}}">
+         <view class="listitem active2 active3">{{item.position}}</view>
+         <view class="listitem active2 active3" id="{{item.new}}" bindtap="call">{{item.new}}</view>
+         <view class="listitem active2 active3" id="{{item.old}}" bindtap="call">{{item.old}}</view>
+        </view>
+         <view class="list"  wx:if="{{index == 9 }}">
+         <view class="listitem active2 active3">{{item.position}}</view>
+         <view class="listitem active2 active3" id="{{item.new}}" bindtap="call">{{item.new}}</view>
+         <view class="listitem active2 active3" id="{{item.old}}" bindtap="call">{{item.old}}</view>
+        </view>
+        <view class="list"  wx:if="{{index == 19 }}">
+         <view class="listitem active2 active3">{{item.position}}</view>
+         <view class="listitem active2 active3" id="{{item.new}}" bindtap="call">{{item.new}}</view>
+         <view class="listitem active2 active3" id="{{item.old}}" bindtap="call">{{item.old}}</view>
+        </view>
+        <view class="list"  wx:if="{{index == 24 }}">
+         <view class="listitem active2 active3">{{item.position}}</view>
+         <view class="listitem active2 active3" id="{{item.new}}" bindtap="call">{{item.new}}</view>
+         <view class="listitem active2 active3" id="{{item.old}}" bindtap="call">{{item.old}}</view>
+        </view>
+        <view class="list" wx:else>
+         <view class="listitem">{{item.position}}</view>
+         <view class="listitem active2" id="{{item.new}}" bindtap="call">{{item.new}}</view>
+         <view class="listitem active2 " id="{{item.old}}" bindtap="call">{{item.old}}</view>
+        </view>
+       </view>
+       
+      </scroll-view>
+          
+         
+      </swiper-item>
+      <!--党群系统-->
+      <swiper-item>
+    
+      </swiper-item>
+      <!--行政系统-->
+      <swiper-item>
+        
+      </swiper-item>
+   </swiper> 
+</view>  
+

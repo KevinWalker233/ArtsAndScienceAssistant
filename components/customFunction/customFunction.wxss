@@ -1,12 +1,16 @@
 /* components/customFunction/customFunction.wxss */
 .functionList {
   width: 70%;
-  height: 70px;
+  height: 140rpx;
   margin: 0 auto;
   margin-top: -20rpx;
   display: flex;
   align-self: center;
   justify-content: space-between;
+}
+.functionList_icon {
+  height:80rpx;
+  width:80rpx;
 }
 .functionList_text {
   font-size: 25rpx;

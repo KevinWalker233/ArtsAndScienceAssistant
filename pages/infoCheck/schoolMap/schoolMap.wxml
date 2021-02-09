@@ -1,2 +1,149 @@
 <!--pages/infoCheck/schoolMap/schoolMap.wxml-->
-<text>pages/infoCheck/schoolMap/schoolMap.wxml</text>
+<!-- 新校区地图 latitude="34.350" longitude="107.211" -->
+<!-- 老校区地图 latitude="34.348" longitude="107.1610" -->
+<map id="mapp" latitude="{{latitude}}" longitude="{{longitude}}" setting="{{setting}}"
+	 bindmarkertap="showModal"
+	 show-location='true'
+	 enable-building="true"
+	 markers="{{markers}}">
+	 <!-- 切换卫星图 -->
+	 <view wx:if='{{showSatellite}}' class="change_view" bindtap="changeSatellite" >
+		<image  src="/assets/mapIcon/earth.png" class="change_view_img" />
+	 </view>
+	 <!-- 切换实例图 -->
+	 <view wx:if='{{showInstance}}' class="change_view" bindtap="changeInstance" >
+		<image  src="/assets/mapIcon/standard.png" class="change_view_img" />
+	 </view>
+	 
+	
+</map>
+<!-- 地图导航栏 -->
+
+<view class="map_title" wx:if="{{showMapNav}}">
+	<view class="map_nav_content">
+		<view class="map_button" bindtap="powerDrawer" data-statu="open">
+			<image class="map_button_icon" src="/assets/mapIcon/show.png" ></image>
+			<view class="map_button_text">列表</view>
+		</view>
+		<view class="map_center_button" bindtap="clickcontrol">
+			<image src="/assets/mapIcon/location.png" class="map_center_button_icon"></image>
+			<view class="map_center_text">我的位置</view>
+		</view>
+		<view class="map_button" bindtap="jumpSchool">
+			<image class="map_button_icon" src="/assets/mapIcon/change.png"></image>
+			<view class="map_button_text">切换</view>
+		</view>
+	</view>
+</view>
+<!-- makers弹窗 -->
+<view class="map_dialog {{ showDialog ? 'map_dialog_show' : '' }}" >
+	<view class="map_dialog_mask" bindtap="toggleDialog" />
+		<!-- 内容 -->
+		<view class="map_dialog_container">
+			<!-- 主体 -->
+				<view class="map_dialog_content">
+					<image class="map_dialog_img" src='{{locationImg}}'></image>
+					<view class="map_dialog_title">
+						<image class="map_dialog_title_icon" src='{{locationIcon}}'></image>
+						<view class="map_dialog_title_text">{{locationName}}</view>
+					</view>
+				</view>
+				<!-- 分割线 -->
+				<!-- <view class="map_dialog_line"></view> -->
+				<!-- 简介 -->
+				<view class="map_dialog_info">简介：{{locationContent}}</view>
+		</view>
+</view>
+<!-- 列表弹出层 -->
+<!--mask-->
+<view class="drawer_screen" bindtap="powerDrawer" data-statu="close" wx:if="{{showModalStatus}}"></view>
+<!--content-->
+<!--使用animation属性指定需要执行的动画-->
+<view animation="{{animationData}}" class="drawer_box" wx:if="{{showModalStatus}}">
+	<!--drawer content-->
+	<!-- 标题 - 1 -->
+  <view class="drawer_title">学校周边</view>
+  <view class="drawer_content">
+		<!-- 内容 - 1 -->
+    <view class="top grid">
+      <label class="title col-0">石鼓校区地址:</label>
+			<view class="drawer_content_text">宝鸡市渭滨区宝光路44号</view>
+		</view>
+		<!-- 内容 - 2 -->
+    <view class="top grid">
+      <label class="title col-0">高新校区地址:</label>
+			<view class="drawer_content_text">陕西省宝鸡市高新大道1号</view>
+		</view>
+		<!-- 标题 - 2 -->
+		<view class="drawer_title_2" style="color: green;">
+			<image src="/assets/mapIcon/show-play.png" class="drawer_title_2_icon"></image>
+			<view>游玩</view>
+		</view>
+		<!-- 内容2 - 1 -->
+    <view class="top grid">
+      <label class="title col-0">宝鸡市人民公园:</label>
+			<view class="drawer_content_text">渭滨区公园路206号(1.9km)</view>
+		</view>
+		<!-- 内容2 - 2 -->
+    <view class="top grid">
+      <label class="title col-0">宝鸡青铜器博物馆:</label>
+			<view class="drawer_content_text">渭滨区中华石鼓园内(4.6km)</view>
+		</view>
+		<!-- 内容2 - 3 -->
+    <view class="top grid">
+      <label class="title col-0">陈仓老街:</label>
+			<view class="drawer_content_text">渭滨区太阳滨河大道(4.2km)</view>
+		</view>
+		<!-- 内容2 - 4 -->
+    <view class="top grid">
+      <label class="title col-0">宝鸡青铜器博物馆:</label>
+			<view class="drawer_content_text">渭滨区中华石鼓园内(4.6km)</view>
+		</view>
+		<!-- 标题 - 3 -->
+		<view class="drawer_title_2" style="color: #1F93BE;">
+			<image src="/assets/mapIcon/show-bus.png" class="drawer_title_2_icon"></image>
+			<view>附近公交</view>
+		</view>
+		<!-- 内容3 - 1 -->
+    <view class="top grid">
+      <label class="title col-0">8路公交:</label>
+			<view class="drawer_content_text">红旗路⬅➡高端装备产业园</view>
+		</view>
+		<!-- 内容3 - 2 -->
+    <view class="top grid">
+      <label class="title col-0">17路公交:</label>
+			<view class="drawer_content_text">凤凰桥南⬅➡红旗路站</view>
+		</view>
+		<!-- 内容3 - 3 -->
+    <view class="top grid">
+      <label class="title col-0">20路公交:</label>
+			<view class="drawer_content_text">职业技术学院⬅➡益门堡</view>
+		</view>
+		<!-- 内容3 - 4 -->
+    <view class="top grid">
+      <label class="title col-0">61路公交:</label>
+			<view class="drawer_content_text">行政中心站⬅➡广元南路站</view>
+		</view>
+		<!-- 内容3 - 5 -->
+    <view class="top grid">
+      <label class="title col-0">28路公交:</label>
+			<view class="drawer_content_text">火车站⬅➡宝鸡南站</view>
+		</view>
+		<!-- 内容3 - 6 -->
+		<view class="top grid">
+			<label class="title col-0">33路公交:</label>
+			<view class="drawer_content_text">龙山雅居⬅➡金渭南路</view>
+		</view>
+		<!-- 内容3 - 7 -->
+		<view class="top grid">
+			<label class="title col-0">41路公交:</label>
+			<view class="drawer_content_text">新福园⬅➡宝鸡南站</view>
+		</view>
+		<!-- 内容3 - 8 -->
+		<view class="top grid">
+			<label class="title col-0">43路公交:</label>
+			<view class="drawer_content_text">西关⬅➡龙山雅居</view>
+		</view>
+	</view>
+  <!-- <view class="btn_ok" bindtap="powerDrawer" data-statu="close">确定</view> -->
+</view>

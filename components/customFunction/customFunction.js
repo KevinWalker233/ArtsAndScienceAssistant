@@ -24,7 +24,7 @@ Component({
     },
     jumpCheckCourse(){
       wx.navigateTo({
-        url: '../../pages/checkCourse/checkCourse'
+        url: '../../pages/checkMoney/checkMoney'
       })
     },
     jumpCheckScores(){

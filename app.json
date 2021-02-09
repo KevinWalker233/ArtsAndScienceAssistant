@@ -3,23 +3,24 @@
     "pages/index/index",
     "pages/about/about",
     "pages/loginL/loginL",
-    "pages/login/login",
-    "pages/login1/login1",
-    "pages/login1/login1-2",
     "pages/application/application",
     "pages/wo/wo",
     "pages/infoCheck/schoolMap/schoolMap",
     "pages/infoCheck/exam/exam",
     "pages/infoCheck/commutingBus/commutingBus",
     "pages/infoCheck/holiday/holiday",
-    "pages/login1/login1-3",
     "pages/checkGrades/checkGrades",
-    "pages/checkCourse/checkCourse",
+    "pages/checkMoney/checkMoney",
+    "pages/checkMoney/loginCard/loginCard",
     "pages/checkScores/checkScores",
-    "pages/loginCard/loginCard",
-    "pages/moneybook/moneybook",
-    "pages/ToDos/ToDos",
-    "pages/jianjielist/jianjielist"
+    "pages/lifeService/todos/todos",
+    "pages/lifeService/accountMoney/accountMoney",
+    "pages/lifeService/massOrganize/massOrganize",
+    "pages/lifeService/express/express",
+    "pages/oneCheck/emptyClass/emptyClass",
+    "pages/oneCheck/schoolTel/schoolTel",
+    "pages/iexpFunction/concentrat/concentrat",
+    "pages/lifeService/express/logs/logs"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -55,5 +56,10 @@
   "sitemapLocation": "sitemap.json",
   "useExtendedLib": {
     "weui": true
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
   }
 }

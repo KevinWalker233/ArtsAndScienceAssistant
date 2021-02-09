@@ -1,2 +1,36 @@
-<!--pages/infoCheck/holiday/holiday.wxml-->
-<text>pages/infoCheck/holiday/holiday.wxml</text>
+
+<!-- 顶部 -->
+<view class="holiday-top">
+  <image class="holiday-top-img" src="../../../assets/holidayIcon/bg.jpg"></image>
+  <view class="holiday-top-content">
+    <view class="notice-content">
+      <view class="text-content">
+        {{notice.content}}
+      </view>
+      <view class="notice-end">
+        <view class="notice-end-text">{{notice.releaseName}}</view>
+        <view class="notice-end-text">{{notice.releaseTime}}</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 字体部分 -->
+<view class="holiday-center">
+  <text class="holiday-center-text">NEXT DAY</text>
+  <!-- 分隔线 -->
+  <view class="holiday-center-line"></view>
+  <!-- 日期倒计时 -->
+  <view class="holiday-bottom" wx:for="{{timeList}}" wx:key="item">
+    <view class="holiday-bottom-text" >
+      <image class="holiday-bottom-img" src='{{item.actIcon}}'></image>
+      {{item.actName}}
+    </view>
+    <view class="holiday-bottom-time">
+      <text class='tui-conutdown-box'>{{countDownList[index].day}}</text>天
+      <text class='tui-conutdown-box'>{{countDownList[index].hou}}</text>时
+      <text class='tui-conutdown-box'>{{countDownList[index].min}}</text>分
+      <text class='tui-conutdown-box tui-countdown-bg'>{{countDownList[index].sec}}</text>秒
+    </view>
+  </view>
+</view>

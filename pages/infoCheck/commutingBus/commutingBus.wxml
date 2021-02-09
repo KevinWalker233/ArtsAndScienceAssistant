@@ -3,18 +3,18 @@
     <view class="th">发车路线</view>
     <view class="th">星期</view>
     <view class="th">发车时间</view>
-    <view class="th" style="width:40%;">乘车地点、行车路线(班车数量)</view>
+    <view class="th" style="width:40%;">乘车地点(起点)</view>
   </view>
   <block wx:for="{{listData}}" wx:key="item">
     <view class="tr bg-g" wx:if="{{index % 2 == 0}}">
-      <view class="td">{{item.time}}</view>
-      <view class="td">{{item.time}}</view>
+      <view class="td">{{item.route}}</view>
+      <view class="td">{{item.week}}</view>
       <view class="td">{{item.time}}</view>
       <view class="td" style="width:40%;">{{item.text}}</view>
     </view>
     <view class="tr" wx:else>
-      <view class="td">{{item.time}}</view>
-      <view class="td">{{item.time}}</view>
+      <view class="td">{{item.route}}</view>
+      <view class="td">{{item.week}}</view>
       <view class="td">{{item.time}}</view>
       <view class="td" style="width:40%;">{{item.text}}</view>
     </view>
