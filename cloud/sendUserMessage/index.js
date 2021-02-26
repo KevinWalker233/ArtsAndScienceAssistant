@@ -10,27 +10,26 @@ const db = cloud.database()
 
 var sendMsg = async (item) => {
   if (item.tip) {
+    var timestamp = Date.parse(new Date());
+    var date = new Date(timestamp);
+    var my_year = date.getFullYear()
+    var my_month = date.getMonth()
+    var my_day = date.getDate()
+    var my_hour = date.getHours()
+    var my_min = date.getMinutes()
     const result = await cloud.openapi.subscribeMessage.send({
       touser: item._openid,
       data: {
-        thing6: {
-          value: '英语'
+        thing3: {
+          value: '上课了'
         },
-        time2: {
-          value: '5:30'
-        },
-        thing10: {
-          value: '家里'
-        },
-        name8: {
-          value: '测试'
-        },
-        thing9: {
-          value: '下次提醒请再次点击'
+        date2: {
+          value: my_year + "-" + (my_month + 1) + "-" + my_day + " " + my_hour + ":" + my_min
         }
       },
-      templateId: 'rv7wyzh3M0k5j6adlCrIwe74XRc-8snnMD9STeDmhmw'
+      templateId: '4FXI5vyjxiQo3JY2rTT6hIXuMKxd5085cZnieP7PSq8'
     })
+    return result
   }
 }
 

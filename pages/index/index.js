@@ -6,6 +6,7 @@ Page({
   data: {
     //课表
     // 颜色数组，用于课程的背景颜色
+    dayColor:"rgba(27,195,184,0.8)",//当天的颜色
     colorArrays: ["#85B8CF", "#90C652", "#D8AA5A", "#FC9F9D", "#0A9A84", "#61BC69", "#12AEF3", "#E29AAD"],
     wlist: [], // 课表色块数组
     leftClass: [], //左侧课表时间
@@ -153,10 +154,11 @@ Page({
       year: my_year,
       schoolCalendar: p
     });
+
     //加载假期
     db.doc("holiday").get({
       success(res) {
-        console.log(res.data.holidays);
+        // console.log(res.data.holidays);
         var holidays = res.data.holidays;
         var calendar = self.data.schoolCalendar;
         //遍历假期
@@ -188,7 +190,7 @@ Page({
             }
             for (var z = monthBegin + 1; z < monthEnd; z++) {
               for (var x = weeks[z - 1]; x < month[z - 1] + weeks[z - 1]; x++) {
-                console.log(month[z - 1]);
+                // console.log(month[z - 1]);
                 calendar[z - 1].days[x] = {
                   days: calendar[z - 1].days[x].days,
                   color: "rgb(255,255,255)",
@@ -213,7 +215,7 @@ Page({
     //加载考试
     db.doc("examination").get({
       success(res) {
-        console.log(res.data.examinations);
+        // console.log(res.data.examinations);
         var examinations = res.data.examinations;
         var calendar = self.data.schoolCalendar;
         //遍历考试
@@ -245,7 +247,7 @@ Page({
             }
             for (var z = monthBegin + 1; z < monthEnd; z++) {
               for (var x = weeks[z - 1]; x < month[z - 1] + weeks[z - 1]; x++) {
-                console.log(month[z - 1]);
+                // console.log(month[z - 1]);
                 calendar[z - 1].days[x] = {
                   days: calendar[z - 1].days[x].days,
                   color: "rgb(255,255,255)",
@@ -267,6 +269,7 @@ Page({
         });
       }
     })
+
     db.doc("information").get({
       success(res) {
         self.setData({
@@ -280,12 +283,12 @@ Page({
       success(res) {
         // 指定日期和时间
         var EndTime = new Date(res.data.nextHoliday.year, res.data.nextHoliday.month, res.data.nextHoliday.day);
-        console.log(EndTime);
+        // console.log(EndTime);
         // 当前系统时间
         var NowTime = new Date();
-        console.log(NowTime);
+        // console.log(NowTime);
         var t = parseInt((EndTime.getTime() - NowTime.getTime()) / 1000 / 60 / 60 / 24);
-        console.log(t);
+        // console.log(t);
         self.setData({
           showStudyDay: res.data.showStudyDay,
           studyDay: t
@@ -323,10 +326,10 @@ Page({
     wx.getStorage({
       key: 'configVersion',
       success(res) {
-        console.log(res.data)
+        // console.log(res.data)
         db3.doc("update").get({
           success(res) {
-            console.log("[查询]配置文件版本加载成功：", res.data.version);
+            // console.log("[查询]配置文件版本加载成功：", res.data.version);
             configVersions = res.data.version;
           }
         })
@@ -336,13 +339,13 @@ Page({
     wx.getStorage({
       key: 'times',
       success(res) {
-        console.log("[查询]左侧课表时间加载成功：", res.data)
+        // console.log("[查询]左侧课表时间加载成功：", res.data)
         that.setData({
           leftClass: res.data
         })
         db3.doc("update").get({
           success(res) {
-            console.log("[查询]配置文件版本加载成功：", res.data.version);
+            // console.log("[查询]配置文件版本加载成功：", res.data.version);
             if (configVersions != res.data.version) {
               //获取云数据库中左侧课表中的时间
               db3.doc("schoolTime").get({
@@ -356,7 +359,7 @@ Page({
                   }
                   db3.doc("update").get({
                     success(res) {
-                      console.log("[查询]配置文件版本加载成功：", res.data.version);
+                      // console.log("[查询]配置文件版本加载成功：", res.data.version);
                       app.globalData.configVersion = res.data.version;
                     }
                   })
@@ -374,7 +377,7 @@ Page({
         })
       },
       fail(res) {
-        console.log(res.data)
+        // console.log(res.data)
         //获取云数据库中左侧课表中的时间
         db3.doc("schoolTime").get({
           success(res) {
@@ -387,7 +390,7 @@ Page({
             }
             db3.doc("update").get({
               success(res) {
-                console.log("[查询]配置文件版本加载成功：", res.data.version);
+                // console.log("[查询]配置文件版本加载成功：", res.data.version);
                 app.globalData.configVersion = res.data.version;
               }
             })
@@ -412,7 +415,7 @@ Page({
     })
 
     that.setData({ //设置课表
-      wlist: this.wlistFactory(app.globalData.wlist,that.data.week)
+      wlist: this.wlistFactory(app.globalData.wlist, that.data.week)
     })
 
     //调用云函数获取用户openid
@@ -422,11 +425,19 @@ Page({
         that.setData({
           _openid: res.result.openid
         })
-        console.log("[查询]获取openid成功：", res.result.openid)
+        // console.log("[查询]获取openid成功：", res.result.openid)
       }
     })
   },
-  classClick(e) {
-    this.setData({});
+  classClick(e) {//课表按钮被点击
+    wx.showModal({
+      title: '详细信息',
+      content: this.data.wlist[e.currentTarget.dataset.index]['courseName'] + '\r\n' +
+        this.data.wlist[e.currentTarget.dataset.index]['weeks'] + '\r\n' +
+        this.data.wlist[e.currentTarget.dataset.index]['teacher'] + '\r\n' +
+        this.data.wlist[e.currentTarget.dataset.index]['address'],
+      confirmText: '我知道了',
+      showCancel: false
+    })
   }
 })

@@ -28,7 +28,7 @@
 </view>
 
 <view class="context">
-  <input class="passwordInput" value="{{password}}" placeholder="请输入卡务系统密码" />
+  <input class="passwordInput" password="true" value="{{password}}" placeholder="请输入卡务系统密码" />
   <button loading="{{guaShiBool}}" style="background-color:#3878C2;color:white;" bindtap="guaShi">持卡人挂失</button>
   <button loading="{{jieGuaBool}}" style="background-color:#3878C2;color:white;" bindtap="jieGua">持卡人解挂</button>
 </view>

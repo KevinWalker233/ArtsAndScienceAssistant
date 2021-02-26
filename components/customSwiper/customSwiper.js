@@ -6,14 +6,12 @@ Component({
   properties: {
     imgUrls: Array,
   },
-
   /**
    * 组件的初始数据
    */
   data: {
     currentIndex: 0
   },
-
   /**
    * 组件的方法列表
    */
@@ -22,6 +20,13 @@ Component({
       this.setData({
         currentIndex: e.detail.current
       });
+    },
+    clickgo(e) {
+
+      wx.navigateTo({
+        url: "/pages/application/textView/textView?url=" + e.currentTarget.dataset.url,
+      })
+      console.log(e)
+    },
   }
-}
 })

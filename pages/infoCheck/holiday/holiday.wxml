@@ -1,11 +1,10 @@
-
 <!-- 顶部 -->
 <view class="holiday-top">
-  <image class="holiday-top-img" src="../../../assets/holidayIcon/bg.jpg"></image>
   <view class="holiday-top-content">
     <view class="notice-content">
+      <view class="title">{{notice.title}}</view>
       <view class="text-content">
-        {{notice.content}}
+        <text decode="{{true}}">{{notice.content}}</text>
       </view>
       <view class="notice-end">
         <view class="notice-end-text">{{notice.releaseName}}</view>
@@ -22,7 +21,7 @@
   <view class="holiday-center-line"></view>
   <!-- 日期倒计时 -->
   <view class="holiday-bottom" wx:for="{{timeList}}" wx:key="item">
-    <view class="holiday-bottom-text" >
+    <view class="holiday-bottom-text">
       <image class="holiday-bottom-img" src='{{item.actIcon}}'></image>
       {{item.actName}}
     </view>

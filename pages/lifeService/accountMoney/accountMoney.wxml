@@ -4,126 +4,130 @@
 <!--导航标题-->
 <view class="segmentBar">
   <view id="0" class="segmentItems {{0 == currentTarget? 'active':''}} " bindtap="_handlerTap">
-          <text class="title ">支出</text>
-          <text class="subTitle">本月支出</text>
+    <text class="title ">支出</text>
+    <text class="subTitle">本月支出</text>
   </view>
   <view id="1" class="segmentItems  {{1 == currentTarget? 'active':''}} " bindtap="_handlerTap">
-          <text class="title ">收入</text>
-          <text class="subTitle">本月收入</text>
-        </view>
+    <text class="title ">收入</text>
+    <text class="subTitle">本月收入</text>
+  </view>
   <view id="2" class="segmentItems  {{2 == currentTarget? 'active':''}} " bindtap="_handlerTap">
-          <text class="title ">账单</text>
-          <text class="subTitle">本月流水</text>
-        </view>
+    <text class="title ">账单</text>
+    <text class="subTitle">本月流水</text>
+  </view>
 </view>
-   
+
 <!--内容面板-->
-<view class="segmentPane">   
-   <swiper circular class="segmentContainer" current="{{currentIdx}}" bindchange="_handleChange">
-    <!--支出模块-->       
-      <swiper-item>
-                    
-        <view class="inputNum">
-              <input name="payAmount" value='{{payInputValue}}' type="digit" bindfocus="payInputFocus" bindblur="payInputBlur" placeholder="{{payAmount}}" placeholder-style="color:green;"></input>
-              <view class="line"></view>
-        </view>
-        <!-- 选择账单类型 -->
-        <view class="inputChoose">
-          <image src="/assets/accountMoneyIcon/classify.png"></image>
-          <view class="inputChooseText">分类</view>
-           <!-- 选择器 -->
-            <picker name="payType" mode="selector" bindchange="bindPickerChange"  value="{{Index}}" range="{{multiArray}}">
-              <view>
-                {{multiArray[Index]}} 
-              </view>
-             </picker> 
-        </view>
-        <!-- 选择支出时间 -->
-        <view class="inputChoose">
-          <image src="/assets/accountMoneyIcon/clock.png"></image>
-          <view class="inputChooseText">时间</view>
-            <!-- 时间选择器 -->
-              <picker name="payTime" mode="date" bindchange="bindPayDateChange">
-                {{payDate}}
-               </picker>
-        </view>
-         <!-- 添加备注 -->
-         <view class="inputChoose onlyArea">
-           <image src="/assets/accountMoneyIcon/remark.png"></image>
-           <view class="inputChooseText">备注</view>
-           <input name="payRemark" class="remark" value="{{remarkPayContent}}" placeholder="{{remarkPayText}}" bindfocus="remarkFocus" bindblur="remarkBlur"></input>
-        </view>
-        <button bindtap="_booking"  type="primary" class="saveBtn">记一笔</button>
-       
-      </swiper-item>
+<view class="segmentPane">
+  <swiper circular class="segmentContainer" current="{{currentIdx}}" bindchange="_handleChange">
+    <!--支出模块-->
+    <swiper-item>
 
-
-    <!--收入模块------------------------------------------------------------------------------------------------------------------------------------------------------------------------->  
-      <swiper-item>
-          
-          <view class="inputNum">
-          <input name="incomeAmount" value='{{incomeInputValue}}' type="digit" bindfocus="incomeInputFocus" bindblur="incomeInputBlur" placeholder="{{incomeAmount}}" placeholder-style="color:green;"></input>
-          <view class="line"></view>
+      <view class="inputNum">
+        <input name="payAmount" value='{{payInputValue}}' type="digit" bindfocus="payInputFocus" bindblur="payInputBlur"
+          placeholder="{{payAmount}}" placeholder-style="color:green;"></input>
+        <view class="line"></view>
+      </view>
+      <!-- 选择账单类型 -->
+      <view class="inputChoose">
+        <image src="/assets/accountMoneyIcon/classify.png"></image>
+        <view class="inputChooseText">分类</view>
+        <!-- 选择器 -->
+        <picker name="payType" mode="selector" bindchange="bindPickerChange" value="{{Index}}" range="{{multiArray}}">
+          <view>
+            {{multiArray[Index]}}
           </view>
-          <!-- 选择账单类型 -->
-          <view class="inputChoose">
-             <image src="/assets/accountMoneyIcon/classify.png"></image>
-           <view class="inputChooseText">分类</view>
-             <!-- 选择器 -->
-             <picker name="incomeType" bindchange="bindIncomePickerChange" value="{{incomeIndex}}" range="{{incomeArray}}">
-             <view>
-             收入 > {{incomeArray[incomeIndex]}}
-             </view>
-             </picker>
-           </view>
-          <!-- 选择收入账单时间 -->
-          <view class="inputChoose">
-           <image src="/assets/accountMoneyIcon/clock.png"></image>
-            <view class="inputChooseText">时间</view>
-            <!-- 时间选择器 -->
-              <picker name="incomeTime" mode="date" bindchange="bindIncomeDateChange">
-                {{ incomeDate}}
-              </picker>
-          </view> 
-         <!-- 添加备注 -->
-         <view class="inputChoose">
-           <image src="/assets/accountMoneyIcon/remark.png"></image>
-            <view class="inputChooseText">备注</view>
-            <!-- 多行输入 -->
-             <input name="incomeRemark" class="remark" value="{{remarkIncomeContent}}" placeholder="{{remarkIncomeText}}" bindfocus="remarkFocus" bindblur="remarkBlur"></input>
-             </view> 
-             <button bindtap="_booking2" type="primary" class="saveBtn">记一笔</button>    
-      </swiper-item>
-      <!-----账单------------------------------------------------------------------>
-      <swiper-item>
-    <view class="leftmoney">
-       <image  src="/assets/accountMoneyIcon/wallet.png" class="wallet"></image>
-       <view class="moneynum">余额{{money}}</view>
-       <view class="line"></view>
-    </view>
-       <view bindtap="handFlag" class="paylist">支出账单</view>
-  <scroll-view  scroll-y="true" style="height: 300rpx;"  hidden="{{flag1}}"   >
-      <view class="paylist2"  wx:for="{{arr1}}" wx:key="item">
-​       <view class="paylistitem">-{{item.payAmount}}</view>
-​       <view class="paylistitem">{{item.Indexitem}}</view>
-​       <view class="paylistitem">{{item.remarkPayContent}}</view>
-​       <view class="paylistitem">{{item.payDate}}</view>
-​       <view class="paylistitem">余额{{item.money}}</view>
-     </view>
-   </scroll-view>
-​     
+        </picker>
+      </view>
+      <!-- 选择支出时间 -->
+      <view class="inputChoose">
+        <image src="/assets/accountMoneyIcon/clock.png"></image>
+        <view class="inputChooseText">时间</view>
+        <!-- 时间选择器 -->
+        <picker name="payTime" mode="date" bindchange="bindPayDateChange">
+          {{payDate}}
+        </picker>
+      </view>
+      <!-- 添加备注 -->
+      <view class="inputChoose onlyArea">
+        <image src="/assets/accountMoneyIcon/remark.png"></image>
+        <view class="inputChooseText">备注</view>
+        <input name="payRemark" class="remark" value="{{remarkPayContent}}" placeholder="{{remarkPayText}}"
+          bindfocus="remarkFocus" bindblur="remarkBlur"></input>
+      </view>
+      <button bindtap="_booking" type="primary" class="saveBtn">记一笔</button>
+
+    </swiper-item>
+
+
+    <!--收入模块------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+    <swiper-item>
+
+      <view class="inputNum">
+        <input name="incomeAmount" value='{{incomeInputValue}}' type="digit" bindfocus="incomeInputFocus"
+          bindblur="incomeInputBlur" placeholder="{{incomeAmount}}" placeholder-style="color:green;"></input>
+        <view class="line"></view>
+      </view>
+      <!-- 选择账单类型 -->
+      <view class="inputChoose">
+        <image src="/assets/accountMoneyIcon/classify.png"></image>
+        <view class="inputChooseText">分类</view>
+        <!-- 选择器 -->
+        <picker name="incomeType" bindchange="bindIncomePickerChange" value="{{incomeIndex}}" range="{{incomeArray}}">
+          <view>
+            收入 > {{incomeArray[incomeIndex]}}
+          </view>
+        </picker>
+      </view>
+      <!-- 选择收入账单时间 -->
+      <view class="inputChoose">
+        <image src="/assets/accountMoneyIcon/clock.png"></image>
+        <view class="inputChooseText">时间</view>
+        <!-- 时间选择器 -->
+        <picker name="incomeTime" mode="date" bindchange="bindIncomeDateChange">
+          {{ incomeDate}}
+        </picker>
+      </view>
+      <!-- 添加备注 -->
+      <view class="inputChoose">
+        <image src="/assets/accountMoneyIcon/remark.png"></image>
+        <view class="inputChooseText">备注</view>
+        <!-- 多行输入 -->
+        <input name="incomeRemark" class="remark" value="{{remarkIncomeContent}}" placeholder="{{remarkIncomeText}}"
+          bindfocus="remarkFocus" bindblur="remarkBlur"></input>
+      </view>
+      <button bindtap="_booking2" type="primary" class="saveBtn">记一笔</button>
+    </swiper-item>
+    <!-----账单------------------------------------------------------------------>
+    <swiper-item>
+      <view class="leftmoney">
+        <image src="/assets/accountMoneyIcon/wallet.png" class="wallet"></image>
+        <view class="moneynum">余额{{money}}</view>
+        <view class="line"></view>
+      </view>
+      <view bindtap="handFlag" class="paylist">支出账单</view>
+      <scroll-view scroll-y="true" style="height: 300rpx;" hidden="{{flag1}}">
+        <view class="paylist2" wx:for="{{arr1}}" wx:key="item">
+          ​ <view class="paylistitem">-{{item.payAmount}}</view>
+          ​ <view class="paylistitem">{{item.Indexitem}}</view>
+          ​ <view class="paylistitem">{{item.remarkPayContent}}</view>
+          ​ <view class="paylistitem">{{item.payDate}}</view>
+          ​ <view class="paylistitem">余额{{item.money}}</view>
+        </view>
+      </scroll-view>
+      ​
 
       <view bindtap="handFlag2" class="paylist">收入账单</view>
-      <scroll-view scroll-y="true" style="height: 300rpx;"  hidden="{{flag2}}"   >  
-​       <view hidden="{{flag2}}"  class="paylist2" wx:for="{{arr2}}" wx:key="item">
-​       <view class="paylistitem">+{{item.incomeAmount}}</view>
-​       <view class="paylistitem">{{item.Incomeitem}}</view>
-​       <view class="paylistitem">{{item.remarkPayContent}}</view>
-​       <view class="paylistitem">{{item.incomeDate}}</view>
-​       <view class="paylistitem">余额{{item.money}}</view>
-​     </view>
-   </scroll-view>
-             
-      </swiper-item>
-   </swiper>
+      <scroll-view scroll-y="true" style="height: 300rpx;" hidden="{{flag2}}">
+        ​ <view hidden="{{flag2}}" class="paylist2" wx:for="{{arr2}}" wx:key="item">
+          ​ <view class="paylistitem">+{{item.incomeAmount}}</view>
+          ​ <view class="paylistitem">{{item.Incomeitem}}</view>
+          ​ <view class="paylistitem">{{item.remarkPayContent}}</view>
+          ​ <view class="paylistitem">{{item.incomeDate}}</view>
+          ​ <view class="paylistitem">余额{{item.money}}</view>
+          ​ </view>
+      </scroll-view>
+
+    </swiper-item>
+  </swiper>
 </view>

@@ -10,8 +10,9 @@
     <view class="xfJD">学分绩点和：{{xfJDNum}}</view>
   </view>
   <view class="ranking">
+    <view style="text-align:center;background-color:rgb(252,166,122);">本专业排行榜</view>
     <view class="card">
-      <view style="width:50rpx;line-height:70rpx;text-align: center;">用户</view>
+      <view style="width:50rpx;line-height:70rpx;text-align:center;">用户</view>
       <view class="jd">本专业学分绩点和</view>
       <view class="rank">排名</view>
     </view>

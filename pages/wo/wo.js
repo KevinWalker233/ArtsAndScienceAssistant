@@ -32,9 +32,9 @@ Page({
   addTip(res) { //授权上课提醒
     var that = this
     wx.requestSubscribeMessage({
-      tmplIds: ['rv7wyzh3M0k5j6adlCrIwe74XRc-8snnMD9STeDmhmw'],
+      tmplIds: ['4FXI5vyjxiQo3JY2rTT6hIXuMKxd5085cZnieP7PSq8'],
       success(res) {
-        console.log('添加了一次提醒')
+        // console.log('添加了一次提醒')
       }
     })
   },
@@ -43,7 +43,7 @@ Page({
     wx.requestSubscribeMessage({
       tmplIds: ['fh162iT9nuIpjP3IcQpJhitaY0Nl9hqlY809ul8FYE0'],
       success(res) {
-        console.log('添加了一次提醒')
+        // console.log('添加了一次提醒')
       }
     })
   },
@@ -105,6 +105,7 @@ Page({
    */
   onLoad: function (options) {
     var that = this
+
     wx.cloud.callFunction({
       name: "getopenid",
       complete: res => {
@@ -145,10 +146,10 @@ Page({
   onShow: function () {
     var that = this
 
-    console.log(app.globalData)
+    // console.log(app.globalData)
 
     var animation = wx.createAnimation({
-      duration: 1000
+      duration: 500
     })
     var animation = animation
 
@@ -160,7 +161,7 @@ Page({
     wx.getStorage({ //获取本地账号数据
       key: 'user',
       success(res) {
-        console.log(res)
+        // console.log(res)
         that.setData({
           user: [].concat(JSON.parse(res.data))
         })
@@ -168,11 +169,6 @@ Page({
       fail(res) {
         console.log(res)
       }
-    })
-
-    var index = Math.floor((Math.random() * (that.data.text).length))
-    that.setData({
-      welcome: (that.data.text)[index]
     })
   },
 
@@ -182,7 +178,7 @@ Page({
   onHide: function () {
     var that = this
     var animation = wx.createAnimation({
-      duration: 800
+      duration: 100
     })
     var animation = animation
 

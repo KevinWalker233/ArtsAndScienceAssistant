@@ -12,7 +12,13 @@ Page({
       type: '',
       text: ''
     },
-    loginB: false //这个是登陆按钮loding动画的设置
+    loginB: false, //这个是登陆按钮loding动画的设置
+    inputType: true //这个是用来判断明文暗文密码输入
+  },
+  eye(res){
+    this.setData({
+      inputType: !this.data.inputType
+    })
   },
   //用户名输入
   accountInput(res) {
@@ -39,7 +45,7 @@ Page({
         password: that.data.password
       },
       success(res) {
-        console.log(res.result)
+        // console.log(res.result)
         that.setData({ //登陆成功返回内容
           loginB: false, //关闭登陆按钮loading
           error: res.result[0] //弹出提醒
@@ -48,7 +54,7 @@ Page({
         var cardInformString = JSON.stringify(res.result[1])
         cardInformString = cardInformString.replace('元（卡余额）', '').replace('元（当前过渡余额）', '').replace('元（上次过渡余额）', '')
 
-        console.log(cardInformString)
+        // console.log(cardInformString)
         if (res.result[0].type === "success") {
           wx.setStorage({ //储存卡务数据到本地
             key: 'cardInform',
@@ -81,7 +87,19 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {},
+  onLoad: function (options) {
+    wx.setNavigationBarColor({
+      frontColor: '#ffffff',
+      backgroundColor: '#1BC3B8',
+      animation: {
+        duration: 500,
+        timingFunc: 'easeInOut'
+      }
+    })
+    wx.setNavigationBarTitle({
+      title: '卡务系统'
+    })
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -97,7 +115,7 @@ Page({
     wx.getStorage({ //获取本地账号数据
       key: 'cardAccount',
       success(res) {
-        console.log(res)
+        // console.log(res)
         that.setData({
           account: res.data
         })
@@ -110,7 +128,7 @@ Page({
     wx.getStorage({ //获取本地密码数据
       key: 'cardPassword',
       success(res) {
-        console.log(res)
+        // console.log(res)
         that.setData({
           password: res.data
         })

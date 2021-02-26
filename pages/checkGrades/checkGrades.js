@@ -24,7 +24,7 @@ Page({
     })
     var newResults = []
     var choose = this.data.xns[parseInt(this.data.chooseXN)]
-    console.log(choose)
+    // console.log(choose)
     for (var i = 0; i < this.data.results.length; i++) {
       if (this.data.results[i].xn === choose) {
         newResults.push(this.data.results[i])
@@ -33,7 +33,7 @@ Page({
     this.setData({
       showResults: newResults
     })
-    console.log(this.data.results)
+    // console.log(this.data.results)
   },
   changeXQ(res) {
     this.setData({
@@ -41,7 +41,7 @@ Page({
     })
     var newResults = []
     var choose = this.data.xqs[parseInt(this.data.chooseXQ)]
-    console.log(choose)
+    // console.log(choose)
     for (var i = 0; i < this.data.results.length; i++) {
       if (this.data.results[i].xq === choose) {
         newResults.push(this.data.results[i])
@@ -50,7 +50,7 @@ Page({
     this.setData({
       showResults: newResults
     })
-    console.log(this.data.results)
+    // console.log(this.data.results)
   },
   /**
    * 生命周期函数--监听页面加载

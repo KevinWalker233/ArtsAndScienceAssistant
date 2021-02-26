@@ -15,6 +15,22 @@ Page({
     courseitems: [],
     courseitems1: []
   },
+  clickCard(e) {
+    wx.showModal({
+      title: this.data.courseitems[e.currentTarget.dataset.index].coursetitle,
+      content: this.data.courseitems[e.currentTarget.dataset.index].inform,
+      confirmText: '我知道了',
+      showCancel: false
+    })
+  },
+  clickCard1(e) {
+    wx.showModal({
+      title: this.data.courseitems1[e.currentTarget.dataset.index].coursetitle,
+      content: this.data.courseitems1[e.currentTarget.dataset.index].inform,
+      confirmText: '我知道了',
+      showCancel: false
+    })
+  },
   submit: function () {
     this.setData({
       showModal: true

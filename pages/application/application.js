@@ -1,46 +1,48 @@
-// pages/application/application.js
+const configDb = wx.cloud.database().collection("config");
+
 Page({
   /**
    * 页面的初始数据
    */
   data: {
     // 轮播图图片链接
-    carouselImgUrls:[
-      "cloud://wlzs-2gtlu9u2a909b08e.776c-wlzs-2gtlu9u2a909b08e-1304646404/swiperimg/4.jpeg",
-      "cloud://wlzs-2gtlu9u2a909b08e.776c-wlzs-2gtlu9u2a909b08e-1304646404/swiperimg/2.jpeg",
-      "cloud://wlzs-2gtlu9u2a909b08e.776c-wlzs-2gtlu9u2a909b08e-1304646404/swiperimg/1.jpeg",
-      "cloud://wlzs-2gtlu9u2a909b08e.776c-wlzs-2gtlu9u2a909b08e-1304646404/swiperimg/5.jpeg",
-      "cloud://wlzs-2gtlu9u2a909b08e.776c-wlzs-2gtlu9u2a909b08e-1304646404/swiperimg/3.jpg"
-    ],
+    carouselImgUrls: [],
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that = this
+    configDb.doc('banner').get({
+      success(res) {
+        that.setData({
+          carouselImgUrls:res.data.bannerCard
+        })
+        // console.log(res)
+      }
+    })
   },
   /**
    * 1、 infoCheck - 信息查询跳转
    * 跳转至 地图 功能
    */
-  jumpSchoolMap:function(){
+  jumpSchoolMap: function () {
     wx.navigateTo({
       url: '../infoCheck/schoolMap/schoolMap',
     })
   },
   // 跳转至 考试安排 功能
-  jumpExam:function(){
+  jumpExam: function () {
     // 提示框
     wx.showModal({
       title: '信息提示',
       content: '详细的考试安排要等到学期16周之后公布，敬请期待😊......',
       confirmText: '我知道了',
-      showCancel:false,
+      showCancel: false,
       success: function (res) {
         if (res.confirm) {
           console.log('我已阅读')
-        } else {
-        }
+        } else {}
       }
     })
     // wx.navigateTo({
@@ -48,13 +50,13 @@ Page({
     // })
   },
   // 跳转至 校车 功能
-  jumpCommutingBus:function(){
+  jumpCommutingBus: function () {
     wx.navigateTo({
       url: '../infoCheck/commutingBus/commutingBus',
     })
   },
   // 跳转至 放假安排 功能
-  jumpHoliday:function(){
+  jumpHoliday: function () {
     wx.navigateTo({
       url: '../infoCheck/holiday/holiday',
     })
@@ -63,25 +65,25 @@ Page({
    * 2、 lifeService - 生活服务跳转
    * 跳转至 ToDos备忘 功能
    */
-  jumpToDos:function(){
+  jumpToDos: function () {
     wx.navigateTo({
       url: '../lifeService/todos/todos',
     })
   },
   // 跳转至 记账本 功能
-  jumpAccountMoney:function(){
+  jumpAccountMoney: function () {
     wx.navigateTo({
       url: '../lifeService/accountMoney/accountMoney',
     })
   },
   // 跳转至 社团 功能
-  jumpMassOrganize:function(){
+  jumpMassOrganize: function () {
     wx.navigateTo({
       url: '../lifeService/massOrganize/massOrganize',
     })
   },
   // 跳转至 快递 功能
-  jumpExpress:function(){
+  jumpExpress: function () {
     wx.navigateTo({
       url: '../lifeService/express/express',
     })
@@ -91,18 +93,17 @@ Page({
    * 3、 oneCheck - 一键查询跳转
    * 跳转至 空教室 功能
    */
-  jumpEmptyClass:function(){
+  jumpEmptyClass: function () {
     // 提示框
     wx.showModal({
       title: '信息提示',
       content: '后续更新，敬请期待😊......',
       confirmText: '我知道了',
-      showCancel:false,
+      showCancel: false,
       success: function (res) {
         if (res.confirm) {
           // console.log('我已阅读')
-        } else {
-        }
+        } else {}
       }
     })
     // wx.navigateTo({
@@ -110,7 +111,7 @@ Page({
     // })
   },
   // 跳转至 校内电话 功能
-  jumpSchoolTel:function(){
+  jumpSchoolTel: function () {
     wx.navigateTo({
       url: '../oneCheck/schoolTel/schoolTel',
     })
@@ -120,7 +121,7 @@ Page({
    * 4、 expFunction - 扩展功能跳转
    * 跳转至 专注 功能
    */
-  jumpConcentrat:function(){
+  jumpConcentrat: function () {
     wx.navigateTo({
       url: '../iexpFunction/concentrat/concentrat',
     })
@@ -130,7 +131,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    
+
   },
 
   /**

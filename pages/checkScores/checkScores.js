@@ -71,37 +71,117 @@ Page({
           }
         })
       }
-      console.log(app.globalData.user)
-      accountDb.where({
-          'college': app.globalData.user[3],
-          'major': app.globalData.user[4],
-          'grade': app.globalData.user[2]
-        })
-        .get({
-          success: function (res) {
-            console.log(res.data)
-            var arr = []
-            var hasMe = false //判断有没有自己
-            for (var i = 0; i < res.data.length; i++) {
-              if (parseFloat(res.data[i]['xfjd']) >= 0) {
-                if (res.data[i]['name'] === app.globalData.user[6]) { //如果有自己的名字且有成绩
-                  hasMe = true
+      // console.log(app.globalData.user)
+
+      /**
+       * 循环查询整合数据
+       */
+      var college = app.globalData.user[3]
+      var major = app.globalData.user[4]
+      var grade = app.globalData.user[2]
+      that.getListCount(college, major, grade).then(res => {
+        // console.log(res)
+        let count = res
+        let list = []
+        for (let i = 0; i < count; i += 20) {
+          that.getListIndexSkip(i, college, major, grade).then(res => {
+            list = list.concat(res);
+            if (list.length == count) {
+              // console.log(list)
+              var arr = []
+              var hasMe = false //判断有没有自己
+              for (var i = 0; i < list.length; i++) {
+                if (parseFloat(list[i]['xfjd']) > 0) {
+                  if (list[i]['name'] === app.globalData.user[6]) { //如果有自己的名字且有成绩
+                    hasMe = true
+                  }
+                  arr.push(parseFloat(list[i]['xfjd']))
                 }
-                arr.push(parseFloat(res.data[i]['xfjd']))
               }
-            }
 
-            if (!hasMe) { //没成绩则放入自己的成绩
-              arr.push(parseFloat(xfJDNum))
-            }
+              if (!hasMe) { //没成绩则放入自己的成绩
+                arr.push(parseFloat(xfJDNum))
+              }
 
-            that.setData({
-              ranking: arr.sort(function (a, b) {
-                return b - a
+              that.setData({
+                ranking: arr.sort(function (a, b) {
+                  return b - a
+                })
               })
-            })
-          }
-        })
+            }
+          })
+        }
+      })
+
+      // accountDb.where({
+      //     'college': app.globalData.user[3],
+      //     'major': app.globalData.user[4],
+      //     'grade': app.globalData.user[2]
+      //   })
+      //   .get({
+      //     success: function (res) {
+      //       console.log(res.data)
+      //       var arr = []
+      //       var hasMe = false //判断有没有自己
+      //       for (var i = 0; i < res.data.length; i++) {
+      //         if (parseFloat(res.data[i]['xfjd']) > 0) {
+      //           if (res.data[i]['name'] === app.globalData.user[6]) { //如果有自己的名字且有成绩
+      //             hasMe = true
+      //           }
+      //           arr.push(parseFloat(res.data[i]['xfjd']))
+      //         }
+      //       }
+
+      //       if (!hasMe) { //没成绩则放入自己的成绩
+      //         arr.push(parseFloat(xfJDNum))
+      //       }
+
+      //       that.setData({
+      //         ranking: arr.sort(function (a, b) {
+      //           return b - a
+      //         })
+      //       })
+      //     }
+      //   })
     })
   },
+  /**
+   * 获取account总数
+   */
+  getListCount(college, major, grade) {
+    return new Promise((resolve, reject) => {
+      accountDb.where({
+        'college': college,
+        'major': major,
+        'grade': grade
+      }).count().then(res => {
+        resolve(res.total)
+      })
+    })
+  },
+  /**
+   * 单次查询函数
+   */
+  getListIndexSkip(skip, college, major, grade) {
+    return new Promise((resolve, reject) => {
+      // let statusList = []
+      let selectPromise;
+      if (skip > 0) {
+        selectPromise = accountDb.where({
+          'college': college,
+          'major': major,
+          'grade': grade
+        }).skip(skip).get()
+      } else {
+        selectPromise = accountDb.where({
+          'college': college,
+          'major': major,
+          'grade': grade
+        }).get()
+      }
+      selectPromise.then(res => {
+        resolve(res.data)
+      })
+    })
+  }
 })

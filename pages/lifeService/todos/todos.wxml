@@ -2,7 +2,7 @@
 <view class="container">
   <view class="header">
      <image bindtap="addTodoHandle" src="/assets/todosIcon/plus.png"></image>
-     <!-- maxlength='-1'   -->
+     <!-- maxlength='-1'-->
      <textarea bindinput="inputChangeHandle" bindconfirm="addTodoHandle" type="text" placeholder="Anything here...." value="{{input}}" auto-height bindblur="addTodoHandle"/>
   </view>
 
@@ -31,12 +31,12 @@
 
    <view wx:else class="null" >
      <view class="null-content">
-        <view class="null-content-title">ToDos备忘录</view>
+        <view class="null-content-title">ToDos示例</view>
         <view class="nulll-content-line"></view>
-        <view class="null-text">○ 暑假暑假速度斯达舒</view>
-        <view class="null-text">● 暑假暑假速度斯达舒</view>
-        <view class="null-text">● 暑假暑假速度斯达舒</view>
-        <view class="null-text">● 暑假暑假速度斯达舒</view>
+        <view class="null-text">○ 今天要背一小时英语单词📕</view>
+        <view class="null-text">○ 晚上要给妈妈打电话🥰</view>
+        <view style="text-decoration:line-through;" class="null-text">● 奖励自己一份螺蛳粉🍲</view>
+        <view style="text-decoration:line-through;" class="null-text">● 🍔！记得要吃早饭！🍔</view>
      </view>
    </view>
 

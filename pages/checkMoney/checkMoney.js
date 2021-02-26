@@ -12,6 +12,16 @@ Page({
     jieGuaBool: false, //解挂按钮loading
     cardInform: [] //用户数据
   },
+  focus(res) { //得到焦点，设置为明文密码
+    this.setData({
+      inputType: false
+    })
+  },
+  blur(res) { //得到焦点，设置为暗文密码
+    this.setData({
+      inputType: true
+    })
+  },
   refresh(res) { //点击刷新按钮
     wx.navigateTo({
       url: "/pages/loginCard/loginCard",
@@ -98,7 +108,7 @@ Page({
     wx.getStorage({ //获取本地账号数据
       key: 'cardAccount',
       success(res) {
-        console.log(res)
+        // console.log(res)
         that.setData({
           account: res.data
         })
@@ -106,7 +116,7 @@ Page({
       fail(res) {
         console.log(res)
         wx.navigateTo({
-          url: "/pages/checkMoney/loginCard/loginCard",
+          url: "/pages/loginCard/loginCard",
         })
       }
     })
@@ -114,7 +124,7 @@ Page({
     wx.getStorage({ //获取本地密码数据
       key: 'cardPassword',
       success(res) {
-        console.log(res)
+        // console.log(res)
         that.setData({
           password: res.data
         })
@@ -142,7 +152,7 @@ Page({
     wx.getStorage({ //获取本地账号数据
       key: 'cardAccount',
       success(res) {
-        console.log(res)
+        // console.log(res)
         that.setData({
           account: res.data
         })
@@ -155,7 +165,7 @@ Page({
     wx.getStorage({ //获取本地密码数据
       key: 'cardPassword',
       success(res) {
-        console.log(res)
+        // console.log(res)
         that.setData({
           password: res.data
         })

@@ -4,23 +4,28 @@
 <view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
 <view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal1}}"></view>
 <view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal2}}"></view>
+
 <view class="modalDlg" wx:if="{{showModal}}">
   <image src="{{one.courseimg}}" mode="aspectfill" />
   <text> {{one.inform}}</text>
   <button bindtap="go">关闭</button>
 </view>
+
 <view class="modalDlg" wx:if="{{showModal1}}">
   <image src="{{two.courseimg}}" mode="aspectfill" />
   <text> {{two.inform}}</text>
   <button bindtap="go1">关闭</button>
 </view>
+
 <view class="modalDlg" wx:if="{{showModal2}}">
   <image src="{{three.courseimg}}" mode="aspectfill" />
   <text> {{three.inform}}</text>
   <button bindtap="go2">关闭</button>
 </view>
+
 <view class="paihang">
   <view bindtap="submit" class="one">
+    <view class="headLine"><image src="/assets/massOrganize/two.png" mode="aspectfill" style="width:50rpx;height:50rpx;"/></view>
     <view class="up">
       <image src="{{one.courseimg}}" mode="aspectfill" />
     </view>
@@ -28,13 +33,15 @@
     <text>{{one.coursetitle}}</text>
   </view>
   <view bindtap="submit1" class="two">
+    <view class="headLine" style="width:100rpx;height:80rpx;bottom:-30rpx;"><image src="/assets/massOrganize/one.png" mode="aspectfill" style="width:100rpx;height:80rpx;"/></view>
     <view class="up">
       <image src="{{two.courseimg}}" mode="aspectfill" />
     </view>
-    <text class="down">{{two.title}}</text>
+    <text class="down" style="font-size:50rpx">{{two.title}}</text>
     <text>{{two.coursetitle}}</text>
   </view>
   <view bindtap="submit2" class="three">
+    <view class="headLine"><image src="/assets/massOrganize/two.png" mode="aspectfill" style="width:50rpx;height:50rpx;"/></view>
     <view class="up">
       <image src="{{three.courseimg}}" mode="aspectfill" />
     </view>
@@ -50,24 +57,9 @@
 
 <swiper class="swiper" current="{{currentTab}}" duration="200" bindchange="swiperChange">
   <swiper-item>
-    <block wx:for="{{courseitems}}" wx:key="id">
-      <view class="courseitem {{item.isstar ? 'isstar':''}}">
-        <view class="fm">
-          <image src="{{item.courseimg}}" mode="aspectfill" />
-        </view>
-        <view class="desc">
-          <text class="first">{{item.coursetitle}}</text>
-          <text class="second">{{item.courseteacher}}<text class="isstar" wx:if="{{item.isstar}}">星级社团</text></text>
-          <text class="third">{{item.coursecount}}人</text>
-          <text class="fourth">简介:{{item.inform}}</text>
-        </view>
-      </view>
-    </block>
-  </swiper-item>
-  <swiper-item>
     <view class='info'>
-      <block wx:for="{{courseitems1}}" wx:key="id">
-        <view class="courseitem {{item.isstar ? 'isstar':''}}">
+      <view class="card" wx:for="{{courseitems}}">
+        <view class="courseitem {{item.isstar ? 'isstar':''}}" data-index="{{index}}" bindtap="clickCard">
           <view class="fm">
             <image src="{{item.courseimg}}" mode="aspectfill" />
           </view>
@@ -75,10 +67,25 @@
             <text class="first">{{item.coursetitle}}</text>
             <text class="second">{{item.courseteacher}}<text class="isstar" wx:if="{{item.isstar}}">星级社团</text></text>
             <text class="third">{{item.coursecount}}人</text>
-            <text class="fourth">简介:{{item.inform}}人</text>
           </view>
         </view>
-      </block>
+      </view>
+    </view>
+  </swiper-item>
+  <swiper-item>
+    <view class='info'>
+      <view class="card" wx:for="{{courseitems1}}" wx:key="id">
+        <view class="courseitem {{item.isstar ? 'isstar':''}}" data-index="{{index}}" bindtap="clickCard1">
+          <view class="fm">
+            <image src="{{item.courseimg}}" mode="aspectfill" />
+          </view>
+          <view class="desc">
+            <text class="first">{{item.coursetitle}}</text>
+            <text class="second">{{item.courseteacher}}<text class="isstar" wx:if="{{item.isstar}}">星级社团</text></text>
+            <text class="third">{{item.coursecount}}人</text>
+          </view>
+        </view>
+      </view>
     </view>
   </swiper-item>
 </swiper>

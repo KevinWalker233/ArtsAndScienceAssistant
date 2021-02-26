@@ -3,22 +3,16 @@ Page({
    * 页面的初始数据
    */
   data: {
-    contents: '978330980'
+    url: ""
   },
-  copyText: function (e) {
-    var that = this
-    console.log(e)
-    wx.setClipboardData({
-      data: that.data.contents,
-      success: function (res) {
-      }
-    })
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      url:options.url
+    })
   },
 
   /**

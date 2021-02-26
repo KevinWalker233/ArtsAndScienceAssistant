@@ -30,178 +30,435 @@ Page({
     showMapNav: true,
     showModelStatus:false,
     markers: [
-      // 老校区大门
+      // 1老校区大门
     {
-      iconPath: "/assets/mapIcon/marker.png",
+      iconPath: "../../../assets/mapIcon/marker.png",
       id: 1,
       locationName:"老校区大门",
-      locationImg:"cloud://wlzs-2gtlu9u2a909b08e.776c-wlzs-2gtlu9u2a909b08e-1304646404/mapImg/OldSchool/OldMenkou.jpg",
-      locationIcon:"/assets/mapIcon/oldSchool/gate.png",
+      locationImg:"cloud://wlzs-2gtlu9u2a909b08e.776c-wlzs-2gtlu9u2a909b08e-1304646404/mapImg/school/0.png",
+      locationIcon:"../../../assets/mapIcon/oldSchool/gate.png",
       locationContent:"这是老校区大门口哦！！！",
       latitude: 34.34833203295634,
       longitude: 107.16035653565214,
       width: 25,
       height: 26
     },
-      // 教学楼
+      // 2教学楼
     {
-      iconPath: "/assets/mapIcon/marker.png",
-      // iconPath: "/assets/mapIcon/marker.png",
+      iconPath: "../../../assets/mapIcon/marker.png",
       id: 2,
       locationName:"教学楼",
-      locationImg:"cloud://wlzs-2gtlu9u2a909b08e.776c-wlzs-2gtlu9u2a909b08e-1304646404/mapImg/OldSchool/OldJiaoxue.jpg",
-      locationIcon:"/assets/mapIcon/oldSchool/school.png",
-      // locationIcon:"/assets/mapIcon/oldSchool/school.png",
+      locationImg:"cloud://wlzs-2gtlu9u2a909b08e.776c-wlzs-2gtlu9u2a909b08e-1304646404/mapImg/school/1.png",
+      locationIcon:"../../../assets/mapIcon/oldSchool/school.png",
       locationContent:"老校区教学楼是计算机学院......",
       latitude: 34.34885908050591,
       longitude: 107.16062475655363,
       width: 25,
       height: 26
     }, 
-      // 操场
+      // 3操场
     {
-      iconPath: "/assets/mapIcon/marker.png",
+      iconPath: "../../../assets/mapIcon/marker.png",
       id: 3,
       locationName:"老校区操场",
-      locationImg:"",
-      locationIcon:"/assets/mapIcon/oldSchool/playground.png",
+      locationImg:"cloud://wlzs-2gtlu9u2a909b08e.776c-wlzs-2gtlu9u2a909b08e-1304646404/mapImg/school/2.png",
+      locationIcon:"../../../assets/mapIcon/oldSchool/playground.png",
       locationContent:"老校区操场",
       latitude: 34.34878378820223,
       longitude: 107.16327477906034,
       width: 25,
       height: 26
     }, 
-      // 学术报告厅
+      // 4学术报告厅
     {
-      iconPath: "/assets/mapIcon/marker.png",
+      iconPath: "../../../assets/mapIcon/marker.png",
       id: 4,
       locationName:"学术报告厅",
-      locationImg:"",
-      locationIcon:"/assets/mapIcon/oldSchool/AcademicReportingHall.png",
+      locationImg:"cloud://wlzs-2gtlu9u2a909b08e.776c-wlzs-2gtlu9u2a909b08e-1304646404/mapImg/school/3.png",
+      locationIcon:"../../../assets/mapIcon/oldSchool/AcademicReportingHall.png",
       locationContent:"学术报告厅",
       latitude: 34.34978472743541,
       longitude: 107.16236282799528,
       width: 25,
       height: 26
     },
-      //  综合楼
+      //  5综合楼
     {
-      iconPath: "/assets/mapIcon/marker.png",
+      iconPath: "../../../assets/mapIcon/marker.png",
       id: 5,
       locationName:"综合楼",
-      locationImg:"",
-      locationIcon:"/assets/mapIcon/oldSchool/ComplexBuilding.png",
+      locationImg:"cloud://wlzs-2gtlu9u2a909b08e.776c-wlzs-2gtlu9u2a909b08e-1304646404/mapImg/school/4.png",
+      locationIcon:"../../../assets/mapIcon/oldSchool/ComplexBuilding.png",
       locationContent:"综合楼",
       latitude: 34.349634144421024,
       longitude: 107.1628348967819,
       width: 25,
       height: 26
     }, 
-      // 图书馆
+      // 6图书馆
     {
-      iconPath: "/assets/mapIcon/marker.png",
+      iconPath: "../../../assets/mapIcon/marker.png",
       id: 6,
       locationName:"老校区图书馆",
-      locationImg:"",
-      locationIcon:"/assets/mapIcon/oldSchool/library.png",
+      locationImg:"cloud://wlzs-2gtlu9u2a909b08e.776c-wlzs-2gtlu9u2a909b08e-1304646404/mapImg/school/5.png",
+      locationIcon:"../../../assets/mapIcon/oldSchool/library.png",
       locationContent:"石鼓校区图书馆",
       latitude: 34.349536708208355,
       longitude: 107.16098953697966,
       width: 25,
       height: 26
     }, 
-      // 1号餐厅
+      // 7,1号餐厅
     {
-      iconPath: "/assets/mapIcon/marker.png",
+      iconPath: "../../../assets/mapIcon/marker.png",
       id: 7,
       locationName:"学生1号餐厅",
-      locationImg:"",
-      locationIcon:"/assets/mapIcon/oldSchool/restaurant_1.png",
+      locationImg:"cloud://wlzs-2gtlu9u2a909b08e.776c-wlzs-2gtlu9u2a909b08e-1304646404/mapImg/school/6.png",
+      locationIcon:"../../../assets/mapIcon/oldSchool/restaurant_1.png",
       locationContent:"学生1号餐厅",
       latitude: 34.349953025779634,
       longitude: 107.16183711502836,
       width: 25,
       height: 26
     }, 
-      // 8号楼，计算机学院公寓
+      // 8,8号楼，计算机学院公寓
     {
-      iconPath: "/assets/mapIcon/marker.png",
+      iconPath: "../../../assets/mapIcon/marker.png",
       id: 8,
       locationName:"8号楼公寓",
-      locationImg:"",
-      locationIcon:"/assets/mapIcon/oldSchool/apartment_8.png",
+      locationImg:"cloud://wlzs-2gtlu9u2a909b08e.776c-wlzs-2gtlu9u2a909b08e-1304646404/mapImg/school/7.png",
+      locationIcon:"../../../assets/mapIcon/oldSchool/apartment_8.png",
       locationContent:"8号楼大学公寓，是计算机学院学生公寓，位于宝鸡文理石鼓校区正北部，周边接近1号、2号餐厅，菜鸟驿站......",
       latitude: 34.350626215773445,
       longitude: 107.16151524994658,
       width: 25,
       height: 26
     }, 
-      // 家属楼
+      // 9家属楼
     {
-      iconPath: "/assets/mapIcon/marker.png",
+      iconPath: "../../../assets/mapIcon/marker.png",
       id: 9,
       locationName:"家属楼",
-      locationImg:"",
-      locationIcon:"/assets/mapIcon/oldSchool/apartment_8.png",
+      locationImg:"cloud://wlzs-2gtlu9u2a909b08e.776c-wlzs-2gtlu9u2a909b08e-1304646404/mapImg/school/8.png",
+      locationIcon:"../../../assets/mapIcon/oldSchool/apartment_8.png",
       locationContent:"家属楼",
       latitude: 34.3494038404611,
       longitude: 107.15889741394804,
       width: 25,
       height: 26
     }, 
-      // 相家庄市场
+      // 10相家庄市场
     {
-      iconPath: "/assets/mapIcon/marker.png",
+      iconPath: "../../../assets/mapIcon/marker.png",
       id: 10,
       locationName:"相家庄市场",
-      locationImg:"",
-      locationIcon:"/assets/mapIcon/oldSchool/apartment_8.png",
+      locationImg:"cloud://wlzs-2gtlu9u2a909b08e.776c-wlzs-2gtlu9u2a909b08e-1304646404/mapImg/school/9.png",
+      locationIcon:"../../../assets/mapIcon/oldSchool/apartment_8.png",
       locationContent:"相家庄市场,石鼓校区同学的欢快之地！",
       latitude: 34.3475968182261,
       longitude: 107.16134358856962,
       width: 25,
       height: 26
     }, 
-      // 学生2号餐厅
+      // 11学生2号餐厅
     {
-      iconPath: "/assets/mapIcon/marker.png",
+      iconPath: "../../../assets/mapIcon/marker.png",
       id: 11,
       locationName:"学生2号餐厅",
-      locationImg:"",
-      locationIcon:"/assets/mapIcon/oldSchool/restaurant_1.png",
+      locationImg:"cloud://wlzs-2gtlu9u2a909b08e.776c-wlzs-2gtlu9u2a909b08e-1304646404/mapImg/school/10.png",
+      locationIcon:"../../../assets/mapIcon/oldSchool/restaurant_1.png",
       locationContent:"学生2号餐厅",
       latitude: 34.350232045969676,
       longitude: 107.1604745528488,
       width: 25,
       height: 26
     },
-      // 新校区大门
+      // 12新校区大门
     {
-      iconPath: "/assets/mapIcon/marker.png",
+      iconPath: "../../../assets/mapIcon/marker.png",
       id: 12,
       locationName:"新校区南门",
-      locationImg:"",
-      locationIcon:"/assets/mapIcon/oldSchool/gate.png",
+      locationImg:"cloud://wlzs-2gtlu9u2a909b08e.776c-wlzs-2gtlu9u2a909b08e-1304646404/mapImg/school/11.png",
+      locationIcon:"../../../assets/mapIcon/oldSchool/gate.png",
       locationContent:"新校区南门，是新校区最显眼的地方！！",
       latitude: 34.34719377609236,
       longitude: 107.20988620732115,
       width: 25,
       height: 26
     },
-      // 新校区图书馆
+      // 13新校区图书馆
     {
-      iconPath: "/assets/mapIcon/marker.png",
+      iconPath: "../../../assets/mapIcon/marker.png",
       id: 13,
       locationName:"新校区图书馆",
-      locationImg:"",
-      locationIcon:"/assets/mapIcon/oldSchool/library.png",
+      locationImg:"cloud://wlzs-2gtlu9u2a909b08e.776c-wlzs-2gtlu9u2a909b08e-1304646404/mapImg/school/12.png",
+      locationIcon:"../../../assets/mapIcon/oldSchool/library.png",
       locationContent:"新校区图书馆",
       latitude: 34.34896537540995,
       longitude: 107.20990766499327,
       width: 25,
       height: 26
-    }
-  ]
+    },
+      // 14新校区立心楼
+    {
+      iconPath: "../../../assets/mapIcon/marker.png",
+      id: 14,
+      locationName:"立心楼",
+      locationImg:"cloud://wlzs-2gtlu9u2a909b08e.776c-wlzs-2gtlu9u2a909b08e-1304646404/mapImg/school/13.png",
+      locationIcon:"../../../assets/mapIcon/oldSchool/ComplexBuilding.png",
+      locationContent:"新校区立心楼",
+      latitude: 34.34803529043601,
+      longitude: 107.208598746994,
+      width: 25,
+      height: 26
+    },
+      // 15新校区思贤楼
+    {
+      iconPath: "../../../assets/mapIcon/marker.png",
+      id: 15,
+      locationName:"思贤楼",
+      locationImg:"cloud://wlzs-2gtlu9u2a909b08e.776c-wlzs-2gtlu9u2a909b08e-1304646404/mapImg/school/14.png",
+      locationIcon:"../../../assets/mapIcon/oldSchool/ComplexBuilding.png",
+      locationContent:"新校区思贤楼",
+      latitude: 34.348190305314695,
+      longitude: 107.21147407505796,
+      width: 25,
+      height: 26
+    },
+      // 16新校区音乐学院
+    {
+      iconPath: "../../../assets/mapIcon/marker.png",
+      id: 16,
+      locationName:"音乐厅",
+      locationImg:"cloud://wlzs-2gtlu9u2a909b08e.776c-wlzs-2gtlu9u2a909b08e-1304646404/mapImg/school/15.png",
+      locationIcon:"../../../assets/mapIcon/oldSchool/ComplexBuilding.png",
+      locationContent:"新校区音乐厅",
+      latitude: 34.35099823950773,
+      longitude: 107.20881332371519,
+      width: 25,
+      height: 26
+    },
+      // 17新校区明理楼
+    {
+        iconPath: "../../../assets/mapIcon/marker.png",
+        id: 17,
+        locationName:"明理楼",
+        locationImg:"cloud://wlzs-2gtlu9u2a909b08e.776c-wlzs-2gtlu9u2a909b08e-1304646404/mapImg/school/16.png",
+        locationIcon:"../../../assets/mapIcon/oldSchool/ComplexBuilding.png",
+        locationContent:"新校区明理楼",
+        latitude: 34.35035162577346,
+        longitude: 107.20809985611723,
+        width: 25,
+        height: 26
+    },
+      // 18新校区尚能楼
+    {
+      iconPath: "../../../assets/mapIcon/marker.png",
+      id: 18,
+      locationName:"尚能楼",
+      locationImg:"cloud://wlzs-2gtlu9u2a909b08e.776c-wlzs-2gtlu9u2a909b08e-1304646404/mapImg/school/17.png",
+      locationIcon:"../../../assets/mapIcon/oldSchool/ComplexBuilding.png",
+      locationContent:"新校区尚能楼",
+      latitude: 34.34972272270062,
+      longitude: 107.20796038124845,
+      width: 25,
+      height: 26
+    },
+      // 19新校区体育学院
+    {
+        iconPath: "../../../assets/mapIcon/marker.png",
+        id: 19,
+        locationName:"体育学院",
+        locationImg:"cloud://wlzs-2gtlu9u2a909b08e.776c-wlzs-2gtlu9u2a909b08e-1304646404/mapImg/school/18.png",
+        locationIcon:"../../../assets/mapIcon/oldSchool/ComplexBuilding.png",
+        locationContent:"新校区体育学院",
+        latitude: 34.35091409142591,
+        longitude: 107.21165646527098,
+        width: 25,
+        height: 26
+    },
+      // 20新校区大学生超市
+    {
+        iconPath: "../../../assets/mapIcon/marker.png",
+        id: 20,
+        locationName:"大学生超市",
+        locationImg:"cloud://wlzs-2gtlu9u2a909b08e.776c-wlzs-2gtlu9u2a909b08e-1304646404/mapImg/school/19.png",
+        locationIcon:"../../../assets/mapIcon/oldSchool/ComplexBuilding.png",
+        locationContent:"大学生超市",
+        latitude: 34.34966071791539,
+        longitude: 107.2140919110565,
+        width: 25,
+        height: 26
+    },
+      // 21新校区篮球场
+    {
+      iconPath: "../../../assets/mapIcon/marker.png",
+      id: 21,
+      locationName:"灯光篮球场",
+      locationImg:"cloud://wlzs-2gtlu9u2a909b08e.776c-wlzs-2gtlu9u2a909b08e-1304646404/mapImg/school/20.png",
+      locationIcon:"../../../assets/mapIcon/oldSchool/ComplexBuilding.png",
+      locationContent:"灯光篮球场",
+      latitude: 34.34966957574166,
+      longitude: 107.21271325562284,
+      width: 25,
+      height: 26
+    },
+      // 22新校区1号公寓
+    {
+      iconPath: "../../../assets/mapIcon/marker.png",
+      id: 22,
+      locationName:"2号公寓",
+      locationImg:"cloud://wlzs-2gtlu9u2a909b08e.776c-wlzs-2gtlu9u2a909b08e-1304646404/mapImg/school/21.png",
+      locationIcon:"../../../assets/mapIcon/oldSchool/ComplexBuilding.png",
+      locationContent:"新校区2号公寓",
+      latitude: 34.349930881281246,
+      longitude: 107.21372713063047,
+      width: 25,
+      height: 26
+    },
+      // 23新校区博文楼
+    {
+        iconPath: "../../../assets/mapIcon/marker.png",
+        id: 23,
+        locationName:"新校区博文楼",
+        locationImg:"cloud://wlzs-2gtlu9u2a909b08e.776c-wlzs-2gtlu9u2a909b08e-1304646404/mapImg/school/22.png",
+        locationIcon:"../../../assets/mapIcon/oldSchool/ComplexBuilding.png",
+        locationContent:"新校区博文楼,新校区最高的楼",
+        latitude: 34.351401263352976,
+        longitude: 107.21088935349272,
+        width: 25,
+        height: 26
+    },
+      // 24新校区3号公寓
+    {
+        iconPath: "../../../assets/mapIcon/marker.png",
+        id: 24,
+        locationName:"3号公寓",
+        locationImg:"cloud://wlzs-2gtlu9u2a909b08e.776c-wlzs-2gtlu9u2a909b08e-1304646404/mapImg/school/23.png",
+        locationIcon:"../../../assets/mapIcon/oldSchool/ComplexBuilding.png",
+        locationContent:"新校区3号公寓",
+        latitude: 34.35030290809734,
+        longitude: 107.21378077481077,
+        width: 25,
+        height: 26
+     },
+      // 25新校区游泳馆
+    {
+      iconPath: "../../../assets/mapIcon/marker.png",
+      id: 25,
+      locationName:"新校区游泳馆",
+      locationImg:"cloud://wlzs-2gtlu9u2a909b08e.776c-wlzs-2gtlu9u2a909b08e-1304646404/mapImg/school/24.png",
+      locationIcon:"../../../assets/mapIcon/oldSchool/ComplexBuilding.png",
+      locationContent:"新校区游泳馆",
+      latitude: 34.351582844889485,
+      longitude: 107.2085451028137,
+      width: 25,
+      height: 26
+    },
+      // 26新校区校医院
+    {
+      iconPath: "../../../assets/mapIcon/marker.png",
+      id: 26,
+      locationName:"新校区校医院",
+      locationImg:"cloud://wlzs-2gtlu9u2a909b08e.776c-wlzs-2gtlu9u2a909b08e-1304646404/mapImg/school/25.png",
+      locationIcon:"../../../assets/mapIcon/oldSchool/ComplexBuilding.png",
+      locationContent:"新校区校医院",
+      latitude: 34.34951899252089,
+      longitude: 107.21680630657957,
+      width: 25,
+      height: 26
+    },
+      // 27新校区创新创业中心
+    {
+      iconPath: "../../../assets/mapIcon/marker.png",
+      id: 27,
+      locationName:"创新创业中心",
+      locationImg:"cloud://wlzs-2gtlu9u2a909b08e.776c-wlzs-2gtlu9u2a909b08e-1304646404/mapImg/school/26.png",
+      locationIcon:"../../../assets/mapIcon/oldSchool/ComplexBuilding.png",
+      locationContent:"创新创业中心",
+      latitude: 34.34986001884095,
+      longitude: 107.21778263066099,
+      width: 25,
+      height: 26
+    },
+      // 28新校区餐厅
+    {
+        iconPath: "../../../assets/mapIcon/marker.png",
+        id: 28,
+        locationName:"新校区餐厅",
+        locationImg:"cloud://wlzs-2gtlu9u2a909b08e.776c-wlzs-2gtlu9u2a909b08e-1304646404/mapImg/school/27.png",
+        locationIcon:"../../../assets/mapIcon/oldSchool/restaurant_1.png",
+        locationContent:"新校区餐厅",
+        latitude: 34.349598713083246,
+        longitude: 107.21477319214628,
+        width: 25,
+        height: 26
+    },
+      // 29新校区体育场
+    {
+        iconPath: "../../../assets/mapIcon/marker.png",
+        id: 29,
+        locationName:"新校区体育场",
+        locationImg:"cloud://wlzs-2gtlu9u2a909b08e.776c-wlzs-2gtlu9u2a909b08e-1304646404/mapImg/school/28.png",
+        locationIcon:"../../../assets/mapIcon/oldSchool/ComplexBuilding.png",
+        locationContent:"新校区体育场",
+        latitude: 34.35099823950254,
+        longitude: 107.21226264450834,
+        width: 25,
+        height: 26
+    },
+      // 30新校区广场
+    {
+        iconPath: "../../../assets/mapIcon/marker.png",
+        id: 30,
+        locationName:"润德园",
+        locationImg:"cloud://wlzs-2gtlu9u2a909b08e.776c-wlzs-2gtlu9u2a909b08e-1304646404/mapImg/school/29.png",
+        locationIcon:"../../../assets/mapIcon/oldSchool/ComplexBuilding.png",
+        locationContent:"润德园",
+        latitude: 34.35024976150674,
+        longitude: 107.21058894608305,
+        width: 25,
+        height: 26
+    },
+      // 31新校区四为园
+    {
+      iconPath: "../../../assets/mapIcon/marker.png",
+      id: 31,
+      locationName:"四为园",
+      locationImg:"cloud://wlzs-2gtlu9u2a909b08e.776c-wlzs-2gtlu9u2a909b08e-1304646404/mapImg/school/30.png",
+      locationIcon:"../../../assets/mapIcon/oldSchool/ComplexBuilding.png",
+      locationContent:"四为园",
+      latitude: 34.350023888136555,
+      longitude: 107.20909763787077,
+      width: 25,
+      height: 26
+  },
+    // 32新校区体育馆
+  {
+    iconPath: "../../../assets/mapIcon/marker.png",
+    id: 32,
+    locationName:"体育馆",
+    locationImg:"cloud://wlzs-2gtlu9u2a909b08e.776c-wlzs-2gtlu9u2a909b08e-1304646404/mapImg/school/31.png",
+    locationIcon:"../../../assets/mapIcon/oldSchool/ComplexBuilding.png",
+    locationContent:"室内体育馆",
+    latitude: 34.34848261830973,
+    longitude: 107.20766533825682,
+    width: 25,
+    height: 26
+  },
+    // 33新校区报告厅
+  {
+    iconPath: "../../../assets/mapIcon/marker.png",
+    id: 33,
+    locationName:"报告厅",
+    locationImg:"cloud://wlzs-2gtlu9u2a909b08e.776c-wlzs-2gtlu9u2a909b08e-1304646404/mapImg/school/32.png",
+    locationIcon:"../../../assets/mapIcon/oldSchool/AcademicReportingHall.png",
+    locationContent:"新校区报告厅",
+    latitude: 34.351410120998,
+    longitude: 107.21033681843565,
+    width: 25,
+    height: 26
+  }]
   },
   // 点击 卫星图 切换 卫星地图
   changeSatellite:function(){
@@ -246,7 +503,7 @@ Page({
           latitude: res.latitude,
           longitude: res.longitude,
           // markers: [{
-          //   iconPath: "/assets/mapIcon/marker.png",
+          //   iconPath: "../../../assets/mapIcon/marker.png",
           //   id: 0,
           //   latitude: res.latitude,
           //   longitude: res.longitude,

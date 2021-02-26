@@ -16,7 +16,13 @@ Page({
       text: ''
     },
     buttonName: '未知错误', //登陆按钮的名承
-    loginB: false //这个是登陆按钮loding动画的设置
+    loginB: false, //这个是登陆按钮loding动画的设置
+    inputType: true //这个是用来判断明文暗文密码输入
+  },
+  eye(res) {
+    this.setData({
+      inputType: !this.data.inputType
+    })
   },
   //用户名输入
   accountInput(res) {
@@ -53,7 +59,7 @@ Page({
         type: that.data.type
       },
       success(res) {
-        console.log(res.result)
+        // console.log(res.result)
         that.setData({ //登陆成功返回内容
           loginB: false, //关闭登陆按钮loading
           error: res.result[0] //弹出提醒
@@ -65,7 +71,7 @@ Page({
 
             var wlistString = JSON.stringify(res.result[1])
             var userString = JSON.stringify(res.result[2])
-            console.log(wlistString)
+            // console.log(wlistString)
             wx.setStorage({ //储存课表数据到本地
               key: 'wlist',
               data: wlistString
@@ -89,7 +95,7 @@ Page({
             app.globalData.results = [].concat(res.result[1]); //设置全局课表数据
 
             var resultsString = JSON.stringify(res.result[1])
-            console.log(resultsString)
+            // console.log(resultsString)
 
             wx.setStorage({ //储存成绩数据到本地
               key: 'results',
@@ -108,6 +114,29 @@ Page({
               wx.navigateBack({}) //返回首页
             }, 1500)
           }
+        } else {
+          wx.cloud.callFunction({
+            name: 'gettest',
+            data: {},
+            success(res) {
+              that.setData({
+                inform: res.result,
+                code: res.result[2]
+              })
+              app.globalData.cookie = res.result[1]
+              // console.log(app.globalData.cookie)
+              // console.log(res.result)
+            },
+            fail(res) {
+              that.setData({
+                error: {
+                  type: 'error',
+                  text: '出错了！'
+                }
+              })
+              console.log(res)
+            }
+          })
         }
       },
       fail(res) {
@@ -117,7 +146,28 @@ Page({
             text: '出错了！'
           }
         })
-        console.log(res)
+        wx.cloud.callFunction({
+          name: 'gettest',
+          data: {},
+          success(res) {
+            that.setData({
+              inform: res.result,
+              code: res.result[2]
+            })
+            app.globalData.cookie = res.result[1]
+            // console.log(app.globalData.cookie)
+            // console.log(res.result)
+          },
+          fail(res) {
+            that.setData({
+              error: {
+                type: 'error',
+                text: '出错了！'
+              }
+            })
+            console.log(res)
+          }
+        })
       }
     })
   },
@@ -133,8 +183,8 @@ Page({
           code: res.result[2]
         })
         app.globalData.cookie = res.result[1]
-        console.log(app.globalData.cookie)
-        console.log(res.result)
+        // console.log(app.globalData.cookie)
+        // console.log(res.result)
       },
       fail(res) {
         that.setData({
@@ -152,6 +202,17 @@ Page({
    */
   onLoad: function (options) {
     var that = this
+    wx.setNavigationBarColor({
+      frontColor: '#ffffff',
+      backgroundColor: '#F09609',
+      animation: {
+        duration: 500,
+        timingFunc: 'easeInOut'
+      }
+    })
+    wx.setNavigationBarTitle({
+      title: '教务系统'
+    })
     wx.cloud.callFunction({
       name: 'gettest',
       data: {},
@@ -160,7 +221,7 @@ Page({
           inform: res.result,
           code: res.result[2]
         })
-        console.log(res.result)
+        // console.log(res.result)
       },
       fail(res) {
         that.setData({
@@ -173,9 +234,9 @@ Page({
       }
     })
 
-    console.log(options.home)
+    // console.log(options.home)
     if (options.home === 'index') { //打开这个页面传过来的值为index，则登陆后请求课表
-      console.log(options.home)
+      // console.log(options.home)
       that.setData({
         buttonName: '更新课表',
         type: 'wlist'
@@ -186,6 +247,9 @@ Page({
         type: 'result'
       })
     }
+    wx.setNavigationBarTitle({
+      title: that.data.buttonName
+    })
   },
 
   /**
@@ -202,7 +266,7 @@ Page({
     wx.getStorage({ //获取本地账号数据
       key: 'account',
       success(res) {
-        console.log(res)
+        // console.log(res)
         that.setData({
           account: res.data
         })
@@ -215,7 +279,7 @@ Page({
     wx.getStorage({ //获取本地密码数据
       key: 'password',
       success(res) {
-        console.log(res)
+        // console.log(res)
         that.setData({
           password: res.data
         })
@@ -225,39 +289,4 @@ Page({
       }
     })
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })
