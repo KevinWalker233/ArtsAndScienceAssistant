@@ -1,0 +1,15 @@
+/* 
+此文件为开发者工具生成，生成时间: 2021/3/7 下午5:50:12
+使用方法：
+在 share.wxss 文件末尾引入样式
+```
+@import "./share-wxa-auto-dark.wxss";
+```
+ */
+
+@media (prefers-color-scheme: dark) {
+    .share {
+        color: rgb(17, 17, 17);
+        background: rgba(78, 138, 214, 0.9);
+    }
+}

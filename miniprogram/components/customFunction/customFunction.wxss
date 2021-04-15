@@ -1,0 +1,31 @@
+page {
+  background-color: rgb(240, 240, 240);
+}
+
+.functionList {
+  width: 70%;
+  height: 140rpx;
+  margin: 0 auto;
+  margin-top: -20rpx;
+  display: flex;
+  align-self: center;
+  justify-content: space-between;
+}
+
+.functionList_icon {
+  height: 80rpx;
+  width: 80rpx;
+}
+
+.functionList_text {
+  font-size: 25rpx;
+  font-weight: bold;
+  text-align: center;
+  color: cornflowerblue;
+}
+
+.box {
+  box-shadow: 0 2rpx 50rpx 2rpx rgb(243, 243, 243);
+}
+
+@import 'customFunction-wxa-auto-dark.wxss'

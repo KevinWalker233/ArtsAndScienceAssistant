@@ -1,0 +1,74 @@
+/* 
+此文件为开发者工具生成，生成时间: 2021/3/7 下午5:50:13
+使用方法：
+在 todos.wxss 文件末尾引入样式
+```
+@import "./todos-wxa-auto-dark.wxss";
+```
+ */
+
+@media (prefers-color-scheme: dark) {
+    page {
+        background: rgb(78, 138, 214);
+    }
+
+    .container {
+        background: rgb(78, 138, 214);
+    }
+
+    .header {
+        background-color: rgb(29, 29, 29);
+        border: rgb(0, 0, 0);
+        box-shadow: rgb(0, 0, 0);
+    }
+
+    .todos {
+        border: rgb(0, 0, 0);
+        box-shadow: rgb(0, 0, 0);
+    }
+
+    .todos .item {
+        background-color: rgb(29, 29, 29);
+        border-bottom: rgb(0, 0, 0);
+    }
+
+    .todos .item text {
+        color: rgb(188, 188, 188);
+    }
+
+    .todos .item.completed text {
+        color: rgb(115, 115, 115);
+    }
+
+    .todo-time {
+        color: rgb(188, 188, 188);
+    }
+
+    .null {
+        background: rgb(29, 29, 29);
+    }
+
+    .null-content-title {
+        color: rgb(137, 137, 137);
+    }
+
+    .nulll-content-line {
+        background-color: rgb(252, 121, 109);
+    }
+
+    .null-text {
+        color: rgb(162, 162, 162);
+    }
+
+    .footer-clear-btn {
+        color: rgb(179, 111, 111);
+    }
+
+    .btn-hover {
+        box-shadow: rgb(0, 0, 0);
+    }
+
+    .plain-hover {
+        box-shadow: rgb(0, 0, 0);
+    }
+}

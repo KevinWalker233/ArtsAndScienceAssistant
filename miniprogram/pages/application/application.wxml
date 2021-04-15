@@ -1,0 +1,101 @@
+<!--pages/application/application.wxml-->
+<custom-swiper imgUrls="{{carouselImgUrls}}" />
+<!-- 公告 -->
+<!-- <notice></notice> -->
+<!-- 功能导航区 -->
+<functions />
+
+<!-- 1.信息查询 -->
+<view class="function">
+  <view class="function_top">
+    <view style="background-color: #3CB371;" class="function_top_line"></view>
+    <text class="function_top_text">信息查询</text>
+  </view>
+  <view class="function_centerLine"></view>
+  <view class="function_content">
+    <view bindtap="jumpSchoolMap">
+      <image src="../../assets/appIcon/infoCheck/map.png" class="function_content_icon"></image>
+      <view class="function_content_text">地图</view>
+    </view>
+    <view bindtap="jumpExam">
+      <image class="function_content_icon" src="../../assets/appIcon/infoCheck/exam.png"></image>
+      <view class="function_content_text">考试安排</view>
+    </view>
+    <view bindtap="jumpCommutingBus">
+      <image src="../../assets/appIcon/infoCheck/schoolBus.png" class="function_content_icon"></image>
+      <view class="function_content_text">校车</view>
+    </view>
+    <view bindtap="jumpHoliday">
+      <image src="../../assets/appIcon/infoCheck/holiday.png" class="function_content_icon"></image>
+      <view class="function_content_text">放假安排</view>
+    </view>
+  </view>
+</view>
+<!-- 2.拓展功能 -->
+<view class="function">
+  <view class="function_top">
+    <view style="background-color: #48D1CC;" class="function_top_line"></view>
+    <text class="function_top_text">生活服务</text>
+  </view>
+  <view class="function_centerLine"></view>
+  <view class="function_content">
+    <view bindtap="jumpToDos">
+      <image class="function_content_icon" src="../../assets/appIcon/lifeService/todo.png"></image>
+      <view class="function_content_text">便签</view>
+    </view>
+    <view bindtap="jumpAccountMoney">
+      <image class="function_content_icon" src="../../assets/appIcon/lifeService/accountMoney.png"></image>
+      <view class="function_content_text">记账本</view>
+    </view>
+    <view bindtap="jumpMassOrganize">
+      <image class="function_content_icon" src="../../assets/appIcon/lifeService/team.png"></image>
+      <view class="function_content_text">社团</view>
+    </view>
+    <view bindtap="jumpExpress">
+      <image class="function_content_icon" src="../../assets/appIcon/lifeService/express.png"></image>
+      <view class="function_content_text">快递</view>
+    </view>
+  </view>
+</view>
+<!-- 3.一键查询 -->
+<view class="function">
+  <!-- 顶部 -->
+  <view class="function_top">
+    <view style="background-color: #FFD700;" class="function_top_line"></view>
+    <text class="function_top_text">其他功能</text>
+  </view>
+  <!-- 中间分割线 -->
+  <view class="function_centerLine"></view>
+  <!-- 主体内容 -->
+  <view class="function_content">
+    <view bindtap="jumpConcentrat">
+      <image class="function_content_icon" src="../../assets/appIcon/expFunction/concentration.png"></image>
+      <view class="function_content_text">专注</view>
+    </view>
+    <view bindtap="jumpEmptyClass">
+      <image class="function_content_icon" src="/assets/appIcon/oneCheck/emptyClass.png"></image>
+      <view class="function_content_text">空教室查询</view>
+    </view>
+    <view bindtap="jumpSchoolTel">
+      <image class="function_content_icon" src="/assets/appIcon/oneCheck/phone.png"></image>
+      <view class="function_content_text">校内电话</view>
+    </view>
+  </view>
+</view>
+<!-- 4.扩展功能
+<view class="function">
+  <!-- 顶部 -->
+<!-- <view class="function_top">
+    <view style="background-color: greenyellow;" class="function_top_line"></view>
+    <text class="function_top_text">扩展功能</text>
+  </view> -->
+<!-- 中间分割线 -->
+<!-- <view class="function_centerLine"></view> -->
+<!-- 主体内容 -->
+<!-- <view class="function_content">
+    <view bindtap="jumpConcentrat">
+      <image class="function_content_icon" src="../../assets/appIcon/expFunction/concentration.png" ></image>
+    <view class="function_content_text">专注</view>
+    </view>
+  </view>
+</view> -->

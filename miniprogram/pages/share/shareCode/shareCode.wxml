@@ -1,0 +1,14 @@
+<view class="context">
+  <view class="title">扫码分享</view>
+  <view class="code" bindtap="showImg">
+    <image mode="scaleToFill" style="width:100%;height:100%;margin:auto;" src="{{img}}"></image>
+  </view>
+  <view class="scan">
+    <view style="width:100rpx;height:100rpx;margin:auto;">
+      <image class="scan" src="/assets/shareCode/scan.png" bindtap="scanCode"></image>
+    </view>
+  </view>
+  <view class="tip">扫一扫</view>
+  <view class="tip2">课表数据过多可能导致无法生成二维码</view>
+  <view class="tip2">扫描他人此页面的二维码即可得到课表信息</view>
+</view>

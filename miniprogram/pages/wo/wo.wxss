@@ -1,0 +1,80 @@
+page{
+  background-color: rgb(234,234,234);
+}
+
+.headContent {
+  width: 90%;
+  height: 300rpx;
+  margin: 0 auto;
+  background-color: white;
+  box-shadow: 0rpx 0rpx 10rpx 2rpx #888888;
+  border-radius: 20rpx;
+  position: relative;
+  top: 100rpx;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.title{
+  color: #444;
+}
+
+.bodyContent {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  top: 10rpx;
+}
+
+.bodyCard {
+  width: 90%;
+  height: 300rpx;
+  margin: 15rpx auto;
+  background-color: white;
+  /* box-shadow: 0rpx 0rpx 20rpx 2rpx #888888; */
+  box-shadow:0 2rpx 20rpx 2rpx rgb(243,243,243);
+  
+  border-radius: 20rpx;
+  position: relative;
+  top: 100rpx;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  opacity: 0;
+}
+
+.head {
+  width: 200rpx;
+  height: 200rpx;
+}
+
+.content {
+  width: 400rpx;
+  height: 200rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.viewContent {
+  width: 90%;
+  height: 80rpx;
+  color: white;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  border-radius: 10rpx;
+}
+
+.conternBox {
+  width: 90%;
+  height: 75rpx;
+  line-height: 75rpx;
+  text-align: center;
+  color: white;
+  border-radius: 10rpx;
+  background-color: rgb(56, 120, 194);
+}
+
+@import 'wo-wxa-auto-dark.wxss'

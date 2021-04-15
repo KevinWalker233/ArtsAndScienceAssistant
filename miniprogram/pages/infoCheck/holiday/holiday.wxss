@@ -1,0 +1,137 @@
+page {
+  background-color: #3878C2;
+}
+
+.holiday-top {
+  height: 70vh;
+  width: 100%;
+}
+
+.holiday-top-img {
+  width: 100%;
+  height: 15vh;
+}
+
+.holiday-top-content {
+  /* margin-top: -20rpx; */
+  width: 100%;
+  height: 50vh;
+}
+
+.notice-content {
+  margin: 40rpx;
+  height: 67vh;
+  background: #fff;
+  border-radius: 40rpx;
+  box-shadow: 0 2rpx 30rpx 10rpx rgba(0, 0, 0, .3);
+}
+
+.text-content {
+  margin-left: 30rpx;
+  line-height: 70rpx;
+  /* text-indent: 60rpx; */
+  font-size: 30rpx;
+  color: #444;
+  width: 90%;
+}
+
+.title {
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 40rpx;
+  font-weight: bold;
+}
+
+.notice-end {
+  float: right;
+  text-align: center;
+  margin-top: 10rpx;
+  height: 70rpx;
+  width: 350rpx;
+}
+
+.notice-end-text {
+  font-size: 25rpx;
+  color: rgb(95, 68, 68);
+}
+
+.holiday-center {
+  height: 50rpx;
+  width: 100%;
+}
+
+.holiday-center-text {
+  margin-left: 30rpx;
+  font-size: 40rpx;
+  font-weight: 800;
+  color: #fff;
+}
+
+.holiday-center-line {
+  margin: 10rpx auto;
+  width: 95%;
+  height: 3rpx;
+  border-radius: 2rpx;
+  background-color: rgb(211, 199, 199);
+}
+
+.holiday-bottom {
+  width: 96%;
+  height: 150rpx;
+  display: flex;
+  margin: 30rpx auto;
+  background-color: white;
+  box-shadow: 2rpx 2rpx 10rpx 2rpx #888888;
+  border-radius: 20rpx;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.holiday-bottom-img {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.holiday-bottom-text {
+  color: rgb(177, 96, 96);
+  margin-left: 20rpx;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  /* align-items: center; */
+}
+
+.holiday-bottom-time {
+  margin-right: 20rpx;
+  display: flex;
+  align-items: center;
+}
+
+/* 时间渲染 */
+.tui-countdown-content {
+  height: 50rpx;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 20rpx 15rpx;
+  font-size: 25rpx;
+}
+
+.tui-conutdown-box {
+  display: inline-block;
+  height: 50rpx;
+  width: 60rpx;
+  line-height: 50rpx;
+  text-align: center;
+  background-color: #000;
+  border-radius: 15rpx;
+  color: #fff;
+  margin: 0 10rpx;
+}
+
+.tui-countdown-bg {
+  background-color: #DF0101;
+}
+
+@import 'holiday-wxa-auto-dark.wxss'

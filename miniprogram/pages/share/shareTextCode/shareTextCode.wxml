@@ -1,0 +1,11 @@
+<view bindtap='showshadow'>#点击显示</view>
+
+<!-- 遮罩层 -->
+<view class="shadow" wx:if="{{chooseSize}}" bindtap='hideModal'></view>
+<!-- 上滑高度 -->
+<view class='choosen' wx:if="{{chooseSize}}" animation='{{animationData}}'>
+  <!-- 内容 -->
+  <view class="container-box">
+    <!-- <viewb ></view> -->
+  </view>
+</view>

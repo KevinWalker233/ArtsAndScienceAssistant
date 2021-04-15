@@ -3,7 +3,7 @@
     {
       "name": "timer1",
       "type": "timer",
-      "config": "0 50 10 * * * *"
+      "config": "0 00 14 * * * *"
     }
   ]
 }

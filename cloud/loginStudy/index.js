@@ -3,19 +3,132 @@ var iconv = require('iconv-lite')
 const request = require('request')
 const jsdom = require("jsdom");
 
-let url = 'http://ems.bjwlxy.cn/Default2.aspx' //学院登陆网址
+var url = 'http://ems.bjwlxy.cn/' //学院登陆网址
 
 cloud.init({
   env: cloud.DYNAMIC_CURRENT_ENV
 })
 
+function getClass(classHtml, event, user) {
+  var inform = []
+  const dom = new jsdom.JSDOM(classHtml) //解析第二学期页面的数据
+  var tb = dom.window.document.getElementById("Table6")
+  var rows = tb.rows;
+  var wlist = [];
+  for (var i = 1; i < rows.length; i++) { //--循环所有的行
+    var cells = rows[i].cells;
+    for (var j = 0; j < cells.length; j++) { //--循环所有的列
+      if (i % 2 == 0) {
+        var zhouCi = -1;
+        var keCi = -1;
+        var text = "";
+        if ((i - 1) == 3 || (i - 1) == 7) {
+          zhouCi = j;
+          keCi = i - 1;
+          text = cells[j].innerHTML;
+          // console.log("第"+(j)+"周");
+          // console.log("第"+(i-1)+"节课");
+          // console.log(cells[j].innerHTML);
+        } else if ((i - 1) == 1 || (i - 1) == 5 || (i - 1) == 9) {
+          zhouCi = j - 1;
+          keCi = i - 1;
+          text = cells[j].innerHTML;
+          // console.log("第"+(j-1)+"周");
+          // console.log("第"+(i-1)+"节课");
+          // console.log(cells[j].innerHTML);
+        }
+        //下面是有课的输出内容
+        if (text.indexOf("<br>") != -1) {
+          var arr1 = text.split("<br>");
+          if (arr1.length > 5) {
+            var ke = {
+              "weekTime": zhouCi, //周几上课
+              "weeks": arr1[1], //第几周到第几周
+              "teacher": arr1[2], //课任老师
+              "address": arr1[3], //上课教室
+              "courseName": arr1[0], //课程名称
+              "jieCi": keCi //课程是第几节
+            };
+            var ke1 = {
+              "weekTime": zhouCi, //周几上课
+              "weeks": arr1[7], //第几周到第几周
+              "teacher": arr1[8], //课任老师
+              "address": arr1[9], //上课教室
+              "courseName": arr1[6], //课程名称
+              "jieCi": keCi //课程是第几节
+            };
+            wlist.push(ke);
+            wlist.push(ke1);
+          } else {
+            var ke = {
+              "weekTime": zhouCi, //周几上课
+              "weeks": arr1[1], //第几周到第几周
+              "teacher": arr1[2], //课任老师
+              "address": arr1[3], //上课教室
+              "courseName": arr1[0], //课程名称
+              "jieCi": keCi //课程是第几节
+            };
+            wlist.push(ke);
+          }
+        }
+      }
+    }
+  }
+  var success = {
+    type: 'success',
+    text: '登陆成功！'
+  }
+  inform.push(success)
+  inform.push(wlist)
+  inform.push(user)
+  const openid = cloud.getWXContext().OPENID
+  db.collection("account").add({ //添加用户信息
+    data: {
+      _id: openid, //openid也存到id上，防止一个用户多次储存
+      _openid: openid, //以防万一
+      account: event.account, //账号
+      cardAccount: '', //卡务系统账号
+      classes: user[5], //班级
+      grade: user[2], //年级
+      major: user[4], //专业
+      college: user[3], //学院
+      name: user[6], //姓名
+      tip: false, //上课提醒
+      clockTip: false, //打卡提醒
+      xfjd: 0 //学分绩点和
+    }
+  })
+  db.collection("accountX").add({ //添加用户信息
+    data: {
+      _id: openid, //openid也存到id上，防止一个用户多次储存
+      _openid: openid, //以防万一
+      account: event.account, //账号
+      password: event.password, //密码
+      cardAccount: '', //卡务系统账号
+      cardPassword: '', //卡务系统密码
+      classes: user[5], //班级
+      grade: user[2], //年级
+      major: user[4], //专业
+      college: user[3], //学院
+      name: user[6] //姓名
+    }
+  })
+  return inform
+}
+
 const db = cloud.database();
 
 exports.main = async (event, context) => {
   return new Promise((resolve, reject) => {
-    var inform = []
+    if (event.web === 1) url = 'http://218.195.117.143/'
+    else if (event.web === 2) url = 'http://218.195.117.144/'
+    else if (event.web === 3) url = 'http://218.195.117.145/'
+    else if (event.web === 4) url = 'http://218.195.117.146/'
+    else if (event.web === 5) url = 'http://218.195.117.147/'
+    else url = 'http://ems.bjwlxy.cn/'
+
     request.post({
-      url: url,
+      url: url + 'Default2.aspx',
       headers: {
         "Cookie": event.cookie
       },
@@ -33,7 +146,8 @@ exports.main = async (event, context) => {
         'hidsc': ''
       }
     }, function (error, response, body) {
-      var buf = iconv.decode(body, 'gb2312');
+      var buf = iconv.decode(body, 'gb2312')
+      var inform = []
       if (buf.toString().indexOf('验证码不正确') != -1) {
         var error = {
           type: 'error',
@@ -71,7 +185,7 @@ exports.main = async (event, context) => {
         resolve(inform)
       }
       request.get({
-        url: 'http://ems.bjwlxy.cn/xs_main.aspx?xh=' + event.account,
+        url: url + 'xs_main.aspx?xh=' + event.account,
         encoding: null,
         headers: {
           "Cookie": event.cookie
@@ -85,10 +199,10 @@ exports.main = async (event, context) => {
 
         if (event.type === 'wlist') { //判断为请求课表内容
           request.get({
-            url: 'http://ems.bjwlxy.cn/tjkbcx.aspx?xh=' + event.account + '&xm=' + encodeURI(name) + '&gnmkdm=N121601',
+            url: url + 'tjkbcx.aspx?xh=' + event.account + '&xm=' + encodeURI(name) + '&gnmkdm=N121601',
             encoding: null,
             headers: {
-              'Referer': 'http://ems.bjwlxy.cn/tjkbcx.aspx?xh=' + event.account + '&xm=' + encodeURI(name) + '&gnmkdm=N121601',
+              'Referer': url + 'tjkbcx.aspx?xh=' + event.account + '&xm=' + encodeURI(name) + '&gnmkdm=N121601',
               "Cookie": event.cookie
             }
           }, function (e1, r1, b1) {
@@ -108,140 +222,42 @@ exports.main = async (event, context) => {
               }
             }
             user.push(name)
+
+            resolve(getClass(buf3.toString(), event, user)) //第一学期的成绩
+
             //下面是模拟点击学期为2，其他参数也可以通过修改设置
-            request.post({
-              url: 'http://ems.bjwlxy.cn/tjkbcx.aspx?xh=' + event.account + '&xm=' + encodeURI(name) + '&gnmkdm=N121601',
-              headers: {
-                "Referer": 'http://ems.bjwlxy.cn/tjkbcx.aspx?xh=' + event.account + '&xm=' + encodeURI(name) + '&gnmkdm=N121601',
-                "Cookie": event.cookie
-              },
-              encoding: null,
-              form: {
-                "__EVENTTARGET": "xq",
-                "__EVENTARGUMENT": "",
-                "__VIEWSTATE": selected[0],
-                "xn": selected[1], //这是学年
-                "xq": '2', //这是学期
-                'nj': selected[3], //这是年级
-                'xy': selected[4], //这是学院
-                'zy': selected[5], //这是专业
-                'kb': selected[6], //这是班级课表
-              }
-            }, function (error, response, b4) {
-              var buf4 = iconv.decode(b4, 'gb2312');
-              console.log(buf4.toString())
-              //这个是取课表信息的
-              const dom = new jsdom.JSDOM(buf4.toString()) //解析第二学期页面的数据
-              var tb = dom.window.document.getElementById("Table6")
-              var rows = tb.rows;
-              var wlist = [];
-              for (var i = 1; i < rows.length; i++) { //--循环所有的行
-                var cells = rows[i].cells;
-                for (var j = 0; j < cells.length; j++) { //--循环所有的列
-                  if (i % 2 == 0) {
-                    var zhouCi = -1;
-                    var keCi = -1;
-                    var text = "";
-                    if ((i - 1) == 3 || (i - 1) == 7) {
-                      zhouCi = j;
-                      keCi = i - 1;
-                      text = cells[j].innerHTML;
-                      // console.log("第"+(j)+"周");
-                      // console.log("第"+(i-1)+"节课");
-                      // console.log(cells[j].innerHTML);
-                    } else if ((i - 1) == 1 || (i - 1) == 5 || (i - 1) == 9) {
-                      zhouCi = j - 1;
-                      keCi = i - 1;
-                      text = cells[j].innerHTML;
-                      // console.log("第"+(j-1)+"周");
-                      // console.log("第"+(i-1)+"节课");
-                      // console.log(cells[j].innerHTML);
-                    }
-                    //下面是有课的输出内容
-                    if (text.indexOf("<br>") != -1) {
-                      var arr1 = text.split("<br>");
-                      if (arr1.length > 5) {
-                        var ke = {
-                          "weekTime": zhouCi, //周几上课
-                          "weeks": arr1[1], //第几周到第几周
-                          "teacher": arr1[2], //课任老师
-                          "address": arr1[3], //上课教室
-                          "courseName": arr1[0], //课程名称
-                          "jieCi": keCi //课程是第几节
-                        };
-                        var ke1 = {
-                          "weekTime": zhouCi, //周几上课
-                          "weeks": arr1[7], //第几周到第几周
-                          "teacher": arr1[8], //课任老师
-                          "address": arr1[9], //上课教室
-                          "courseName": arr1[6], //课程名称
-                          "jieCi": keCi //课程是第几节
-                        };
-                        wlist.push(ke);
-                        wlist.push(ke1);
-                      } else {
-                        var ke = {
-                          "weekTime": zhouCi, //周几上课
-                          "weeks": arr1[1], //第几周到第几周
-                          "teacher": arr1[2], //课任老师
-                          "address": arr1[3], //上课教室
-                          "courseName": arr1[0], //课程名称
-                          "jieCi": keCi //课程是第几节
-                        };
-                        wlist.push(ke);
-                      }
-                    }
-                  }
-                }
-              }
-              var success = {
-                type: 'success',
-                text: '登陆成功！'
-              }
-              inform.push(success)
-              inform.push(wlist)
-              inform.push(user)
-              const openid = cloud.getWXContext().OPENID
-              db.collection("account").add({ //添加用户信息
-                data: {
-                  _id: openid, //openid也存到id上，防止一个用户多次储存
-                  _openid: openid, //以防万一
-                  account: event.account, //账号
-                  cardAccount: '', //卡务系统账号
-                  classes: user[5], //班级
-                  grade: user[2], //年级
-                  major: user[4], //专业
-                  college: user[3], //学院
-                  name: user[6], //姓名
-                  tip: false, //上课提醒
-                  clockTip: false, //打卡提醒
-                  xfjd: 0 //学分绩点和
-                }
-              })
-              db.collection("accountX").add({ //添加用户信息
-                data: {
-                  _id: openid, //openid也存到id上，防止一个用户多次储存
-                  _openid: openid, //以防万一
-                  account: event.account, //账号
-                  password: event.password, //密码
-                  cardAccount: '', //卡务系统账号
-                  cardPassword: '', //卡务系统密码
-                  classes: user[5], //班级
-                  grade: user[2], //年级
-                  major: user[4], //专业
-                  college: user[3], //学院
-                  name: user[6] //姓名
-                }
-              })
-              resolve(inform)
-            })
+            // request.post({
+            //   url: url + 'tjkbcx.aspx?xh=' + event.account + '&xm=' + encodeURI(name) + '&gnmkdm=N121601',
+            //   headers: {
+            //     "Referer": url + 'tjkbcx.aspx?xh=' + event.account + '&xm=' + encodeURI(name) + '&gnmkdm=N121601',
+            //     "Cookie": event.cookie
+            //   },
+            //   encoding: null,
+            //   form: {
+            //     "__EVENTTARGET": "xq",
+            //     "__EVENTARGUMENT": "",
+            //     "__VIEWSTATE": selected[0],
+            //     "xn": selected[1], //这是学年
+            //     "xq": '2', //这是学期
+            //     'nj': selected[3], //这是年级
+            //     'xy': selected[4], //这是学院
+            //     'zy': selected[5], //这是专业
+            //     'kb': selected[6], //这是班级课表
+            //   }
+            // }, function (error, response, b4) {
+            //   var buf4 = iconv.decode(b4, 'gb2312');
+            //   // console.log(buf4.toString())
+            //   //这个是取课表信息的
+            //   resolve(getClass(buf4.toString(), event,  user))
+            // })
+
           })
         } else if (event.type === 'result') { //判断为请求成绩内容
           request.get({
-            url: 'http://ems.bjwlxy.cn/xscjcx.aspx?xh=' + event.account + '&xm=' + encodeURI(name) + '&gnmkdm=N121604',
+            url: url + 'xscjcx.aspx?xh=' + event.account + '&xm=' + encodeURI(name) + '&gnmkdm=N121604',
             encoding: null,
             headers: {
-              'Referer': 'http://ems.bjwlxy.cn/xscjcx.aspx?xh=' + event.account + '&xm=' + encodeURI(name) + '&gnmkdm=N121604',
+              'Referer': url + 'xscjcx.aspx?xh=' + event.account + '&xm=' + encodeURI(name) + '&gnmkdm=N121604',
               "Cookie": event.cookie
             }
           }, function (e1, r1, b1) {
@@ -250,10 +266,10 @@ exports.main = async (event, context) => {
             const dom = new jsdom.JSDOM(buf3.toString())
             var __VIEWSTATEs = (dom.window.document.getElementsByName("__VIEWSTATE"))[0].getAttribute("value")
             request.post({
-              url: 'http://ems.bjwlxy.cn/xscjcx.aspx?xh=' + event.account + '&xm=' + encodeURI(name) + '&gnmkdm=N121604',
+              url: url + 'xscjcx.aspx?xh=' + event.account + '&xm=' + encodeURI(name) + '&gnmkdm=N121604',
               encoding: null,
               headers: {
-                'Referer': 'http://ems.bjwlxy.cn/xscjcx.aspx?xh=' + event.account + '&xm=' + encodeURI(name) + '&gnmkdm=N121604',
+                'Referer': url + 'xscjcx.aspx?xh=' + event.account + '&xm=' + encodeURI(name) + '&gnmkdm=N121604',
                 "Cookie": event.cookie
               },
               form: {

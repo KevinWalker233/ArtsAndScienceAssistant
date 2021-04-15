@@ -1,0 +1,183 @@
+page {
+  background-color: rgb(250, 250, 250);
+}
+
+.flex-item {
+  width: 12.3%;
+  height: 190rpx;
+  transition: width 2s;
+}
+
+.kcb-item {
+  position: absolute;
+  justify-content: center;
+  display: flex;
+  border-radius: 10rpx;
+}
+
+.smalltext {
+  font-size: 17rpx;
+  color: #fff;
+  padding-left: 5rpx;
+  padding-right: 5rpx;
+  padding-top: 10rpx;
+}
+
+.top {
+  width: 91%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left: 9%;
+  background-color: rgb(250, 250, 250);
+  color: rgb(29, 29, 29);
+}
+
+.top-text {
+  width: 15%;
+  height: 35rpx;
+  font-size: 7pt;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+
+.scroll {
+  height: 1050rpx;
+  z-index: 101;
+  background-color: rgb(250, 250, 250);
+}
+
+.left {
+  width: 100%;
+  height: 100rpx;
+  font-size: 6pt;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.kbtext-style {
+  position: relative;
+}
+
+.kbtext-Split {
+  border: 1px rgb(75, 86, 122) solid;
+}
+
+.kbaddress-style {
+  position: relative;
+}
+
+.schoolCalendar {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.mouseHead {
+  width: 95%;
+  height: 100rpx;
+  display: flex;
+  margin: 0 auto;
+}
+
+.calendar {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.mouthC {
+  position: relative;
+  margin: 7rpx;
+  width: 31%;
+  height: 300rpx;
+}
+
+.mouseBottom {
+  width: 100%;
+  height: 300rpx;
+  margin: 5rpx;
+}
+
+.head {
+  width: 100%;
+  height: 60rpx;
+  margin: 0 auto;
+  position: relative;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(250, 250, 250);
+}
+
+.login {
+  width: 33%;
+  font-size: 25rpx;
+  line-height: 60rpx;
+  color: #444;
+}
+
+.line {
+  border-bottom: 3rpx solid rgba(29, 29, 29, 0.8);
+}
+
+.headColor {
+  color: #444;
+}
+
+.share {
+  width: 30%;
+  height: 70rpx;
+  margin: auto;
+  color: white;
+  font-weight: bold;
+  border-radius: 10rpx;
+  text-align: center;
+  line-height: 70rpx;
+  background: rgba(56, 120, 194, 0.9);
+}
+
+.tongzhitext {
+  margin-right: 10rpx;
+  margin-left: 10rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.tongzhi-text {
+  font-size: 28rpx;
+  animation: remindMessage 8s linear infinite;
+  width: 100%;
+  color: #d09868;
+  display: block;
+}
+
+.notice-wrap {
+  background: #ffebda;
+  width: 96%;
+  height: 60rpx;
+  margin: auto;
+  float: left;
+  line-height: 60rpx;
+  color: #d09868;
+  font-size: 28rpx;
+}
+
+@keyframes remindMessage {
+  0% {
+    -webkit-transform: translateX(100%);
+  }
+
+  100% {
+    -webkit-transform: translateX(-100%);
+  }
+}
+
+@import 'index-wxa-auto-dark.wxss'

@@ -1,0 +1,98 @@
+page {
+  background-color: rgb(240, 240, 240);
+}
+
+.headBg {
+  width: 100%;
+  height: 300rpx;
+  position: absolute;
+  top: 0rpx;
+  background: linear-gradient(to top, rgb(16, 80, 154), rgb(56, 120, 194));
+}
+
+.headBox {
+  width: 85%;
+  height: 410rpx;
+  margin: 0 auto;
+  position: relative;
+  top: 90rpx;
+  border-radius: 20rpx;
+  box-shadow: 0 2rpx 20rpx 5rpx rgba(0, 0, 0, 0.3);
+  background: linear-gradient(to right bottom, rgb(179, 106, 212), rgb(86, 21, 172));
+}
+
+.xfText {
+  width: 90%;
+  margin: 0 auto;
+  padding: 10rpx;
+  color: white;
+  font-size: 35rpx;
+}
+
+.xfNum {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  color: white;
+  font-size: 90rpx;
+  font-weight: bold;
+}
+
+.xfInform {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 20rpx;
+  color: white;
+}
+
+.xfJD {
+  width: 85%;
+  margin: 0 auto;
+  color: white;
+  font-size: 23rpx;
+}
+
+.ranking {
+  width: 90%;
+  margin: 0rpx auto;
+  position: relative;
+  top: 110rpx;
+  background-color: white;
+  border-radius: 20rpx;
+  border-top-left-radius:20rpx;
+  border-top-right-radius:20rpx;
+}
+
+.card {
+  width: 100%;
+  height: 60rpx;
+  margin: 0 auto;
+  display: flex;
+  font-size: 25rpx;
+  color: #444;
+  justify-content: space-around;
+}
+
+.head {
+  width: 50rpx;
+  height: 50rpx;
+  position: relative;
+  top: 5rpx;
+}
+
+.jd {
+  width: 300rpx;
+  height: 100%;
+  text-align: center;
+  line-height: 60rpx;
+}
+
+.rank {
+  width: 100rpx;
+  height: 100%;
+  text-align: center;
+  line-height: 60rpx;
+}
+
+@import 'checkScores-wxa-auto-dark.wxss'

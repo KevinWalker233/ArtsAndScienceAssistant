@@ -1,0 +1,17 @@
+.share {
+  width: 80%;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 34rpx;
+  font-weight: bold;
+  margin: 10rpx auto;
+  color: white;
+  border-radius: 10rpx;
+  /* background: rgba(56, 120,194, 0.9); */
+  text-align: center;
+}
+.canvas{
+  position: absolute;
+  left: 100vw;
+}
+@import 'share-wxa-auto-dark.wxss'

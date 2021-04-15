@@ -1,0 +1,79 @@
+/* 
+此文件为开发者工具生成，生成时间: 2021/3/7 下午5:50:13
+使用方法：
+在 logs.wxss 文件末尾引入样式
+```
+@import "./logs-wxa-auto-dark.wxss";
+```
+ */
+
+@media (prefers-color-scheme: dark) {
+    page {
+        background-color: rgb(26, 26, 26);
+    }
+
+    .logistics-container {
+        background-color: rgb(26, 26, 26);
+    }
+
+    .logistics-info {
+        background-color: rgb(17, 17, 17);
+    }
+
+    .logistics-num {
+        color: rgb(122, 122, 122);
+    }
+
+    .logistics-status {
+        color: rgb(0, 94, 165);
+    }
+
+    .bg-gray {
+        background-color: rgb(55, 55, 55);
+    }
+
+    .top-line {
+        background-color: rgb(42, 42, 42);
+    }
+
+    .bottom-line {
+        background-color: rgb(42, 42, 42);
+    }
+
+    .center-circle {
+        background-color: rgb(55, 55, 55);
+    }
+
+    .border-bottom {
+        border-bottom: rgb(0, 0, 0);
+    }
+
+    .color-gray {
+        color: rgb(55, 55, 55);
+    }
+
+    .logistics-item-time {
+        color: rgb(122, 122, 122);
+    }
+
+    .logistics-no-info {
+        color: rgb(55, 55, 55);
+    }
+
+    .logistics-item:nth-child(1) .center-circle {
+        border: rgb(0, 0, 0);
+        background-color: rgb(0, 94, 165);
+    }
+
+    .logistics-item:nth-child(1) .top-line {
+        background-color: rgb(17, 17, 17);
+    }
+
+    .logistics-item:nth-last-child(1) .bottom-line {
+        background-color: rgb(17, 17, 17);
+    }
+
+    .logistics-item:nth-child(1) .logistics-item-text {
+        color: rgb(20, 125, 255);
+    }
+}

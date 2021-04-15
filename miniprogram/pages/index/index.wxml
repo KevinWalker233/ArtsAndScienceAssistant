@@ -1,0 +1,124 @@
+<view hidden='{{hideNotice}}' style="width:4%;float:left;line-height:60rpx;background: #ffebda;">
+  <mp-icon type="field" icon="volume-down" color="#d09868" size="{{18}}"></mp-icon>
+</view>
+<view class='notice-wrap' hidden='{{hideNotice}}'>
+  <view class='tongzhitext'>
+    <text class="tongzhi-text">{{notice}}</text>
+  </view>
+</view>
+<view class="head">
+  <view class="login" style="text-align:left;">
+    <view>{{year}}年{{month}}月{{day}}日(周{{weekName}})</view>
+    <!-- <mp-icon style="line-height:50rpx;" type="outline" icon="me" color="black" size="{{20}}"></mp-icon> -->
+  </view>
+  <picker mode="selector" range="{{weekPicker}}" bindchange="changeWeek" class="line"
+    style="width:20%;margin:0 auto;display:flex;justify-content:center;font-size:25rpx;font-weight:bold;line-height:65rpx;">
+    <view class="headColor" wx:if="{{week>0}}">第{{week}}周</view>
+    <view class="headColor" wx:else>设置周次</view>
+  </picker>
+  <view class="login headColor" style="text-align:right;" bindtap="login">
+    <mp-icon style="line-height:50rpx;" type="outline" icon="refresh" color="#444;" size="{{20}}"></mp-icon>
+    更新课表
+  </view>
+</view>
+<view class="top">
+  <view class="headColor" wx:key="item" wx:for="{{['一','二','三','四','五','六','日']}}" class="top-text">
+    周{{item}}
+    <view></view>
+  </view>
+</view>
+
+<scroll-view scroll-y="true" class="scroll">
+  <view style="height:91%;width:730rpx;display:flex;">
+    <view style="width:9%;color:rgb(29,29,29);">
+      <view wx:key="leftClass" wx:for="{{leftClass}}" class="left">
+        <view class="headColor" style="width:50%;font-size:20rpx;text-align:center;">{{item.jieCi}}</view>
+        <view class="headColor" style="width:50%;font-size:16rpx;">{{item.time}}</view>
+      </view>
+    </view>
+
+    <view wx:key="item" wx:for="{{[1,2,3,4,5,6,7,8,9,10]}}">
+      <view
+        style="width:100%;margin-top:{{(index+1)*100}}rpx;position:absolute;border-bottom:1rpx solid {{index==3?'rgb(56,12,194)':'lightgray'}};">
+      </view>
+    </view>
+
+    <view wx:key="item" wx:for="{{wlist}}">
+      <view class="flex-item kcb-item" data-index="{{index}}" bindtap="classClick"
+        style="margin-left:{{(item.weekTime-1)*99.7}}rpx;background-color:{{colorArrays[index%8]}};opacity:1;margin-top:{{(item.jieCi-1)*100+5}}rpx;box-shadow: 0 2rpx 10rpx 1rpx rgba(0, 0, 0, 0.3);">
+        <view class="smalltext">
+          <view class="kbtext-style" style="color:white;">{{item.courseName}}</view>
+          <view class="kbtext-style" style="color:white;">{{item.teacher}}</view>
+          <!-- <view class="kbtext-Split"></view> -->
+          <view class="kbaddress-style" style="padding-top:5rpx;color:white;">
+            {{item.address}}
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>
+<view class="share headColor" bindtap="share">
+  <mp-icon style="line-height:50rpx;" type="outline" icon="share" color="white;" size="{{20}}"></mp-icon>
+  分享课表
+</view>
+<view class="schoolCalendar">
+  <view class="mouseHead">
+    <text class="headColor" style="font-weight:bold;line-height:100rpx;font-size:57rpx;">{{year}}年</text>
+    <view style="width:300rpx;height:100%;display:flex;flex-direction:column;justify-content:center;">
+      <view style="width:100%;height:20rpx;">
+        <view
+          style="width:15rpx;height:15rpx;background-color:rgb(230,95,23);border-radius:10rpx;position:relative;left:20rpx;float:left;">
+        </view>
+        <text class="headColor" wx:if="{{showStudyDay}}"
+          style="line-height:15rpx;font-size:15rpx;position:relative;left:30rpx;float:left;">放假-距离下次放假还有{{studyDay}}天</text>
+        <text class="headColor" wx:else
+          style="line-height:20rpx;font-size:15rpx;position:relative;left:30rpx;float:left;">放假</text>
+      </view>
+      <view style="width:100%;height:20rpx;">
+        <view
+          style="width:15rpx;height:15rpx;background-color:rgb(56,120,194);border-radius:10rpx;position:relative;left:20rpx;float:left;">
+        </view>
+        <text class="headColor"
+          style="line-height:15rpx;font-size:15rpx;position:relative;left:30rpx;float:left;">考试</text>
+      </view>
+      <view style="width:100%;height:20rpx;">
+        <view
+          style="width:15rpx;height:15rpx;background-color:rgb(27,155,134);border-radius:10rpx;position:relative;left:20rpx;float:left;">
+        </view>
+        <text class="headColor"
+          style="line-height:15rpx;font-size:15rpx;position:relative;left:30rpx;float:left;">当日：{{year}}年{{month}}月{{day}}日(周{{weekName}})</text>
+      </view>
+    </view>
+    <view style="width:200rpx;line-height:35rpx;font-size:18rpx;">
+      <text class="headColor">{{information.headInform}}</text>
+    </view>
+  </view>
+  <view class="mouthC" wx:for="{{schoolCalendar}}" wx:key="item" wx:for-item="item" wx:for-index="index">
+    <view class="line" style="width:90%;height:15%;margin:0 auto;">
+      <text class="headColor" style="font-weight:bold;">{{item.mouth}}月</text>
+    </view>
+    <view style="width:90%;height:85%;margin:0 auto;font-size:16rpx;">
+      <view class="headColor" style="width:100%;height:14.2%;margin:0 auto;display:flex;justify-content:center;">
+        <view style="width:14.2%;height:100%;text-align:center;font-size:18rpx;">日</view>
+        <view style="width:14.2%;height:100%;text-align:center;font-size:18rpx;">一</view>
+        <view style="width:14.2%;height:100%;text-align:center;font-size:18rpx;">二</view>
+        <view style="width:14.2%;height:100%;text-align:center;font-size:18rpx;">三</view>
+        <view style="width:14.2%;height:100%;text-align:center;font-size:18rpx;">四</view>
+        <view style="width:14.2%;height:100%;text-align:center;font-size:18rpx;">五</view>
+        <view style="width:14.2%;height:100%;text-align:center;font-size:18rpx;">六</view>
+      </view>
+      <view style="width:100%;height:14.2%;text-align:center;display:flex;flex-wrap:wrap;">
+        <view
+          style="width:14.2%;height:100%;text-align:center;line-height:230%;color:{{item.mouth == month?items.days == day?dayColor:items.color:items.color}};background-color:{{item.mouth == month?items.days == day?dayBgColor:items.bgColor:items.bgColor}};border-radius:30rpx;"
+          wx:for="{{item.days}}" wx:for-item="items" wx:key="items" wx:for-index="indexs">
+          {{items.days}}
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- <view class="mouseBottom">
+    <view style="width:90%;height:120rpx;margin:10rpx auto;border-radius:10rpx;background-color:pink;">
+    </view>
+  </view> -->
+</view>

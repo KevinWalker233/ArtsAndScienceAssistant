@@ -1,0 +1,80 @@
+/* 
+此文件为开发者工具生成，生成时间: 2021/3/7 下午5:50:13
+使用方法：
+在 massOrganize.wxss 文件末尾引入样式
+```
+@import "./massOrganize-wxa-auto-dark.wxss";
+```
+ */
+
+@media (prefers-color-scheme: dark) {
+    .mask {
+        background: rgb(255, 255, 255);
+    }
+
+    .modalDlg {
+        background-color: rgb(17, 17, 17);
+    }
+
+    page {
+        background-color: rgb(29, 29, 29);
+    }
+
+    .card {
+        background-color: rgb(17, 17, 17);
+    }
+
+    .paihang {
+        background: rgb(17, 17, 17);
+        color: rgb(255, 255, 255);
+    }
+
+    .paihang .one .down {
+        color: rgb(189, 35, 23);
+    }
+
+    .paihang .two .down {
+        color: rgb(65, 40, 0);
+    }
+
+    .paihang .three .down {
+        color: rgb(204, 139, 255);
+    }
+
+    .navbar {
+        background: rgb(17, 17, 17);
+        color: rgb(188, 188, 188);
+    }
+
+    .navbar .item.active {
+        color: rgb(188, 188, 188);
+    }
+
+    .navbar .item.active:after {
+        background: rgb(188, 188, 188);
+    }
+
+    .courseitem.isstar {
+        border-bottom-color: rgb(0, 112, 173);
+    }
+
+    .desc .first {
+        color: rgb(188, 188, 188);
+    }
+
+    .desc .second {
+        color: rgb(188, 188, 188);
+    }
+
+    .desc .second .isstar {
+        color: rgb(189, 35, 23);
+    }
+
+    .desc .third {
+        color: rgb(188, 188, 188);
+    }
+
+    .fourth {
+        color: rgb(188, 188, 188);
+    }
+}

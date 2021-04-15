@@ -1,0 +1,54 @@
+/* 
+此文件为开发者工具生成，生成时间: 2021/3/7 下午5:50:13
+使用方法：
+在 checkGrades.wxss 文件末尾引入样式
+```
+@import "./checkGrades-wxa-auto-dark.wxss";
+```
+ */
+
+@media (prefers-color-scheme: dark) {
+    page {
+        background-color: rgb(28, 28, 28);
+    }
+
+    .head {
+        color: rgb(188, 188, 188);
+    }
+
+    .tableHead {
+        background-color: rgb(78, 138, 214);
+    }
+
+    .headContext {
+        background-color: rgb(17, 17, 17);
+    }
+
+    .circleContext {
+        color: rgb(188, 188, 188);
+    }
+
+    .gradesTable {
+        background-color: rgb(17, 17, 17);
+    }
+
+    .boxTitle {
+        color: rgb(188, 188, 188);
+    }
+
+    .gradesBox {
+        background-color: rgb(82, 132, 172);
+    }
+
+    .box {
+        color: rgb(60, 41, 0);
+    }
+
+    .clickContext {
+        background-color: rgb(17, 17, 17);
+    }
+
+    .tableBox {
+        color: rgb(188, 188, 188);
+    }
+}

@@ -1,0 +1,99 @@
+<view class="headContext">
+  <view class="headH">
+    <view class="boxTitle">数据分析</view>
+    <view class="head">
+      <view class="login" style="text-align:right;" bindtap="login">
+        <mp-icon style="line-height:50rpx;" type="field" icon="refresh" color="#444" size="{{20}}"></mp-icon>
+        更新数据
+      </view>
+    </view>
+  </view>
+  <view class="context">
+    <view>
+      <circle class="c1" draw='circwewle1' per='{{Ccontext[0].value}}' r='100' title='{{Ccontext[0].title}}' b='15'
+        color='#2E8B57' />
+      <view class="circleContext">挂科量(挂科数量)</view>
+    </view>
+    <view>
+      <circle class="c2" draw='circwewle2' per='{{Ccontext[1].value}}' r='150' title='{{Ccontext[1].title}}' b='22'
+        color='#FFAD10' />
+      <view class="circleContext">及格率(未挂科量)</view>
+    </view>
+    <view>
+      <circle class="c3" draw='circwewle3' per='{{Ccontext[2].value}}' r='100' title='{{Ccontext[2].title}}' b='15'
+        color='#9932CC' />
+      <view class="circleContext">优秀率(85分以上)</view>
+    </view>
+  </view>
+</view>
+<view class="clickContext">
+  <picker header-text="选择学年" range="{{xns}}" bindchange="changeXN" class="tableBox">{{showXN}}</picker>
+  <picker header-text="选择学期" range="{{xqs}}" bindchange="changeXQ" class="tableBox">{{showXQ}}</picker>
+</view>
+<view class="gradesTable">
+  <view class="boxTitle">成绩信息</view>
+  <view class="gradesBox" wx:for="{{showResults}}" data-index="{{index}}" bindtap="clickBox">
+    <view class="box">{{item.xn}}</view>
+    <view class="box">{{item.xq}}</view>
+    <view class="box" style="width:180rpx;line-height:57rpx;font-size:25rpx;">{{item.kcmc}}</view>
+    <view class="box" style="font-size:20rpx;">绩点:{{item.jd}}</view>
+    <view class="box" style="font-size:35rpx;font-weight:bold;">{{item.cj}}分</view>
+  </view>
+</view>
+<!-- <scroll-view class="table" scroll-x="true" scroll-y="true" enable-back-to-top="true">
+  <view class="tableContext">
+    <view class="tableHead">
+      <picker header-text="选择学年" range="{{xns}}" bindchange="changeXN" class="tableBox">学年</picker>
+      <picker header-text="选择学期" range="{{xqs}}" bindchange="changeXQ" class="tableBox">学期</picker>
+      <view class="tableBox" style="width:180rpx;">课程名称</view>
+      <view class="tableBox">成绩</view>
+      <view class="tableBox">绩点</view>
+      <view class="tableBox">补考成绩</view>
+      <view class="tableBox">重修成绩</view>
+      <view class="tableBox">学分</view>
+      <view class="tableBox">辅修标记</view>
+      <view class="tableBox">重修标记</view>
+      <view class="tableBox" style="width:120rpx;">课程代码</view>
+      <view class="tableBox">课程性质</view>
+      <view class="tableBox">课程归属</view>
+      <view class="tableBox">开课学院</view>
+      <view class="tableBox">备注</view>
+    </view>
+    <view wx:for="{{showResults}}" wx:for-index="index" wx:for-item="item" >
+      <view class="gradeBox" style="background-color:#E6F3F9;" wx:if="{{index % 2 == 0}}">
+        <view class="resultBox">{{item.xn}}</view>
+        <view class="resultBox">{{item.xq}}</view>
+        <view class="resultBox" style="width:180rpx;">{{item.kcmc}}</view>
+        <view class="resultBox">{{item.cj}}</view>
+        <view class="resultBox">{{item.jd}}</view>
+        <view class="resultBox">{{item.bkcj}}</view>
+        <view class="resultBox">{{item.cxcj}}</view>
+        <view class="resultBox">{{item.xf}}</view>
+        <view class="resultBox">{{item.fxbj}}</view>
+        <view class="resultBox">{{item.cxbj}}</view>
+        <view class="resultBox" style="width:120rpx;"><text>{{item.kcdm}}</text></view>
+        <view class="resultBox">{{item.kcxz}}</view>
+        <view class="resultBox">{{item.kxgs}}</view>
+        <view class="resultBox">{{item.kkxy}}</view>
+        <view class="resultBox">{{item.bz}}</view>
+      </view>
+      <view class="gradeBox" wx:else>
+        <view class="resultBox">{{item.xn}}</view>
+        <view class="resultBox">{{item.xq}}</view>
+        <view class="resultBox" style="width:180rpx;">{{item.kcmc}}</view>
+        <view class="resultBox">{{item.cj}}</view>
+        <view class="resultBox">{{item.jd}}</view>
+        <view class="resultBox">{{item.bkcj}}</view>
+        <view class="resultBox">{{item.cxcj}}</view>
+        <view class="resultBox">{{item.xf}}</view>
+        <view class="resultBox">{{item.fxbj}}</view>
+        <view class="resultBox">{{item.cxbj}}</view>
+        <view class="resultBox" style="width:120rpx;"><text>{{item.kcdm}}</text></view>
+        <view class="resultBox">{{item.kcxz}}</view>
+        <view class="resultBox">{{item.kxgs}}</view>
+        <view class="resultBox">{{item.kkxy}}</view>
+        <view class="resultBox">{{item.bz}}</view>
+      </view>
+    </view>
+  </view>
+</scroll-view> -->

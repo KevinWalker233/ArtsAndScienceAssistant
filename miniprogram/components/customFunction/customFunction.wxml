@@ -1,0 +1,15 @@
+<!--components/customFunction/customFunction.wxml-->
+<view class="functionList">
+  <view class="box" bindtap="jumpCheckGrades">
+    <image src="../../assets/appIcon/CheckGrades.png" class="functionList_icon"></image>
+    <view class="functionList_text">查成绩</view>
+  </view>
+  <view class="box" bindtap="jumpCheckCourse">
+    <image src="../../assets/appIcon/CheckMoney.png" class="functionList_icon"></image>
+    <view class="functionList_text">查余额</view>
+  </view>
+  <view class="box" bindtap="jumpCheckScores">
+    <image src="../../assets/appIcon/SchoolScores.png" class="functionList_icon"></image>
+    <view class="functionList_text">查排名</view>
+  </view>
+</view>

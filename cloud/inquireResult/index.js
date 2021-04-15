@@ -3,7 +3,7 @@ var iconv = require('iconv-lite')
 const request = require('request')
 const jsdom = require("jsdom");
 
-let url = 'http://ems.bjwlxy.cn/Default2.aspx' //学院登陆网址
+let url = 'http://ems.bjwlxy.cn/' //学院登陆网址
 
 cloud.init({
   env: cloud.DYNAMIC_CURRENT_ENV
@@ -13,9 +13,15 @@ const db = cloud.database();
 
 exports.main = async (event, context) => {
   return new Promise((resolve, reject) => {
+    if (event.web === 1) url = 'http://218.195.117.143/'
+    else if (event.web === 2) url = 'http://218.195.117.144/'
+    else if (event.web === 3) url = 'http://218.195.117.145/'
+    else if (event.web === 4) url = 'http://218.195.117.146/'
+    else if (event.web === 5) url = 'http://218.195.117.147/'
+    else url = 'http://ems.bjwlxy.cn/'
     var inform = []
     request.post({
-      url: url,
+      url: url + 'Default2.aspx',
       headers: {
         "Cookie": event.cookie
       },
@@ -71,7 +77,7 @@ exports.main = async (event, context) => {
         resolve(inform)
       }
       request.get({
-        url: 'http://ems.bjwlxy.cn/xs_main.aspx?xh=' + event.account,
+        url: url + 'xs_main.aspx?xh=' + event.account,
         encoding: null,
         headers: {
           "Cookie": event.cookie
@@ -82,10 +88,10 @@ exports.main = async (event, context) => {
         var name = dom2.window.document.getElementById('xhxm').innerHTML
         name = dom2.window.document.getElementById('xhxm').innerHTML.substring(0, name.length - 2)
         request.get({
-          url: 'http://ems.bjwlxy.cn/tjkbcx.aspx?xh=' + event.account + '&xm=' + encodeURI(name) + '&gnmkdm=N121601',
+          url: url + 'tjkbcx.aspx?xh=' + event.account + '&xm=' + encodeURI(name) + '&gnmkdm=N121601',
           encoding: null,
           headers: {
-            'Referer': 'http://ems.bjwlxy.cn/tjkbcx.aspx?xh=' + event.account + '&xm=' + encodeURI(name) + '&gnmkdm=N121601',
+            'Referer': url + 'tjkbcx.aspx?xh=' + event.account + '&xm=' + encodeURI(name) + '&gnmkdm=N121601',
             "Cookie": event.cookie
           }
         }, function (e1, r1, b1) {
@@ -106,9 +112,9 @@ exports.main = async (event, context) => {
           user.push(name)
           //下面是模拟点击学期为2，其他参数也可以通过修改设置
           request.post({
-            url: 'http://ems.bjwlxy.cn/tjkbcx.aspx?xh=' + event.account + '&xm=' + encodeURI(name) + '&gnmkdm=N121601',
+            url: url + 'tjkbcx.aspx?xh=' + event.account + '&xm=' + encodeURI(name) + '&gnmkdm=N121601',
             headers: {
-              "Referer": 'http://ems.bjwlxy.cn/tjkbcx.aspx?xh=' + event.account + '&xm=' + encodeURI(name) + '&gnmkdm=N121601',
+              "Referer": url + 'tjkbcx.aspx?xh=' + event.account + '&xm=' + encodeURI(name) + '&gnmkdm=N121601',
               "Cookie": event.cookie
             },
             encoding: null,
