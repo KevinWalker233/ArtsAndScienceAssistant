@@ -11,6 +11,7 @@ Page({
     wx.setClipboardData({
       data: that.data.contents,
       success: function (res) {
+        console.log(res)
       }
     })
   },
