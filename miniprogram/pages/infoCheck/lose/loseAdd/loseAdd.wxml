@@ -1,0 +1,52 @@
+<form bindsubmit="formSubmit">
+  <view>
+    <view>发布类型</view>
+    <radio-group name="发布类型">
+      <label>
+        <radio value="radio1" />物品丢失</label>
+      <label>
+        <radio value="radio2" />拾取物品</label>
+    </radio-group>
+  </view>
+
+  <view>
+    <view>主体内容</view>
+    <input type="text" placeholder="请输入标题" />
+    <textarea bindblur="bindTextAreaBlur" placeholder="请输入丢失/拾取物品的详细信息"></textarea>
+    <input type="text" placeholder="请输入丢失/拾取的地址(简要描述)" />
+  </view>
+
+  <view>
+    <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+      <view class="picker" wx:if="{{index!=-1}}">
+        {{array[index]}}
+      </view>
+      <view class="picker" wx:else>
+        请选择物品类型
+      </view>
+    </picker>
+    <view wx:if="{{index==0}}">
+      <input type="text" placeholder="请输入饭卡账号" />
+    </view>
+  </view>
+
+  <view>
+    <view>联系方式</view>
+    <picker bindchange="bindPickerChanges" value="{{indexContact}}" range="{{arrayContact}}">
+      <view class="picker" wx:if="{{indexContact!=-1}}">
+        {{array[index]}}
+      </view>
+      <view class="picker" wx:else>
+        请选择联系方式
+      </view>
+    </picker>
+    <input type="text" placeholder="请输入联系方式" />
+  </view>
+  <map longitude="{{longitude}}" latitude="{{latitude}}" markers="{{markers}}"></map>
+  <button type="primary" bindtap="updateLocal">刷新位置</button>
+  <image src="{{user.avatarUrl}}" style="width:100rpx;height:100rpx;"></image>
+  <button type="primary" bindtap="getUser">授权信息</button>
+  <view class="btn-area">
+    <button style="margin: 30rpx" type="primary" formType="submit">发布</button>
+  </view>
+</form>

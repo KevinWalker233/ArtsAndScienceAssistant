@@ -1,0 +1,72 @@
+.head {
+  width: 100%;
+  height: 200rpx;
+  display: flex;
+}
+
+.headView {
+  width: 120rpx;
+  height: 120rpx;
+  margin: auto;
+}
+
+.headImg {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 60rpx;
+}
+
+.title {
+  font-size: 35rpx;
+  font-weight: bold;
+  line-height: 70rpx;
+}
+
+.text {
+  font-size: 27rpx;
+  color: #444;
+}
+
+.icon {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.headContext {
+  width: 75%;
+  height: 180rpx;
+  margin: auto;
+}
+
+.context {
+  text-indent: 2em;
+  width: 90%;
+  height: 300rpx;
+  font-size: 30rpx;
+  color: #444;
+  margin: auto;
+}
+
+.text-cut {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.map {
+  width: 90%;
+  height: 500rpx;
+  margin: 20rpx auto;
+}
+
+.badge {
+  width: 190rpx;
+  height: 40rpx;
+  text-align: center;
+  background-color: rgb(56, 120, 194);
+  border-radius: 20rpx;
+  margin: auto 10rpx;
+  font-size: 24rpx;
+  line-height: 40rpx;
+  color: white;
+}

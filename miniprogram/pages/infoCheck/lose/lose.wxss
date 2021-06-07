@@ -1,0 +1,107 @@
+page {
+  background-color: rgb(234, 234, 234);
+}
+
+.navbar {
+  flex: none;
+  display: flex;
+  background: #fff;
+  font-size: 30rpx;
+  color: #444;
+  width: 100%;
+  height: 100rpx;
+  position: fixed;
+  z-index: 1;
+}
+
+.navbar .item {
+  position: relative;
+  flex: auto;
+  text-align: center;
+  line-height: 90rpx;
+}
+
+.navbar .item.active {
+  color: #444;
+  font-weight: bold;
+}
+
+.navbar .item.active:after {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 200rpx;
+  margin: 0 auto;
+  height: 8rpx;
+  background: #444;
+  opacity: 0.8;
+}
+
+.swiper {
+  height: 1000000rpx;
+  position: relative;
+  top: 100rpx;
+}
+
+.info {
+  width: 100%;
+  margin: 10rpx auto;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  /* background-color: blue; */
+}
+
+.cards {
+  width: 100%;
+  height: 150rpx;
+  margin: auto;
+  margin-bottom: 10rpx;
+  /* border-radius: 20rpx; */
+  display: flex;
+  background-color: white;
+}
+
+.headView {
+  width: 100rpx;
+  height: 100rpx;
+  margin: auto;
+}
+
+.headImg {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50rpx;
+}
+
+.cardContext {
+  width: 80%;
+  height: 120rpx;
+  margin: auto;
+  /* background-color: red; */
+}
+
+.text-cut {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.pos {
+  position: fixed;
+  top: 75%;
+  left: 75%;
+  z-index: 2;
+}
+
+.badge{
+  width: 190rpx;
+  text-align: center;
+  background-color: rgb(56,120,194);
+  border-radius: 20rpx;
+  margin: auto 5rpx;
+  color: white;
+}

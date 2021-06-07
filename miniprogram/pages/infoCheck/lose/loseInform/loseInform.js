@@ -1,27 +1,38 @@
 Page({
+
   /**
    * 页面的初始数据
    */
   data: {
-    contents: '978330980'
+    inform: {},
+    markers: []
   },
-  copyText: function (e) {
-    var that = this
-    console.log(e)
-    wx.setClipboardData({
-      data: that.data.contents,
-      success: function (res) {
-        console.log(res)
-      }
-    })
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      inform: JSON.parse(options.inform),
+      markers: [{
+        id: "1",
+        latitude: JSON.parse(options.inform).latitude,
+        longitude: JSON.parse(options.inform).longitude
+      }]
+    })
   },
-
+  copy(res) {
+    var that = this
+    wx.setClipboardData({
+      data: String(that.data.inform.contact),
+      success: function (res) {
+        console.log(res)
+      },
+      fail(res) {
+        console.log(res)
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

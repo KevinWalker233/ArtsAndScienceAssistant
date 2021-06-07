@@ -1,0 +1,63 @@
+<view wx:for="{{inform}}"></view>
+<view class="navbar">
+  <view wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique"
+    bindtap="navbarTap">
+    <image style="width:50rpx;height:50rpx;position:relative;top:15rpx;" src="/assets/infoCheck/lose{{index}}.png">
+    </image>
+    {{item}}
+  </view>
+</view>
+<swiper class="swiper" current="{{currentTab}}" bindchange="swiperChange">
+  <swiper-item>
+    <view class="info">
+      <view class="cards" wx:for="{{inform}}" wx:if="{{item.type == 0}}" catchtap="clickInfo" data-index="{{index}}">
+        <view class="headView">
+          <image class="headImg" src="{{item.headImg}}"></image>
+        </view>
+        <view class="cardContext">
+          <view class="text-cut" style="color:#444;line-height:70rpx;font-weight: bold;">
+            <mp-badge wx:if="{{item.loseType == 0}}" content="饭卡" style="position: relative;top:-5rpx;" />
+            <mp-badge wx:elif="{{item.loseType == 1}}" content="证件" style="position: relative;top:-5rpx;" />
+            <mp-badge wx:elif="{{item.loseType == 2}}" content="手机" style="position: relative;top:-5rpx;" />
+            <mp-badge wx:elif="{{item.loseType == 3}}" content="书籍" style="position: relative;top:-5rpx;" />
+            <mp-badge wx:elif="{{item.loseType == 4}}" content="钥匙" style="position: relative;top:-5rpx;" />
+            <mp-badge wx:elif="{{item.loseType == 5}}" content="其他" style="position: relative;top:-5rpx;" />
+            {{item.title}}
+          </view>
+          <view class="text-cut" style="color:#444;font-size:25rpx;line-height:45rpx;">
+            <view class="badge text-cut" wx:if="{{item.loseType == 0}}" style="float:left;">{{item.cardID}}</view>
+            {{item.addres}}
+          </view>
+        </view>
+      </view>
+    </view>
+  </swiper-item>
+  <swiper-item>
+    <view class="info">
+      <view class="cards" wx:for="{{inform}}" wx:if="{{item.type == 1}}" catchtap="clickInfo" data-index="{{index}}">
+        <view class="headView">
+          <image class="headImg" src="{{item.headImg}}"></image>
+        </view>
+        <view class="cardContext">
+          <view class="text-cut" style="color:#444;line-height:70rpx;font-weight: bold;">
+            <mp-badge wx:if="{{item.loseType == 0}}" content="饭卡" style="position: relative;top:-5rpx;" />
+            <mp-badge wx:elif="{{item.loseType == 1}}" content="证件" style="position: relative;top:-5rpx;" />
+            <mp-badge wx:elif="{{item.loseType == 2}}" content="手机" style="position: relative;top:-5rpx;" />
+            <mp-badge wx:elif="{{item.loseType == 3}}" content="书籍" style="position: relative;top:-5rpx;" />
+            <mp-badge wx:elif="{{item.loseType == 4}}" content="钥匙" style="position: relative;top:-5rpx;" />
+            <mp-badge wx:elif="{{item.loseType == 5}}" content="其他" style="position: relative;top:-5rpx;" />
+            {{item.title}}
+          </view>
+          <view class="text-cut" style="color:#444;font-size:25rpx;line-height:45rpx;">
+            <view class="badge" wx:if="{{item.loseType == 0}}" content="" style="position:relative;top:-5rpx;">
+              {{item.cardID}}</view>
+            {{item.addres}}
+          </view>
+        </view>
+      </view>
+    </view>
+  </swiper-item>
+</swiper>
+<view direction="all" class="pos" style="pointer-events:auto;height:60px;width:60px;z-index:1;" bindtap="add">
+  <image src='/assets/infoCheck/add.png' style="height:60px;width:60px;"></image>
+</view>
