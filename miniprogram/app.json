@@ -15,6 +15,7 @@
     "pages/infoCheck/holiday/holiday",
     "pages/infoCheck/lose/lose",
     "pages/infoCheck/lose/loseInform/loseInform",
+    "pages/infoCheck/lose/loseAdd/loseAdd",
     "pages/checkGrades/checkGrades",
     "pages/checkMoney/checkMoney",
     "pages/loginCard/loginCard",

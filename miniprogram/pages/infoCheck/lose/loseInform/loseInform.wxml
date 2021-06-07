@@ -1,0 +1,24 @@
+<view class="head">
+  <view class="headView">
+    <image class="headImg" src="{{inform.headImg}}">
+    </image>
+  </view>
+  <view class="headContext">
+    <view class="title text-cut">{{inform.title}}</view>
+    <view class="text text-cut">
+      <view class="badge text-cut" wx:if="{{inform.loseType == 0}}" style="float:left;">{{inform.cardID}}</view>
+      地址：{{inform.addres}}
+    </view>
+    <view class="text text-cut" bindtap="copy">
+      联系方式
+      <image class="icon" src="/assets/infoCheck/{{inform.contactType}}.png"></image>
+      {{inform.contact}}
+    </view>
+  </view>
+</view>
+<scroll-view class="context" scroll-y="true" scroll-x="true">
+  <view>
+    {{inform.context}}
+  </view>
+</scroll-view>
+<map class="map" longitude="{{inform.longitude}}" latitude="{{inform.latitude}}" markers="{{markers}}"></map>
