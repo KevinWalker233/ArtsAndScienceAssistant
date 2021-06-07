@@ -117,8 +117,7 @@
       </view>
     </view>
   </view>
-  <!-- <view class="mouseBottom">
-    <view style="width:90%;height:120rpx;margin:10rpx auto;border-radius:10rpx;background-color:pink;">
-    </view>
-  </view> -->
+  <!-- <view class="mouseBottom"> -->
+  <ad unit-id="adunit-995db040c52ff12e"></ad>
+  <!-- </view> -->
 </view>

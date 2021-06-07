@@ -13,6 +13,8 @@
     "pages/infoCheck/exam/exam",
     "pages/infoCheck/commutingBus/commutingBus",
     "pages/infoCheck/holiday/holiday",
+    "pages/infoCheck/lose/lose",
+    "pages/infoCheck/lose/loseInform/loseInform",
     "pages/checkGrades/checkGrades",
     "pages/checkMoney/checkMoney",
     "pages/loginCard/loginCard",

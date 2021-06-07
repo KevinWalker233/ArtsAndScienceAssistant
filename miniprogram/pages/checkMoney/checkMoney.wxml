@@ -7,16 +7,12 @@
   </view>
   <view class="cardContext">
     <view class="moneyCard">
-      当前过渡余额
-      <view class="money">{{cardInform[1]}}</view>
-    </view>
-    <view class="moneyCard">
-      卡余额
+      卡余额(元)
       <view class="money">{{cardInform[0]}}</view>
     </view>
-    <view class="moneyCard">
-      上次过渡余额
-      <view class="money">{{cardInform[2]}}</view>
+    <view class="moneyCard" style="font-size: 20rpx;">
+      当前过渡余额(元)
+      <view style="font-size: 30rpx;">{{cardInform[1]}}</view>
     </view>
   </view>
   <view class="cardStatus">
@@ -25,6 +21,8 @@
     <view class="card">{{cardInform[5]}}</view>
     <view class="card">{{cardInform[6]}}</view>
   </view>
+  <!-- <view class="image"> -->
+  <image src="/assets/logo.png" class="images"></image>
 </view>
 <view class="pay" bindtap="pay">
   <mp-icon style="line-height:50rpx;" type="field" icon="photo-wall" color="white" size="{{22}}"></mp-icon>

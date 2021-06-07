@@ -9,3 +9,4 @@
 <view class="share" style="background-color:#DAA520;" bindtap="shareCode">点我打开二维码分享课表</view>
 <view style="font-size:50rpx;text-align:center;font-weight:bold;">或</view>
 <view class="share" style="background-color:#DB7093;" bindtap="shareTextCode">手动设置课表</view>
+<ad unit-id="adunit-995db040c52ff12e"></ad>

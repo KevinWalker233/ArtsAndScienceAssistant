@@ -59,6 +59,11 @@
           "pathName": "pages/index/index",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/infoCheck/lose/lose",
+          "pathName": "pages/infoCheck/lose/lose",
+          "scene": null
         }
       ]
     }

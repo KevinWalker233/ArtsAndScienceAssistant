@@ -19,7 +19,7 @@
     </view>
     <view bindtap="jumpExam">
       <image class="function_content_icon" src="../../assets/appIcon/infoCheck/exam.png"></image>
-      <view class="function_content_text">考试安排</view>
+      <view class="function_content_text">寻物启事</view>
     </view>
     <view bindtap="jumpCommutingBus">
       <image src="../../assets/appIcon/infoCheck/schoolBus.png" class="function_content_icon"></image>
@@ -82,6 +82,7 @@
     </view>
   </view>
 </view>
+<ad unit-id="adunit-995db040c52ff12e"></ad>
 <!-- 4.扩展功能
 <view class="function">
   <!-- 顶部 -->

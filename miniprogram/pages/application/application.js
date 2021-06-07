@@ -34,20 +34,20 @@ Page({
   // 跳转至 考试安排 功能
   jumpExam: function () {
     // 提示框
-    wx.showModal({
-      title: '信息提示',
-      content: '详细的考试安排要等到学期16周之后公布，敬请期待😊......',
-      confirmText: '我知道了',
-      showCancel: false,
-      success: function (res) {
-        if (res.confirm) {
-          console.log('我已阅读')
-        } else {}
-      }
-    })
-    // wx.navigateTo({
-    //   url: '../infoCheck/exam/exam',
+    // wx.showModal({
+    //   title: '信息提示',
+    //   content: '详细的考试安排要等到学期16周之后公布，敬请期待😊......',
+    //   confirmText: '我知道了',
+    //   showCancel: false,
+    //   success: function (res) {
+    //     if (res.confirm) {
+    //       console.log('我已阅读')
+    //     } else {}
+    //   }
     // })
+    wx.navigateTo({
+      url: '../infoCheck/lose/lose',
+    })
   },
   // 跳转至 校车 功能
   jumpCommutingBus: function () {
