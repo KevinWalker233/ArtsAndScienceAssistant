@@ -1,22 +1,22 @@
 <form bindsubmit="formSubmit">
-  <view>
+  <view class="card">
     <view>发布类型</view>
-    <radio-group name="发布类型">
+    <radio-group name="发布类型" bindchange="changeType">
       <label>
-        <radio value="radio1" />物品丢失</label>
+        <radio value="0" checked="true" />物品丢失</label>
       <label>
-        <radio value="radio2" />拾取物品</label>
+        <radio value="1" />拾取物品</label>
     </radio-group>
   </view>
 
-  <view>
+  <view class="card">
     <view>主体内容</view>
-    <input type="text" placeholder="请输入标题" />
-    <textarea bindblur="bindTextAreaBlur" placeholder="请输入丢失/拾取物品的详细信息"></textarea>
-    <input type="text" placeholder="请输入丢失/拾取的地址(简要描述)" />
+    <input type="text" placeholder="请输入标题" bindinput="bindTitleInput" />
+    <textarea placeholder="请输入丢失/拾取物品的详细信息" bindinput="bindContextInput"></textarea>
+    <input type="text" placeholder="请输入丢失/拾取的地址(简要描述)" bindinput="bindAddressInput" />
   </view>
 
-  <view>
+  <view class="card">
     <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
       <view class="picker" wx:if="{{index!=-1}}">
         {{array[index]}}
@@ -26,27 +26,31 @@
       </view>
     </picker>
     <view wx:if="{{index==0}}">
-      <input type="text" placeholder="请输入饭卡账号" />
+      <input type="text" value="{{cardID}}" placeholder="请输入饭卡账号" bindinput="bindCardIDInput"
+        bindchange="changeCardID" />
     </view>
   </view>
 
-  <view>
+  <view class="card">
     <view>联系方式</view>
     <picker bindchange="bindPickerChanges" value="{{indexContact}}" range="{{arrayContact}}">
       <view class="picker" wx:if="{{indexContact!=-1}}">
-        {{array[index]}}
+        {{arrayContact[indexContact]}}
       </view>
       <view class="picker" wx:else>
         请选择联系方式
       </view>
     </picker>
-    <input type="text" placeholder="请输入联系方式" />
+    <input type="text" placeholder="请输入联系方式" bindchange="bindContactInput" />
   </view>
-  <map longitude="{{longitude}}" latitude="{{latitude}}" markers="{{markers}}"></map>
+  <map class="map" longitude="{{longitude}}" latitude="{{latitude}}" markers="{{markers}}"></map>
   <button type="primary" bindtap="updateLocal">刷新位置</button>
-  <image src="{{user.avatarUrl}}" style="width:100rpx;height:100rpx;"></image>
-  <button type="primary" bindtap="getUser">授权信息</button>
-  <view class="btn-area">
-    <button style="margin: 30rpx" type="primary" formType="submit">发布</button>
+  <view class="user">
+    <image src="{{user.avatarUrl}}"
+      style="width:100rpx;height:100rpx;border-radius:50rpx;margin:auto 10rpx;background-color:#444;"></image>
+    <view class="text-cut" style="width:300rpx;height:100rpx;line-height:100rpx;font-size:30rpx;">{{user.nickName}}
+    </view>
+    <view class="userButton" bindtap="getUser">授权信息</view>
   </view>
+  <button type="primary" formType="submit">发布</button>
 </form>
