@@ -31,7 +31,8 @@ exports.main = (event, context) => {
             contact: event.contact,
             loseType: event.loseType,
             latitude: event.latitude,
-            longitude: event.longitude
+            longitude: event.longitude,
+            time:event.Date
           }
         })
         resolve(1)

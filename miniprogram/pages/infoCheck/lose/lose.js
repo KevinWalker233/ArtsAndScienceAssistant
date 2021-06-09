@@ -51,7 +51,11 @@ Page({
     //   longitude: 107.16128445095487
     // }],
     navbar: ['拾取', '丢失'],
-    currentTab: 0
+    currentTab: 0,
+    //搜索相关
+    inputShowed: false,
+    inputVal: ""
+    //
   },
   //切换bar
   navbarTap: function (e) {
@@ -86,7 +90,11 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    //搜索相关
+    this.setData({
+      search: this.search.bind(this)
+    })
+    //
   },
 
   /**
@@ -117,7 +125,8 @@ Page({
           if (x == batchTimes) {
             console.log(arraypro)
             that.setData({
-              inform: arraypro
+              inform: arraypro,
+              inform2:arraypro
             })
           }
         }
@@ -158,5 +167,39 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+  /***
+   * 搜索功能
+   */
+  inputKeywords: function (e) {
+    console.log(e.detail.value)
+    this.setData({
+      keywords: e.detail.value
+    })
+  },
+  search: function (value) {
+    // return new Promise((resolve, reject) => {
+    //   setTimeout(() => {
+    //     resolve([{ text: '搜索结果', value: 1 }, { text: '搜索结果2', value: 2 }])
+    //   }, 200)
+    // })
+    var searchInform = []
+    var inform = this.data.inform2
+    var keywords = this.data.keywords
+    if((keywords == '' || keywords == null) && (this.data.inform2 != null && this.data.inform2 != '' )){
+      this.setData({
+        inform:this.data.inform2
+      })
+      return;
+    }
+    for(var index= 0;index<inform.length;index++){
+      if(((inform[index].title).indexOf(keywords) != -1) ||(((inform[index].context).indexOf(keywords) != -1) || ((inform[index].cardID).indexOf(keywords) != -1) )){
+        searchInform.push(inform[index] )
+      }
+    }
+    this.setData({
+      inform:searchInform
+    })
+  },
+  
 })

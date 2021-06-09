@@ -1,3 +1,4 @@
+var util = require('../../../../utils/util.js');
 Page({
 
   /**
@@ -18,7 +19,6 @@ Page({
     latitude: "", //坐标
     longitude: "", //坐标
     markers: [], //这是地图上显示的标记
-    date: '', //时间
     flag: false
   },
   //发布类型改变
@@ -162,6 +162,10 @@ Page({
    */
   formSubmit(res) {
     var that = this
+    var time = util.formatTime(new Date());
+    that.setData({
+      date:String(time)
+    })
     if (that.data.title != "" && that.data.context != "" && that.data.address != "" && that.data.index > -1 && that.data.indexContact > -1 && that.data.latitude != "" && that.data.longitude != "" && typeof (that.data.user.avatarUrl) != "undefined") {
       if (that.data.index == 0) {
         if (that.data.cardID != "") {
@@ -190,6 +194,7 @@ Page({
   //提交数据
   Submit: function () {
     var that = this
+    console.log(that.data.date)
     wx.cloud.callFunction({
       name: 'pushLostImformation',
       data: {
@@ -204,7 +209,7 @@ Page({
         loseType: that.data.index, //丢失物品类型
         latitude: that.data.latitude,
         longitude: that.data.longitude,
-        date: that.data.date, //时间
+        Date: that.data.date, //时间
         headImg: that.data.user.avatarUrl //头像
       },
       success: function (res) {
