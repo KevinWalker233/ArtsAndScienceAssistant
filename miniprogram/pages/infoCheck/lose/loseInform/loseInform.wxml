@@ -15,7 +15,7 @@
     </view>
     <view class="text text-cut">
       <view class="badge text-cut" wx:if="{{inform.loseType == 0}}" style="float:left;">{{inform.cardID}}</view>
-      地址：{{inform.addres}}
+      地址：{{inform.address}}
     </view>
     <view class="text text-cut" bindtap="copy">
       联系方式：

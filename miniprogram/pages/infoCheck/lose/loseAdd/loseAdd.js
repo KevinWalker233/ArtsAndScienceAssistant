@@ -18,7 +18,8 @@ Page({
     latitude: "", //坐标
     longitude: "", //坐标
     markers: [], //这是地图上显示的标记
-    date: '' //时间
+    date: '', //时间
+    flag: false
   },
   //发布类型改变
   changeType(res) {
@@ -95,6 +96,7 @@ Page({
   //刷新位置
   updateLocal(res) {
     var that = this
+    this.show()
     wx.getLocation({
       type: 'gcj02',
       success: function (res) {
@@ -106,29 +108,54 @@ Page({
             longitude: res.longitude,
           }]
         })
+        that.conceal()
       }
     })
   },
   //授权信息
   getUser(res) {
     var that = this
-    wx.getUserProfile({
-      desc: '用于完善物品丢失或拾取者信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-      success: (res) => {
-        that.setData({
-          user: res.userInfo
-        })
-        console.log(res.userInfo)
-      },
-      fail(err) {
-        wx.showModal({
-          title: '提示',
-          content: '允许授权后才可以使用',
-          confirmText: '我知道了',
-          showCancel: false
+    wx.showModal({
+      title: '提示',
+      content: '授权后仅使用您的头像信息',
+      confirmText: '我知道了',
+      showCancel: false,
+      success(res) {
+        wx.getUserProfile({
+          desc: '用于完善物品丢失或拾取者信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+          success: (res) => {
+            that.setData({
+              user: res.userInfo
+            })
+          },
+          fail(err) {
+            wx.showModal({
+              title: '提示',
+              content: '允许授权后才可以使用',
+              confirmText: '我知道了',
+              showCancel: false
+            })
+          }
         })
       }
     })
+    // wx.getUserProfile({
+    //   desc: '用于完善物品丢失或拾取者信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+    //   success: (res) => {
+    //     that.setData({
+    //       user: res.userInfo
+    //     })
+    //     console.log(res.userInfo)
+    //   },
+    //   fail(err) {
+    //     wx.showModal({
+    //       title: '提示',
+    //       content: '允许授权后才可以使用',
+    //       confirmText: '我知道了',
+    //       showCancel: false
+    //     })
+    //   }
+    // })
   },
   /*
    *点击发布按钮
@@ -180,21 +207,41 @@ Page({
         date: that.data.date, //时间
         headImg: that.data.user.avatarUrl //头像
       },
-      success: function () {
-        wx.showToast({
-          title: '提交成功！',
-          icon: 'success',
-          duration: 2000
-        })
+      success: function (res) {
+        if (res.result == -1) {
+          wx.showToast({
+            title: '您已被封禁！',
+            icon: 'error',
+            duration: 2000
+          })
+        } else {
+          wx.showToast({
+            title: '提交成功！',
+            icon: 'success',
+            duration: 2000
+          })
+        }
       },
       fail: function (res) {
         console.log(res)
         wx.showModal({
           title: '发布错误',
-          content: 'res.result,',
-          showCancel: false,
+          content: '未知错误',
+          showCancel: false
         })
       }
+    })
+  },
+  // 遮罩层显示
+  show: function () {
+    this.setData({
+      flag: true
+    })
+  },
+  // 遮罩层隐藏
+  conceal: function () {
+    this.setData({
+      flag: false
     })
   },
   /**

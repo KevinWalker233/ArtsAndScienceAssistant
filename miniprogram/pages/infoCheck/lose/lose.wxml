@@ -7,7 +7,7 @@
     {{item}}
   </view>
 </view>
-<swiper class="swiper" current="{{currentTab}}" bindchange="swiperChange">
+<swiper class="swiper" current="{{currentTab}}" bindchange="swiperChange" style="height:{{inform.length *150}}rpx;">
   <swiper-item>
     <view class="info">
       <view class="cards" wx:for="{{inform}}" wx:if="{{item.type == 0}}" catchtap="clickInfo" data-index="{{index}}">
@@ -26,7 +26,7 @@
           </view>
           <view class="text-cut" style="color:#444;font-size:25rpx;line-height:45rpx;">
             <view class="badge text-cut" wx:if="{{item.loseType == 0}}" style="float:left;">{{item.cardID}}</view>
-            {{item.addres}}
+            {{item.address}}
           </view>
         </view>
       </view>
@@ -49,9 +49,8 @@
             {{item.title}}
           </view>
           <view class="text-cut" style="color:#444;font-size:25rpx;line-height:45rpx;">
-            <view class="badge" wx:if="{{item.loseType == 0}}" content="" style="position:relative;top:-5rpx;">
-              {{item.cardID}}</view>
-            {{item.addres}}
+            <view class="badge text-cut" wx:if="{{item.loseType == 0}}" style="float:left;">{{item.cardID}}</view>
+            {{item.address}}
           </view>
         </view>
       </view>

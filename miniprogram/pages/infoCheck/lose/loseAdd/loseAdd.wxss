@@ -8,20 +8,42 @@ page {
   margin: 20rpx 0rpx;
 }
 
+.title {
+  height: 70rpx;
+  font-weight: bold;
+  text-indent: 20rpx;
+  margin-top: 5rpx;
+  line-height: 70rpx;
+}
+
+.radio {
+  width: 50rpx;
+  margin: 10rpx;
+}
+
+.text {
+  width: 98%;
+  height: 80rpx;
+  border-top: 1px solid rgb(243, 243, 243);
+  border-bottom: 1px solid rgb(243, 243, 243);
+  margin: 10rpx auto;
+}
+
 .user {
   width: 100%;
   height: 100rpx;
+  margin: 10rpx 0rpx;
   display: flex;
   justify-content: space-between;
 }
 
 .userButton {
-  width: 200rpx;
-  height: 90rpx;
-  line-height: 90rpx;
+  width: 180rpx;
+  height: 60rpx;
+  line-height: 60rpx;
   margin: auto 10rpx;
   background-color: rgb(7, 193, 96);
-  border-radius: 25rpx;
+  border-radius: 30rpx;
   text-align: center;
   font-size: 30rpx;
   color: white;
@@ -32,8 +54,46 @@ page {
   width: 100%;
 }
 
+.updateLocal {
+  width: 70rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  position: relative;
+  top: 6%;
+  left: 89%;
+  background-color: white;
+  border-radius: 35rpx;
+  text-align: center;
+  font-size: 30rpx;
+  color: white;
+  font-weight: bold;
+}
+
 .text-cut {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+}
+
+.mask {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: #999;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  opacity: 0.6;
+}
+
+.maskCard {
+  width: 20%;
+  height: 180rpx;
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  background-color: white;
+  border: 1px solid rgb(243, 243, 243);
+  z-index: 200;
+  opacity: 1;
 }

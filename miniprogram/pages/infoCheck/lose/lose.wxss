@@ -41,7 +41,7 @@ page {
 }
 
 .swiper {
-  height: 1000000rpx;
+  /* height: 1000000rpx; */
   position: relative;
   top: 100rpx;
 }
