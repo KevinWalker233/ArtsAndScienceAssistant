@@ -1,5 +1,5 @@
 /* 
-此文件为开发者工具生成，生成时间: 2021/3/7 下午5:50:12
+此文件为开发者工具生成，生成时间: 2021/6/9 上午11:35:42
 使用方法：
 在 application.wxss 文件末尾引入样式
 ```
@@ -9,15 +9,19 @@
 
 @media (prefers-color-scheme: dark) {
     page {
-        background-color: rgb(28, 28, 28);
+        background-color: #444;
+    }
+
+    .function_top_text {
+        color: white;
+    }
+
+    .function_content_text {
+        color: white;
     }
 
     .function {
-        background-color: rgb(17, 17, 17);
-    }
-
-    .function_centerLine {
-        background-color: rgba(55, 55, 55, 0.533);
+        background-color: #444;
     }
 
     .function_content {

@@ -13,12 +13,13 @@
     }
 
     .headContent {
-        background-color: rgb(29, 29, 29);
+        background-color: #444;
         box-shadow: rgb(200, 200, 200);
     }
 
     .bodyCard {
-        background-color: rgb(29, 29, 29);
+        background-color: #444;
+        box-shadow:0 0rpx 0rpx 0rpx rgb(243,243,243);
     }
 
     .viewContent {

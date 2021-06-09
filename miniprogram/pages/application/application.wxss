@@ -8,7 +8,7 @@ page {
   height: 250rpx;
   background-color: white;
   /* box-shadow: 0rpx 20rpx 2rpx 5rpx rgb(243,243,243); */
-  box-shadow:0 2rpx 20rpx 2rpx rgb(243,243,243);
+  /* box-shadow:0 2rpx 20rpx 2rpx rgb(243,243,243); */
   border-radius: 20rpx;
   margin-bottom: 20rpx;
 }
@@ -36,7 +36,7 @@ page {
   display: flex;
   align-items: center;
   margin-left: 20rpx;
-  font-size: 25rpx;
+  font-size: 30rpx;
   font-weight: bold;
   line-height: 60%;
 }
@@ -45,7 +45,7 @@ page {
   height: 1rpx;
   width: 100%;
   margin: 0 auto;
-  background-color: rgba(204, 204, 204, 0.533);
+  /* background-color: rgba(204, 204, 204, 0.533); */
 }
 
 .function_content {
@@ -71,7 +71,6 @@ page {
 .function_content_text {
   font-size: 25rpx;
   text-align: center;
-
 }
 
 @import 'application-wxa-auto-dark.wxss'
