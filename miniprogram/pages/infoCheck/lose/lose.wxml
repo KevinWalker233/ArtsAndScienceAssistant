@@ -1,9 +1,9 @@
 <view class="page">
-    <view class="page__bd">
-        <mp-searchbar bindinput='inputKeywords' search='{{search}}'></mp-searchbar>
-    </view>
+  <view class="page__bd">
+    <mp-searchbar bindinput='inputKeywords' search='{{search}}'></mp-searchbar>
+  </view>
 </view>
-<view wx:for="{{inform}}"></view>
+<!-- <view wx:for="{{inform}}"></view> -->
 <view class="navbar">
   <view wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique"
     bindtap="navbarTap">
@@ -34,6 +34,9 @@
             {{item.address}}
           </view>
         </view>
+        <view class="cardTime">
+          {{item.date}}
+        </view>
       </view>
     </view>
   </swiper-item>
@@ -57,6 +60,9 @@
             <view class="badge text-cut" wx:if="{{item.loseType == 0}}" style="float:left;">{{item.cardID}}</view>
             {{item.address}}
           </view>
+        </view>
+        <view class="cardTime">
+          {{item.date}}
         </view>
       </view>
     </view>

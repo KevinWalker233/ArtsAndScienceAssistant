@@ -1,6 +1,7 @@
 <mp-toptips msg="{{error.text}}" type="{{error.type}}" show="{{error.text}}" delay="2000"></mp-toptips>
 
 <view class="head">
+  <image class="headBg" style="z-index: -1;"> </image>
   <view class="refresh" bindtap="refresh">
     <mp-icon icon="refresh" type="field" color="white" size="{{30}}"></mp-icon>
     更新余额

@@ -4,52 +4,6 @@ Page({
    */
   data: {
     inform: [],
-    // inform: [{
-    //   type: 0, //0为拾取，1丢失
-    //   headImg: 'https://thirdwx.qlogo.cn/mmopen/vi_32/ibEf0iaYdUvGxLmufqZCBlmDfh7QKcFTlhsKYVCIicYTUHkyFMLmAJbIhLPia6kAmhaJ1UdiaXRItT4MY13KNVlyCZQ/132',
-    //   title: '老区二号食堂捡到饭卡一张', //帖子标题
-    //   context: '今天下午18点32分在老去二号食堂捡到饭卡202096094022一张', //帖子内容
-    //   addres: '老区二号食堂',
-    //   contact: '13060368396', //联系信息
-    //   contactType: 1, //联系方式
-    //   loseType: 0, //丢失物品类型
-    //   cardID: 202096094022, //卡号
-    //   latitude: 34.349491644965276,
-    //   longitude: 107.16128445095487
-    // }, {
-    //   type: 0,
-    //   headImg: 'https://thirdwx.qlogo.cn/mmopen/vi_32/ibEf0iaYdUvGxLmufqZCBlmDfh7QKcFTlhsKYVCIicYTUHkyFMLmAJbIhLPia6kAmhaJ1UdiaXRItT4MY13KNVlyCZQ/132',
-    //   title: '老区二号食堂捡到饭卡两张',
-    //   context: '今天下午18点32分在老去二号食堂捡到饭卡202096094022一张',
-    //   addres: '老区二号食堂',
-    //   contact: '13060368396',
-    //   contactType: 0,
-    //   loseType: 1,
-    //   latitude: 34.349491644965276,
-    //   longitude: 107.16128445095487
-    // }, {
-    //   type: 1,
-    //   headImg: 'https://thirdwx.qlogo.cn/mmopen/vi_32/ibEf0iaYdUvGxLmufqZCBlmDfh7QKcFTlhsKYVCIicYTUHkyFMLmAJbIhLPia6kAmhaJ1UdiaXRItT4MY13KNVlyCZQ/132',
-    //   title: '老区二号食堂丢失饭卡一张',
-    //   context: '今天下午18点32分在老去二号食堂捡到饭卡202096094022一张',
-    //   addres: '老区二号食堂',
-    //   contact: '1192085905',
-    //   contactType: 1,
-    //   loseType: 2,
-    //   latitude: 34.349491644965276,
-    //   longitude: 107.16128445095487
-    // }, {
-    //   type: 1,
-    //   headImg: 'https://thirdwx.qlogo.cn/mmopen/vi_32/ibEf0iaYdUvGxLmufqZCBlmDfh7QKcFTlhsKYVCIicYTUHkyFMLmAJbIhLPia6kAmhaJ1UdiaXRItT4MY13KNVlyCZQ/132',
-    //   title: '老区二号食堂丢失饭卡一张',
-    //   context: '今天下午18点32分在老去二号食堂捡到饭卡202096094022一张',
-    //   addres: '老区二号食堂',
-    //   contact: '1192085905',
-    //   contactType: 1,
-    //   loseType: 3,
-    //   latitude: 34.349491644965276,
-    //   longitude: 107.16128445095487
-    // }],
     navbar: ['拾取', '丢失'],
     currentTab: 0,
     //搜索相关
@@ -124,9 +78,10 @@ Page({
           //判断是否是最后一次，如果是说明已经不用再继续获取了，这时候就可以赋值了
           if (x == batchTimes) {
             console.log(arraypro)
+            var list = arraypro.reverse()
             that.setData({
-              inform: arraypro,
-              inform2:arraypro
+              inform: list,
+              inform2: list
             })
           }
         }
@@ -186,20 +141,20 @@ Page({
     var searchInform = []
     var inform = this.data.inform2
     var keywords = this.data.keywords
-    if((keywords == '' || keywords == null) && (this.data.inform2 != null && this.data.inform2 != '' )){
+    if ((keywords == '' || keywords == null) && (this.data.inform2 != null && this.data.inform2 != '')) {
       this.setData({
-        inform:this.data.inform2
+        inform: this.data.inform2
       })
       return;
     }
-    for(var index= 0;index<inform.length;index++){
-      if(((inform[index].title).indexOf(keywords) != -1) ||(((inform[index].context).indexOf(keywords) != -1) || ((inform[index].cardID).indexOf(keywords) != -1) )){
-        searchInform.push(inform[index] )
+    for (var index = 0; index < inform.length; index++) {
+      if (((inform[index].address).indexOf(keywords) != -1) || ((inform[index].title).indexOf(keywords) != -1) || (((inform[index].context).indexOf(keywords) != -1) || ((inform[index].cardID).indexOf(keywords) != -1))) {
+        searchInform.push(inform[index])
       }
     }
     this.setData({
-      inform:searchInform
+      inform: searchInform
     })
   },
-  
+
 })

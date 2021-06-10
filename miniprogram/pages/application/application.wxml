@@ -13,12 +13,54 @@
   </view>
   <view class="function_centerLine"></view>
   <view class="function_content">
+    <view wx:for="{{infoCheck}}" data-index="{{index}}" bindtap="infoCheckClick">
+      <image src="{{item.image}}" class="function_content_icon"></image>
+      <view class="function_content_text">{{item.name}}</view>
+    </view>
+  </view>
+</view>
+<!-- 1.生活服务 -->
+<view class="function">
+  <view class="function_top">
+    <view style="background-color: #48D1CC;" class="function_top_line"></view>
+    <text class="function_top_text">生活服务</text>
+  </view>
+  <view class="function_centerLine"></view>
+  <view class="function_content">
+    <view wx:for="{{lifeService}}" data-index="{{index}}" bindtap="lifeServiceClick">
+      <image src="{{item.image}}" class="function_content_icon"></image>
+      <view class="function_content_text">{{item.name}}</view>
+    </view>
+  </view>
+</view>
+<!-- 3.其他功能 -->
+<view class="function">
+  <view class="function_top">
+    <view style="background-color: #FFD700;" class="function_top_line"></view>
+    <text class="function_top_text">其他功能</text>
+  </view>
+  <view class="function_centerLine"></view>
+  <view class="function_content">
+    <view wx:for="{{oneCheck}}" data-index="{{index}}" bindtap="oneCheckClick">
+      <image src="{{item.image}}" class="function_content_icon"></image>
+      <view class="function_content_text">{{item.name}}</view>
+    </view>
+  </view>
+</view>
+<!-- 1.信息查询 -->
+<!-- <view class="function">
+  <view class="function_top">
+    <view style="background-color: #3CB371;" class="function_top_line"></view>
+    <text class="function_top_text">信息查询</text>
+  </view>
+  <view class="function_centerLine"></view>
+  <view class="function_content">
     <view bindtap="jumpSchoolMap">
-      <image src="../../assets/appIcon/infoCheck/map.png" class="function_content_icon"></image>
+      <image src="/assets/appIcon/infoCheck/map.png" class="function_content_icon"></image>
       <view class="function_content_text">地图</view>
     </view>
     <view bindtap="jumpExam">
-      <image class="function_content_icon" src="../../assets/appIcon/infoCheck/exam.png"></image>
+      <image class="function_content_icon" src="../../assets/appIcon/infoCheck/lose.png"></image>
       <view class="function_content_text">寻物启事</view>
     </view>
     <view bindtap="jumpCommutingBus">
@@ -30,9 +72,9 @@
       <view class="function_content_text">放假安排</view>
     </view>
   </view>
-</view>
-<!-- 2.拓展功能 -->
-<view class="function">
+</view> -->
+<!-- 2.生活服务 -->
+<!-- <view class="function">
   <view class="function_top">
     <view style="background-color: #48D1CC;" class="function_top_line"></view>
     <text class="function_top_text">生活服务</text>
@@ -56,17 +98,14 @@
       <view class="function_content_text">快递</view>
     </view>
   </view>
-</view>
-<!-- 3.一键查询 -->
-<view class="function">
-  <!-- 顶部 -->
+</view> -->
+<!-- 3.其他功能 -->
+<!-- <view class="function">
   <view class="function_top">
     <view style="background-color: #FFD700;" class="function_top_line"></view>
     <text class="function_top_text">其他功能</text>
   </view>
-  <!-- 中间分割线 -->
   <view class="function_centerLine"></view>
-  <!-- 主体内容 -->
   <view class="function_content">
     <view bindtap="jumpConcentrat">
       <image class="function_content_icon" src="../../assets/appIcon/expFunction/concentration.png"></image>
@@ -81,7 +120,7 @@
       <view class="function_content_text">校内电话</view>
     </view>
   </view>
-</view>
+</view> -->
 <!-- 4.扩展功能
 <view class="function">
   <!-- 顶部 -->

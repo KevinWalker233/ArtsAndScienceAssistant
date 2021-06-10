@@ -1,18 +1,4 @@
-<view class='mask' wx-if="{{flag}}"></view>
-<view class="maskCard" wx-if="{{flag}}">
-  <mp-loading type="circle"></mp-loading>
-</view>
 <form bindsubmit="formSubmit">
-  <view class="user card" style="margin-top:15rpx;">
-    <image src="{{user.avatarUrl}}"
-      style="width:100rpx;height:100rpx;border-radius:50rpx;margin:auto 10rpx;background-color:#444;"></image>
-    <view wx:if="{{user.nickName}}" class="text-cut"
-      style="width:300rpx;height:100rpx;line-height:100rpx;font-size:30rpx;">{{user.nickName}}
-    </view>
-    <view wx:else class="text-cut" style="width:300rpx;height:100rpx;line-height:100rpx;font-size:30rpx;">请点击授权！！！
-    </view>
-    <view class="userButton" bindtap="getUser">授权信息</view>
-  </view>
   <view class="card">
     <view class="title">发布类型</view>
     <radio-group style="display:flex; justify-content:space-around;" name="发布类型" bindchange="changeType">
@@ -25,11 +11,21 @@
       </view>
     </radio-group>
   </view>
+  <view class="user card" style="margin-top:15rpx;">
+    <image src="{{user.avatarUrl}}"
+      style="width:100rpx;height:100rpx;border-radius:50rpx;margin:auto 10rpx;background-color:#444;"></image>
+    <view wx:if="{{user.nickName}}" class="text-cut"
+      style="width:300rpx;height:100rpx;line-height:100rpx;font-size:30rpx;">{{user.nickName}}
+    </view>
+    <view wx:else class="text-cut" style="width:300rpx;height:100rpx;line-height:100rpx;font-size:30rpx;">请点击授权！
+    </view>
+    <view class="userButton" bindtap="getUser">授权信息</view>
+  </view>
   <view class="card">
     <view class="title">主体内容</view>
-    <input class="text" type="text" placeholder="请输入标题" bindinput="bindTitleInput" />
-    <textarea class="text" style="height:150rpx" placeholder="请输入丢失/拾取物品的详细信息" bindinput="bindContextInput"></textarea>
-    <input class="text" type="text" placeholder="请输入丢失/拾取的地址(简要描述)" bindinput="bindAddressInput" />
+    <input class="text" type="text" placeholder="请输入标题*" bindinput="bindTitleInput" />
+    <textarea class="text" style="height:150rpx" placeholder="请输入丢失/拾取物品的详细信息*" bindinput="bindContextInput"></textarea>
+    <input class="text" type="text" placeholder="请输入丢失/拾取的地址(简要描述)*" bindinput="bindAddressInput" />
   </view>
 
   <view class="card">
@@ -38,7 +34,7 @@
         {{array[index]}}
       </view>
       <view class="picker title" wx:else>
-        请选择物品类型
+        点我选择物品类型*
       </view>
     </picker>
     <view wx:if="{{index==0}}">
@@ -48,13 +44,14 @@
 
     <picker class="title" bindchange="bindPickerChanges" value="{{indexContact}}" range="{{arrayContact}}">
       <view class="picker title" wx:if="{{indexContact!=-1}}">
+        <image class="icon" src="/assets/infoCheck/{{indexContact}}.png"></image>
         {{arrayContact[indexContact]}}
       </view>
       <view class="picker title" wx:else>
-        请选择联系方式
+        点我选择联系方式*
       </view>
     </picker>
-    <input class="text" type="text" placeholder="请输入联系方式" bindchange="bindContactInput" />
+    <input class="text" type="text" placeholder="请输入联系方式*" bindchange="bindContactInput" />
   </view>
 
   <map class="map" longitude="{{longitude}}" latitude="{{latitude}}" markers="{{markers}}">

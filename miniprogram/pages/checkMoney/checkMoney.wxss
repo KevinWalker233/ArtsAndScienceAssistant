@@ -3,12 +3,18 @@ page {
 }
 
 .head {
-  width: 93%;
+  width: 700rpx;
   margin: 20rpx auto;
-  height: 330rpx;
+  height: 350rpx;
   background-color: rgb(220, 116, 73);
   border-radius: 15rpx;
   /* background: linear-gradient(to top, rgb(16, 80, 154), rgb(56, 120, 194)); */
+}
+
+.headBg{
+  width: 700rpx;
+  height: 350rpx;
+  position: absolute;
 }
 
 .refresh {

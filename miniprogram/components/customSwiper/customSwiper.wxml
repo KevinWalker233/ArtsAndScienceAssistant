@@ -1,19 +1,12 @@
 <!--components/customSwiper/customSwiper.wxml-->
-<swiper indicator-dots="false" 
-        autoplay="{{true}}" 
-        interval="4000" 
-        indicator-dots="{{false}}" 
-        indicator-color='#8a8a8a' 
-        indicator-active-color='#333' 
-        circular="true" 
-        class="swiper-block" 
-        bindchange="swiperChange" 
-        previous-margin="100rpx" 
-        next-margin="100rpx" 
-        current="{{0}}">
+<swiper indicator-dots="false" autoplay="{{true}}" interval="4000" indicator-dots="{{false}}" indicator-color='#8a8a8a'
+  indicator-active-color='#333' circular="true" class="swiper-block" bindchange="swiperChange" previous-margin="100rpx"
+  next-margin="100rpx" current="{{0}}">
   <block wx:for="{{imgUrls}}" wx:index="{{index}}" wx:key="item">
-    <swiper-item class="swiper-item" data-index="{{index}}" data-url="{{item.textUrl}}" bindtap="clickgo">
-      <image mode="aspectFill" src="{{item.imageUrl}}" class="slide-image {{currentIndex == index ? 'active' : 'common'}}" />
+    <swiper-item class="swiper-item">
+      <image mode="aspectFill" src="{{item.imageUrl}}"
+        class="slide-image {{currentIndex == index ? 'active' : 'common'}}" data-index="{{index}}"
+        data-url="{{item.textUrl}}" bindtap="clickgo" />
     </swiper-item>
   </block>
 </swiper>

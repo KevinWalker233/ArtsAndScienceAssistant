@@ -62,7 +62,7 @@ Page({
     if (res.detail.value.length < 5 || res.detail.value.length > 12) {
       wx.showModal({
         title: '提示',
-        content: '学号格式错误！',
+        content: '账号格式错误！',
         showCancel: false,
         success(res) {
           that.setData({
@@ -96,7 +96,6 @@ Page({
   //刷新位置
   updateLocal(res) {
     var that = this
-    this.show()
     wx.getLocation({
       type: 'gcj02',
       success: function (res) {
@@ -108,7 +107,6 @@ Page({
             longitude: res.longitude,
           }]
         })
-        that.conceal()
       }
     })
   },
@@ -164,7 +162,7 @@ Page({
     var that = this
     var time = util.formatTime(new Date());
     that.setData({
-      date:String(time)
+      date: String(time)
     })
     if (that.data.title != "" && that.data.context != "" && that.data.address != "" && that.data.index > -1 && that.data.indexContact > -1 && that.data.latitude != "" && that.data.longitude != "" && typeof (that.data.user.avatarUrl) != "undefined") {
       if (that.data.index == 0) {
@@ -223,7 +221,12 @@ Page({
           wx.showToast({
             title: '提交成功！',
             icon: 'success',
-            duration: 2000
+            duration: 2000,
+            success(res) {
+              wx.navigateBack({
+                delta: 1
+              })
+            }
           })
         }
       },
@@ -235,18 +238,6 @@ Page({
           showCancel: false
         })
       }
-    })
-  },
-  // 遮罩层显示
-  show: function () {
-    this.setData({
-      flag: true
-    })
-  },
-  // 遮罩层隐藏
-  conceal: function () {
-    this.setData({
-      flag: false
     })
   },
   /**

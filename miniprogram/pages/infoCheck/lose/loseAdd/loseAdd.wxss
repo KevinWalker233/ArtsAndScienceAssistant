@@ -54,6 +54,11 @@ page {
   width: 100%;
 }
 
+.icon {
+  width: 40rpx;
+  height: 40rpx;
+}
+
 .updateLocal {
   width: 70rpx;
   height: 70rpx;
@@ -73,27 +78,4 @@ page {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-}
-
-.mask {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  background-color: #999;
-  z-index: 100;
-  top: 0;
-  left: 0;
-  opacity: 0.6;
-}
-
-.maskCard {
-  width: 20%;
-  height: 180rpx;
-  position: absolute;
-  top: 40%;
-  left: 40%;
-  background-color: white;
-  border: 1px solid rgb(243, 243, 243);
-  z-index: 200;
-  opacity: 1;
 }
