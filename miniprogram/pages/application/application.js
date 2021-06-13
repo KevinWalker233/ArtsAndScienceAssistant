@@ -46,10 +46,30 @@ Page({
     })
     configDb.doc('application').get({
       success(res) {
+        var appVersion = wx.getStorageSync('appVersion') //获取本地版本号
+        if (appVersion == res.data.version) { //版本号相同
+          that.setData({
+            infoCheck: JSON.parse(wx.getStorageSync('infoCheck')),
+            lifeService: JSON.parse(wx.getStorageSync('lifeService')),
+            oneCheck: JSON.parse(wx.getStorageSync('oneCheck'))
+          })
+        } else { //版本号不同
+          wx.setStorageSync('infoCheck', JSON.stringify(res.data.infoCheck))
+          wx.setStorageSync('lifeService', JSON.stringify(res.data.lifeService))
+          wx.setStorageSync('oneCheck', JSON.stringify(res.data.oneCheck))
+          wx.setStorageSync('appVersion', res.data.version)
+          that.setData({
+            infoCheck: res.data.infoCheck,
+            lifeService: res.data.lifeService,
+            oneCheck: res.data.oneCheck
+          })
+        }
+      },
+      fail(err) { //手机无网络打开时
         that.setData({
-          infoCheck: res.data.infoCheck,
-          lifeService: res.data.lifeService,
-          oneCheck: res.data.oneCheck
+          infoCheck: JSON.parse(wx.getStorageSync('infoCheck')),
+          lifeService: JSON.parse(wx.getStorageSync('lifeService')),
+          oneCheck: JSON.parse(wx.getStorageSync('oneCheck'))
         })
       }
     })

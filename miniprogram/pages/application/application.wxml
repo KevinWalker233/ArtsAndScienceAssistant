@@ -13,7 +13,7 @@
   </view>
   <view class="function_centerLine"></view>
   <view class="function_content">
-    <view wx:for="{{infoCheck}}" data-index="{{index}}" bindtap="infoCheckClick">
+    <view style="width:100rpx;" wx:for="{{infoCheck}}" data-index="{{index}}" bindtap="infoCheckClick">
       <image src="{{item.image}}" class="function_content_icon"></image>
       <view class="function_content_text">{{item.name}}</view>
     </view>
@@ -27,7 +27,7 @@
   </view>
   <view class="function_centerLine"></view>
   <view class="function_content">
-    <view wx:for="{{lifeService}}" data-index="{{index}}" bindtap="lifeServiceClick">
+    <view style="width:100rpx;" wx:for="{{lifeService}}" data-index="{{index}}" bindtap="lifeServiceClick">
       <image src="{{item.image}}" class="function_content_icon"></image>
       <view class="function_content_text">{{item.name}}</view>
     </view>
@@ -41,7 +41,7 @@
   </view>
   <view class="function_centerLine"></view>
   <view class="function_content">
-    <view wx:for="{{oneCheck}}" data-index="{{index}}" bindtap="oneCheckClick">
+    <view style="width:100rpx;" wx:for="{{oneCheck}}" data-index="{{index}}" bindtap="oneCheckClick">
       <image src="{{item.image}}" class="function_content_icon"></image>
       <view class="function_content_text">{{item.name}}</view>
     </view>
