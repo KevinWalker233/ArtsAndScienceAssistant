@@ -1,0 +1,183 @@
+page {
+  background-color: rgb(250, 250, 250);
+}
+
+.scroll {
+  height: 1050rpx;
+  z-index: 101;
+  background-color: rgb(250, 250, 250);
+}
+
+.left {
+  width: 100%;
+  height: 100rpx;
+  font-size: 6pt;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.kbtext-style {
+  position: relative;
+}
+
+.kbtext-Split {
+  border: 1px rgb(75, 86, 122) solid;
+}
+
+.kbaddress-style {
+  position: relative;
+}
+
+.flex-item {
+  width: 12.3%;
+  height: 190rpx;
+  transition: width 2s;
+  box-shadow: 0 0rpx 8rpx 1rpx rgba(50, 50, 93, .3);
+}
+
+.kcb-item {
+  position: absolute;
+  justify-content: center;
+  display: flex;
+  border-radius: 10rpx;
+  overflow: hidden;
+}
+
+.smalltext {
+  font-size: 17rpx;
+  color: #fff;
+  padding-left: 5rpx;
+  padding-right: 5rpx;
+  padding-top: 10rpx;
+}
+
+.top {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: rgb(250, 250, 250);
+  color: rgb(29, 29, 29);
+  z-index: 999;
+}
+
+.top-text {
+  width: 15%;
+  height: 40rpx;
+  font-size: 23rpx;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+
+.tip {
+  width: 100%;
+  height: 45rpx;
+  margin: auto;
+  font-size: 25rpx;
+  text-align: center;
+  color: #444;
+}
+
+/* 评论 */
+/*模态框*/
+.modals {
+  position: fixed;
+  z-index: 100000;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.modals-cancel {
+  position: absolute;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* background-color: rgba(0,0,0,.5); */
+}
+
+.bottom-dialog-body {
+  width: 99%;
+  margin: 0 auto;
+  position: absolute;
+  z-index: 10001;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 73%;
+  background-color: #fff;
+  border-top-left-radius: 10rpx;
+  border-top-right-radius: 10rpx;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border-top-left-radius: 30rpx;
+  border-top-right-radius: 30rpx;
+  box-shadow: 0 0rpx 18rpx 1rpx rgba(50, 50, 93, .3);
+}
+
+/*动画前初始位置*/
+.bottom-pos {
+  -webkit-transform: translateY(100%);
+  transform: translateY(100%);
+}
+
+.comment_top {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1rpx solid #f2f2f2;
+  padding: 20rpx 24rpx;
+  box-sizing: border-box;
+}
+
+.comment_close {
+  font-size: 62rpx;
+  line-height: 50rpx;
+}
+
+.box {
+  width: 90%;
+  height: 80rpx;
+  margin: auto;
+  margin-top: 20rpx;
+  border-radius: 20rpx;
+  background-color: rgb(240, 240, 240);
+}
+
+.boxContent {
+  width: 93%;
+  height: 80rpx;
+  margin: auto;
+  display: flex;
+}
+
+.inputTitle {
+  width: 35%;
+  height: 80rpx;
+  line-height: 80rpx;
+}
+
+.input {
+  width: 65%;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: right;
+}
+
+.week {
+  width: 50rpx;
+  height: 50rpx;
+  margin: auto;
+  list-style: 50rpx;
+  text-align: center;
+  color: #444;
+  border-bottom: 1rpx solid gray;
+}

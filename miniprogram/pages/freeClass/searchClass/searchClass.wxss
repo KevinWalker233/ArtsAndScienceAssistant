@@ -1,0 +1,75 @@
+page {
+  background-color: rgb(234, 234, 234);
+}
+
+.search {
+  width: 96%;
+  margin: auto;
+}
+
+.search_arr {
+  border: 1px solid #d0d0d0;
+  border-radius: 10rpx;
+}
+
+.search_arr input {
+  margin-left: 60rpx;
+  height: 60rpx;
+  border-radius: 5px;
+}
+
+.bc_text {
+  line-height: 68rpx;
+  height: 68rpx;
+  margin-top: 34rpx;
+}
+
+.sousuo {
+  margin-left: 15rpx;
+  width: 15%;
+  line-height: 150%;
+  text-align: center;
+  border: 1px solid #d0d0d0;
+  border-radius: 10rpx;
+}
+
+.page_row {
+  display: flex;
+  flex-direction: row
+}
+
+.searchcion {
+  margin: 10rpx 10rpx 10rpx 10rpx;
+  position: absolute;
+  left: 20rpx;
+  z-index: 2;
+  width: 20rpx;
+  height: 20rpx;
+  text-align: center;
+}
+
+.boxList {
+  width: 720rpx;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  /* background-color: pink; */
+}
+
+.box {
+  width: 220rpx;
+  min-height: 110rpx;
+  text-align: center;
+  margin: 15rpx 10rpx;
+  border-radius: 5rpx;
+  background-color: white;
+  box-shadow: rgba(100, 100, 100, 0.15) 0rpx 13rpx 27rpx -5rpx, rgba(100, 100, 100, 0.2) 0rpx 8rpx 16rpx -8rpx;
+  font-size: 25rpx;
+  line-height: 30rpx;
+}
+
+.icon {
+  width: 50rpx;
+  height: 50rpx;
+  margin: auto;
+}

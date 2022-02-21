@@ -1,0 +1,17 @@
+<view class='page_row' style="margin-top: 20rpx;">
+  <view class="search">
+    <view class="df search_arr" style="background-color: white;">
+      <icon class="searchcion" size='20' type='search'></icon>
+      <input placeholder="请输入教室" bindinput="bindKeyInput" />
+    </view>
+  </view>
+</view>
+
+<view class="boxList">
+  <view class="box" wx:for="{{showList}}" for-index="index" bindtap="seeClass" data-name="{{item}}">
+    <view class="icon">
+      <image class="icon" src="../../../assets/logoyuantu.png"></image>
+    </view>
+    {{item}}
+  </view>
+</view>

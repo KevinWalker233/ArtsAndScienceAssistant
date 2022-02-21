@@ -1,0 +1,38 @@
+<view class="head">
+  <view class="headContext">
+    <view style="height:60rpx;line-height:60rpx;text-align: center;font-size: 25rpx;">交易数量：{{list.length}}</view>
+    <view style="height:60rpx;line-height:60rpx;text-align: center;font-size: 25rpx;">您好，您此次查询的总交易额为：{{cost}}￥</view>
+  </view>
+</view>
+<scroll-view scroll-y="true" style="height: 92vh;margin-top:15rpx;background-color: rgb(234, 234, 234);">
+  <view class="contant" wx:for="{{list}}">
+    <view class="boxHead" hover-class="boxHead-hover" bindtap="boxClick" data-index="{{index}}">
+      <!-- 头像 -->
+      <view class="headImg">
+        <open-data type="userAvatarUrl"></open-data>
+      </view>
+      <!-- 姓名及学号 -->
+      <view class="headInfrom">
+        <view>{{item.name}}</view>
+        <view style="font-size:20rpx;">{{item.cardID}}</view>
+      </view>
+      <view class="money">
+        <view>交易额:{{item.sum}}</view>
+        <view style="font-size:23rpx;">剩余:{{item.balance}}</view>
+      </view>
+      <view class="inform">
+        <view>{{item.time}}</view>
+        <view style="font-size:30rpx;">{{item.shopType}}</view>
+      </view>
+      <image class="show" style="transform:rotate({{prop[index]!=0?-180:0}}deg);" src="/assets/appIcon/show.png">
+      </image>
+    </view>
+    <view class="boxContant" style="height: {{prop[index]}}rpx;overflow: hidden;">
+      <view class="cardInform" style="opacity: {{prop[index]==150?1:0}};">交易类型:{{item.type}}</view>
+      <view class="cardInform" style="opacity: {{prop[index]==150?1:0}};">用卡次数:{{item.number}}</view>
+      <view class="cardInform" style="opacity: {{prop[index]==150?1:0}};">状态:{{item.status}}</view>
+      <view class="cardInform" style="opacity: {{prop[index]==150?1:0}};width:700rpx;">
+        说明:{{item.inform}}</view>
+    </view>
+  </view>
+</scroll-view>

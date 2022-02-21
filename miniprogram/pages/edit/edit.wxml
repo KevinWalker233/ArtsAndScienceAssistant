@@ -1,0 +1,143 @@
+<view class="top">
+  <view style="width: 9%;"></view>
+  <view class="headColor top-text" wx:key="item" wx:for="{{['一','二','三','四','五','六','日']}}">
+    周{{item}}
+  </view>
+</view>
+<scroll-view scroll-y="true" class="scroll">
+  <view style="width:100%;display:flex;">
+    <view style="width:9%;color:rgb(29,29,29);">
+      <view wx:key="leftClass" wx:for="{{leftClass}}" class="left">
+        <view class="headColor" style="width:50%;font-size:20rpx;text-align:center;">{{item.jieCi}}</view>
+        <view class="headColor" style="width:50%;font-size:16rpx;">{{item.time}}</view>
+      </view>
+    </view>
+
+    <view wx:key="item" wx:for="{{[1,2,3,4,5,6,7,8,9,10]}}">
+      <view style="width:100%;margin-top:{{(index+1)*100}}rpx;position:absolute;border-bottom:1rpx solid {{index==3?'rgb(56,120,194)':'lightgray'}};">
+      </view>
+    </view>
+
+    <view wx:key="item" wx:for="{{wlist}}">
+      <!-- 如果该课表周次和节次跟下一个相等，则高度设为一半 -->
+      <view class="flex-item kcb-item" data-index="{{index}}" wx:if="{{item.weekTime==wlist[index+1].weekTime && item.jieCi==wlist[index+1].jieCi}}" bindtap="showModal" data-type="{{1}}" style="height: 92rpx;margin-left:{{(item.weekTime-1)*99.7}}rpx;background-color:{{colorArrays[index%8]}};opacity:1;margin-top:{{(item.jieCi-1)*100+5}}rpx;">
+        <view class="smalltext">
+          <view class="kbtext-style" wx:if="{{tools.indexOf(item.weeks,'单')}}" style="color:white;">单|{{item.courseName}}</view>
+          <view class="kbtext-style" wx:elif="{{tools.indexOf(item.weeks,'双')}}" style="color:white;">双|{{item.courseName}}</view>
+          <view class="kbtext-style" wx:else style="color:white;">{{item.courseName}}</view>
+          <view class="kbaddress-style" style="padding-top:5rpx;color:white;">
+            {{item.address}}
+          </view>
+        </view>
+      </view>
+      <!-- 如果该课表周次和节次跟上一个相等，则高度设为一半，并且下移一半的距离 -->
+      <view class="flex-item kcb-item" data-index="{{index}}" wx:elif="{{item.weekTime==wlist[index-1].weekTime && item.jieCi==wlist[index-1].jieCi}}" bindtap="showModal" data-type="{{1}}" style="height: 92rpx;margin-left:{{(item.weekTime-1)*99.7}}rpx;background-color:{{colorArrays[index%8]}};opacity:1;margin-top:{{(item.jieCi-1)*100+5+97}}rpx;">
+        <view class="smalltext">
+          <view class="kbtext-style" wx:if="{{tools.indexOf(item.weeks,'单')}}" style="color:white;">单|{{item.courseName}}</view>
+          <view class="kbtext-style" wx:elif="{{tools.indexOf(item.weeks,'双')}}" style="color:white;">双|{{item.courseName}}</view>
+          <view class="kbtext-style" wx:else style="color:white;">{{item.courseName}}</view>
+          <view class="kbaddress-style" style="padding-top:5rpx;color:white;">
+            {{item.address}}
+          </view>
+        </view>
+      </view>
+      <!-- 如果该课表周次和节次跟上一个和下一个都不相等-->
+      <view class="flex-item kcb-item" data-index="{{index}}" wx:else bindtap="showModal" data-type="{{1}}" style="margin-left:{{(item.weekTime-1)*99.7}}rpx;background-color:{{colorArrays[index%8]}};opacity:1;margin-top:{{(item.jieCi-1)*100+5}}rpx;">
+        <view class="smalltext">
+          <view class="kbtext-style" wx:if="{{tools.indexOf(item.weeks,'单')}}" style="color:white;">单|{{item.courseName}}</view>
+          <view class="kbtext-style" wx:elif="{{tools.indexOf(item.weeks,'双')}}" style="color:white;">双|{{item.courseName}}</view>
+          <view class="kbtext-style" wx:else style="color:white;">{{item.courseName}}</view>
+          <view class="kbtext-style" style="color:white;">{{item.teacher}}</view>
+          <!-- <view class="kbtext-Split"></view> -->
+          <view class="kbaddress-style" style="padding-top:5rpx;color:white;">
+            {{item.address}}
+          </view>
+        </view>
+      </view>
+
+    </view>
+  </view>
+</scroll-view>
+<view class="tip">点击对应课程可编辑</view>
+<button type="primary" bindtap="showModal" data-type="{{0}}">添加课程</button>
+
+<view class="modals modals-bottom-dialog" hidden="{{hideModal}}" style="width:100%;height:100vh;">
+  <view class="modals-cancel" bindtap="hideModal"></view>
+  <view class="bottom-dialog-body bottom-pos" animation="{{animationData}}">
+    <view class="comment_top">
+      <view>课程编辑</view>
+      <view class="comment_close" bindtap="hideModal">×</view>
+    </view>
+    <view>
+      <view class="box">
+        <view class="boxContent">
+          <view class="inputTitle">课程名称：</view>
+          <input class="input" placeholder="课程名称" type="text" model:value="{{classValue}}" />
+        </view>
+      </view>
+      <view class="box">
+        <view class="boxContent">
+          <view class="inputTitle">教室：</view>
+          <input class="input" placeholder="教室名称" type="text" model:value="{{classRoomValue}}" />
+        </view>
+      </view>
+      <view class="box">
+        <view class="boxContent">
+          <view class="inputTitle">老师：</view>
+          <input class="input" placeholder="老师名称" type="text" model:value="{{teacherValue}}" />
+        </view>
+      </view>
+      <view class="box">
+        <view class="boxContent">
+          <view class="inputTitle">上课周次：</view>
+          <picker class="input" bindchange="bindWeekChange" value="{{weekIndex}}" range="{{weekArray}}">
+            <view>
+              周{{weekArray[weekIndex]}}上课
+            </view>
+          </picker>
+        </view>
+      </view>
+      <view class="box">
+        <view class="boxContent">
+          <view class="inputTitle">上课节次：</view>
+          <picker class="input" bindchange="bindJieCiChange" value="{{jieCiIndex}}" range="{{jieCiArray}}">
+            <view>
+              {{jieCiArray[jieCiIndex]}}
+            </view>
+          </picker>
+        </view>
+      </view>
+      <view class="box">
+        <view class="boxContent" style="justify-content: space-between;">
+          <view class="inputTitle">周次：</view>
+          <view class="input" style="width: 35%;display: flex;">
+            第
+            <input class="week" placeholder="1" type="text" model:value="{{startWeek}}" />
+            -
+            <input class="week" placeholder="20" type="text" model:value="{{endWeek}}" />
+            周
+          </view>
+        </view>
+      </view>
+      <view class="box">
+        <view class="boxContent">
+          <view class="inputTitle">单双周：</view>
+          <view class="input">
+            <radio-group bindchange="radioChange" class="input" style="width: 100%;display: flex;">
+              <label style="width: 150rpx;height: 80rpx;display: flex;" wx:for="{{items}}" wx:key="{{item.value}}">
+                <view>
+                  <radio value="{{item.value}}" checked="{{item.checked}}" />
+                </view>
+                <view style="line-height: 80rpx;">{{item.name}}</view>
+              </label>
+            </radio-group>
+          </view>
+        </view>
+      </view>
+      <button wx:if="{{type==0}}" type="primary" style="margin-top: 30rpx;" bindtap="addClass" data-type="{{1}}">添加</button>
+      <button wx:else type="primary" style="margin-top: 30rpx;" bindtap="addClass" data-type="{{0}}">保存</button>
+
+      <button wx:if="{{type==1}}" type="warn" style="margin-top: 10rpx;" bindtap="addClass" data-type="{{2}}">删除</button>
+    </view>
+  </view>
+</view>

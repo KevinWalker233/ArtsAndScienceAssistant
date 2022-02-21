@@ -1,0 +1,60 @@
+<view class="top">
+  <view style="width: 9%;"></view>
+  <view class="headColor top-text" wx:key="item" wx:for="{{['一','二','三','四','五','六','日']}}">
+    周{{item}}
+  </view>
+</view>
+<scroll-view scroll-y="true" class="scroll">
+  <view style="width:100%;display:flex;">
+    <view style="width:9%;color:rgb(29,29,29);">
+      <view wx:key="leftClass" wx:for="{{leftClass}}" class="left">
+        <view class="headColor" style="width:50%;font-size:20rpx;text-align:center;">{{item.jieCi}}</view>
+        <view class="headColor" style="width:50%;font-size:16rpx;">{{item.time}}</view>
+      </view>
+    </view>
+
+    <view wx:key="item" wx:for="{{[1,2,3,4,5,6,7,8,9,10]}}">
+      <view style="width:100%;margin-top:{{(index+1)*100}}rpx;position:absolute;border-bottom:1rpx solid {{index==3?'rgb(56,120,194)':'lightgray'}};">
+      </view>
+    </view>
+
+    <view wx:key="item" wx:for="{{wlist}}">
+      <!-- 如果该课表周次和节次跟下一个相等，则高度设为一半 -->
+      <view class="flex-item kcb-item" data-index="{{index}}" wx:if="{{item.weekTime==wlist[index+1].weekTime && item.jieCi==wlist[index+1].jieCi}}" bindtap="classClick" style="height: 92rpx;margin-left:{{(item.weekTime-1)*99.7}}rpx;background-color:{{colorArrays[index%8]}};opacity:1;margin-top:{{(item.jieCi-1)*100+5}}rpx;">
+        <view class="smalltext">
+          <view class="kbtext-style" wx:if="{{tools.indexOf(item.weeks,'单')}}" style="color:white;">单|{{item.courseName}}</view>
+          <view class="kbtext-style" wx:elif="{{tools.indexOf(item.weeks,'双')}}" style="color:white;">双|{{item.courseName}}</view>
+          <view class="kbtext-style" wx:else style="color:white;">{{item.courseName}}</view>
+          <view class="kbaddress-style" style="padding-top:5rpx;color:white;">
+            {{item.weeks}}
+          </view>
+        </view>
+      </view>
+      <!-- 如果该课表周次和节次跟上一个相等，则高度设为一半，并且下移一半的距离 -->
+      <view class="flex-item kcb-item" data-index="{{index}}" wx:elif="{{item.weekTime==wlist[index-1].weekTime && item.jieCi==wlist[index-1].jieCi}}" bindtap="classClick" style="height: 92rpx;margin-left:{{(item.weekTime-1)*99.7}}rpx;background-color:{{colorArrays[index%8]}};opacity:1;margin-top:{{(item.jieCi-1)*100+5+97}}rpx;">
+        <view class="smalltext">
+          <view class="kbtext-style" wx:if="{{tools.indexOf(item.weeks,'单')}}" style="color:white;">单|{{item.courseName}}</view>
+          <view class="kbtext-style" wx:elif="{{tools.indexOf(item.weeks,'双')}}" style="color:white;">双|{{item.courseName}}</view>
+          <view class="kbtext-style" wx:else style="color:white;">{{item.courseName}}</view>
+          <view class="kbaddress-style" style="padding-top:5rpx;color:white;">
+            {{item.weeks}}
+          </view>
+        </view>
+      </view>
+      <!-- 如果该课表周次和节次跟上一个和下一个都不相等-->
+      <view class="flex-item kcb-item" data-index="{{index}}" wx:else bindtap="classClick" style="margin-left:{{(item.weekTime-1)*99.7}}rpx;background-color:{{colorArrays[index%8]}};opacity:1;margin-top:{{(item.jieCi-1)*100+5}}rpx;">
+        <view class="smalltext">
+          <view class="kbtext-style" wx:if="{{tools.indexOf(item.weeks,'单')}}" style="color:white;">单|{{item.courseName}}</view>
+          <view class="kbtext-style" wx:elif="{{tools.indexOf(item.weeks,'双')}}" style="color:white;">双|{{item.courseName}}</view>
+          <view class="kbtext-style" wx:else style="color:white;">{{item.courseName}}</view>
+          <view class="kbtext-style" style="color:white;">{{item.teacher}}</view>
+          <!-- <view class="kbtext-Split"></view> -->
+          <view class="kbaddress-style" style="padding-top:5rpx;color:white;">
+            {{item.weeks}}
+          </view>
+        </view>
+      </view>
+
+    </view>
+  </view>
+</scroll-view>

@@ -1,0 +1,13 @@
+<view class="bg">
+  <view class="circle circle-1"></view>
+  <view class="circle circle-2"></view>
+  <view class="circle circle-3"></view>
+  <view class="circle circle-4"></view>
+  <view class="title">写给毕业时自己的一封信：</view>
+  <textarea class="text" maxlength="-1" bindinput="input"
+    placeholder="（在这里进行编辑）亲爱的自己：你好！当光阴迈着一成不变的脚步不疾不缓地走着;走过一个个春夏秋冬，走过一个个月阴日晴;当年龄成为时间流逝的证据;当春华和秋实都成为历史。毕业后的你，披满雪花坐在昨天的记忆中，咀嚼脸上，每一道沟壑所深藏的故事，该是一种怎样的心境?此刻的你，读着这封从遥远的过去发来的信，又是怎样的一种心情呢……" ></textarea>
+  <view class="titleB">——{{name}}</view>
+  <view class="titleB">毕业于：{{graduateYear}}年</view>
+  <view class="send" bindtap="send">寄出</view>
+  <view class="tip">请记住信封编号为您的学号！重复寄出会覆盖掉上次的寄出</view>
+</view>

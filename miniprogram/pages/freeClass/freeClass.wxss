@@ -1,0 +1,73 @@
+page {
+  background-color: rgb(250, 250, 250);
+}
+
+.scroll {
+  height: 1050rpx;
+  z-index: 101;
+  background-color: rgb(250, 250, 250);
+}
+
+.left {
+  width: 100%;
+  height: 100rpx;
+  font-size: 6pt;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.kbtext-style {
+  position: relative;
+}
+
+.kbtext-Split {
+  border: 1px rgb(75, 86, 122) solid;
+}
+
+.kbaddress-style {
+  position: relative;
+}
+
+.flex-item {
+  width: 12.3%;
+  height: 190rpx;
+  transition: width 2s;
+  box-shadow: 0 0rpx 8rpx 1rpx rgba(50, 50, 93, .3);
+}
+
+.kcb-item {
+  position: absolute;
+  justify-content: center;
+  display: flex;
+  border-radius: 10rpx;
+  overflow: hidden;
+}
+
+.smalltext {
+  font-size: 17rpx;
+  color: #fff;
+  padding-left: 5rpx;
+  padding-right: 5rpx;
+  padding-top: 10rpx;
+}
+
+.top {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: rgb(250, 250, 250);
+  color: rgb(29, 29, 29);
+  z-index: 999;
+}
+
+.top-text {
+  width: 15%;
+  height: 40rpx;
+  font-size: 23rpx;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}

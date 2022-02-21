@@ -1,0 +1,104 @@
+page {
+  background-color: rgb(234, 234, 234);
+}
+
+.head {
+  width: 100%;
+  height: 8vh;
+  /* background-color: pink; */
+  background-color: rgb(234, 234, 234);
+}
+
+.headContext{
+  width: 96%;
+  height: 120rpx;
+  margin: 15rpx auto;
+  background-color: white;
+  border-radius: 15rpx;
+}
+
+.contant {
+  width: 100%;
+  margin: 15rpx auto;
+}
+
+.boxHead {
+  width: 100%;
+  /* 修改这里的height可以更改主展示框的高度 */
+  height: 120rpx;
+  background-color: white;
+  position: relative;
+  display: flex;
+}
+
+.headImg {
+  width: 100rpx;
+  height: 100rpx;
+  margin: auto 0rpx;
+  margin-left: 10rpx;
+  border-radius: 50rpx;
+  overflow: hidden;
+}
+
+.headInfrom {
+  width: 150rpx;
+  height: 100rpx;
+  margin: auto 10rpx;
+  font-size: 28rpx;
+  color: #444;
+  font-weight: bold;
+  line-height: 50rpx;
+  /* background-color: pink; */
+}
+
+.money {
+  width: 200rpx;
+  height: 100rpx;
+  margin: auto 5rpx;
+  margin-left: 0rpx;
+  font-size: 26rpx;
+  color: #444;
+  font-weight: bold;
+  line-height: 50rpx;
+  /* background-color: pink; */
+}
+
+.inform {
+  width: 220rpx;
+  height: 100rpx;
+  margin: auto 5rpx;
+  font-size: 20rpx;
+  color: #444;
+  font-weight: bold;
+  line-height: 50rpx;
+  text-align: center;
+  /* background-color: pink; */
+}
+
+.show {
+  width: 27rpx;
+  height: 13rpx;
+  margin: auto 10rpx;
+  transform: rotate(0deg);
+  transition: 0.5s;
+  /* background-color: pink; */
+}
+
+.boxContant {
+  width: 100%;
+  height: 0rpx;
+  background-color: white;
+  transition: height 0.5s;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cardInform {
+  width: 350rpx;
+  height: 30rpx;
+  margin: 10rpx;
+  font-size: 25rpx;
+  opacity: 0;
+  transition: opacity 0.4s;
+  /* background-color: #444; */
+}
