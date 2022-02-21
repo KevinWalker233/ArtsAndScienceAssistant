@@ -95,10 +95,22 @@ Page({
   },
   //刷新位置
   updateLocal(res) {
+    wx.showLoading({
+      title: '刷新中',
+    })
     var that = this
     wx.getLocation({
       type: 'gcj02',
       success: function (res) {
+        wx.hideLoading({
+          success: (res) => {
+            wx.showToast({
+              title: '成功',
+              icon: 'success',
+              duration: 1000
+            })
+          }
+        })
         that.setData({
           latitude: res.latitude,
           longitude: res.longitude,
@@ -106,6 +118,18 @@ Page({
             latitude: res.latitude,
             longitude: res.longitude,
           }]
+        })
+      },
+      fail(err) {
+        console.log(err)
+        wx.hideLoading({
+          success: (res) => {
+            wx.showToast({
+              title: '请稍后再试',
+              icon: 'error',
+              duration: 1000
+            })
+          }
         })
       }
     })
@@ -191,6 +215,9 @@ Page({
 
   //提交数据
   Submit: function () {
+    wx.showLoading({
+      title: '发布中',
+    })
     var that = this
     console.log(that.data.date)
     wx.cloud.callFunction({
@@ -212,19 +239,27 @@ Page({
       },
       success: function (res) {
         if (res.result == -1) {
-          wx.showToast({
-            title: '您已被封禁！',
-            icon: 'error',
-            duration: 2000
+          wx.hideLoading({
+            success: (res) => {
+              wx.showToast({
+                title: '您已被封禁！',
+                icon: 'error',
+                duration: 2000
+              })
+            }
           })
         } else {
-          wx.showToast({
-            title: '提交成功！',
-            icon: 'success',
-            duration: 2000,
-            success(res) {
-              wx.navigateBack({
-                delta: 1
+          wx.hideLoading({
+            success: (res) => {
+              wx.showToast({
+                title: '提交成功！',
+                icon: 'success',
+                duration: 2000,
+                success(res) {
+                  wx.navigateBack({
+                    delta: 1
+                  })
+                }
               })
             }
           })
@@ -232,10 +267,14 @@ Page({
       },
       fail: function (res) {
         console.log(res)
-        wx.showModal({
-          title: '发布错误',
-          content: '未知错误',
-          showCancel: false
+        wx.hideLoading({
+          success: (res) => {
+            wx.showModal({
+              title: '发布错误',
+              content: '未知错误',
+              showCancel: false
+            })
+          }
         })
       }
     })

@@ -1,4 +1,4 @@
-<canvas class="canvas" style="width:380px;height:740px;margin:auto;background-color:rgba(250,250,250);"
+<canvas class="canvas" style="width:400px;height:800px;margin:auto;background-color:rgba(250,250,250);"
   canvas-id='canvas'></canvas>
 <view style="width:40%;height:600rpx;margin:auto;margin-top:100rpx;">
   <image style="width:100%;height:100%;margin:auto;" src="{{img}}"></image>
@@ -7,6 +7,4 @@
 <view class="share" style="background-color:#6A5ACD;" bindtap="tap">点我打开图片，长按即可分享</view>
 <view style="font-size:50rpx;text-align:center;font-weight:bold;">或</view>
 <view class="share" style="background-color:#DAA520;" bindtap="shareCode">点我打开二维码分享课表</view>
-<view style="font-size:50rpx;text-align:center;font-weight:bold;">或</view>
-<view class="share" style="background-color:#DB7093;" bindtap="shareTextCode">手动设置课表</view>
 <ad unit-id="adunit-995db040c52ff12e"></ad>

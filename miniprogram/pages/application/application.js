@@ -9,7 +9,11 @@ Page({
     carouselImgUrls: [],
     infoCheck: [],
     lifeService: [],
-    oneCheck: []
+    oneCheck: [],
+    imgUrl: "",
+    url: "",
+    flag: false,
+    sec: 5
   },
   // 信息查询内功能点击
   infoCheckClick(res) {
@@ -32,11 +36,60 @@ Page({
       url: this.data.oneCheck[index].page
     })
   },
+  //点击广告进入页面
+  activity(res) {
+    wx.navigateTo({
+      url: this.data.url,
+    })
+  },
+  //关闭活动广告
+  closeActicity(res) {
+    clearInterval(this.id)
+    clearTimeout(this.time)
+    this.setData({
+      flag: false
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     var that = this
+    wx.cloud.database().collection("config").doc("activity").get({
+      success(res) {
+        if (res.data.open) {
+          that.setData({
+            imgUrl: res.data.imgUrl,
+            url: res.data.url,
+            flag:res.data.open
+          })
+          var s = 5
+          var id = setInterval(function () {
+            s--
+            that.setData({
+              sec: s
+            })
+          }, 1000)
+          var time = setTimeout(function () {
+            that.setData({
+              flag: false
+            })
+            clearInterval(id)
+          }, 5000)
+          this.id = id
+          this.time = time
+        }
+      }
+    })
+    configDb.doc('navigationBar').get({
+      success(res) {
+        wx.setNavigationBarColor({
+          frontColor: res.data.frontColor,
+          backgroundColor: res.data.backgroundColor
+        })
+      }
+    })
+
     configDb.doc('banner').get({
       success(res) {
         that.setData({
@@ -54,6 +107,7 @@ Page({
             oneCheck: JSON.parse(wx.getStorageSync('oneCheck'))
           })
         } else { //版本号不同
+          console.log("!=")
           wx.setStorageSync('infoCheck', JSON.stringify(res.data.infoCheck))
           wx.setStorageSync('lifeService', JSON.stringify(res.data.lifeService))
           wx.setStorageSync('oneCheck', JSON.stringify(res.data.oneCheck))
@@ -66,6 +120,7 @@ Page({
         }
       },
       fail(err) { //手机无网络打开时
+        console.log("断网", err)
         that.setData({
           infoCheck: JSON.parse(wx.getStorageSync('infoCheck')),
           lifeService: JSON.parse(wx.getStorageSync('lifeService')),

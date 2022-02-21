@@ -131,5 +131,3 @@ page {
   text-align: center;
   color: #444;
 }
-
-@import 'checkGrades-wxa-auto-dark.wxss'

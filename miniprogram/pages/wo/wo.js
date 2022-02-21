@@ -17,7 +17,30 @@ Page({
       welcome: '', //顶部的美文美句
       welcomeAnimation: {}, //顶部美文动画效果
       cardShow: {} //卡片展示动画
-    }
+    },
+    color: "#3878C2",
+    headImage: "" //头像地址
+  },
+  //点击头像获取用户信息
+  getUser(res) {
+    var that = this
+    wx.showModal({
+      title: '提示',
+      content: '授权后仅使用您的头像信息',
+      confirmText: '我知道了',
+      showCancel: false,
+      success(res) {
+        wx.getUserProfile({
+          desc: '用户头像展示', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+          success: (res) => {
+            that.setData({
+              headImage: res.userInfo.avatarUrl
+            })
+            wx.setStorageSync('headImage', res.userInfo.avatarUrl)
+          }
+        })
+      }
+    })
   },
   loginL(res) { //授权教务系统
     wx.navigateTo({
@@ -105,7 +128,25 @@ Page({
    */
   onLoad: function (options) {
     var that = this
-
+    configDb.doc('navigationBar').get({
+      success(res) {
+        wx.setNavigationBarColor({
+          frontColor: res.data.frontColor,
+          backgroundColor: res.data.backgroundColor
+        })
+        that.setData({
+          color: res.data.backgroundColor
+        })
+      }
+    })
+    wx.getStorage({
+      key: 'headImage',
+      success(res) {
+        that.setData({
+          headImage: res.data
+        })
+      }
+    })
     wx.cloud.callFunction({
       name: "getopenid",
       complete: res => {

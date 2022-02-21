@@ -1,4 +1,6 @@
 var app = getApp()
+const accountDb = wx.cloud.database().collection("account")
+const configDb = wx.cloud.database().collection("config");
 
 Page({
 
@@ -19,22 +21,21 @@ Page({
   clickBox(e) {
     wx.showModal({
       title: '成绩信息',
-      content: 
-      '学年:' + this.data.showResults[e.currentTarget.dataset.index]['xn'] + '\r\n' +
-      '学期:' + this.data.showResults[e.currentTarget.dataset.index]['xq'] + '\r\n' +
-      this.data.showResults[e.currentTarget.dataset.index]['kcmc'] + '\r\n' +
-      '成绩:' + this.data.showResults[e.currentTarget.dataset.index]['cj'] + '\r\n' +
-      '绩点:' + this.data.showResults[e.currentTarget.dataset.index]['jd'] + '\r\n' +
-      '补考成绩:' + this.data.showResults[e.currentTarget.dataset.index]['bkcj'] + '\r\n' +
-      '重修成绩:' + this.data.showResults[e.currentTarget.dataset.index]['cxcj'] + '\r\n' +
-      '学分:' + this.data.showResults[e.currentTarget.dataset.index]['xf'] + '\r\n' +
-      '辅修标记:' + this.data.showResults[e.currentTarget.dataset.index]['fxbj'] + '\r\n' +
-      '重修标记:' + this.data.showResults[e.currentTarget.dataset.index]['cxbj'] + '\r\n' +
-      '课程代码:' + this.data.showResults[e.currentTarget.dataset.index]['kcdm'] + '\r\n' +
-      '课程性质:' + this.data.showResults[e.currentTarget.dataset.index]['kcxz'] + '\r\n' +
-      '课程归属:' + this.data.showResults[e.currentTarget.dataset.index]['kxgs'] + '\r\n' +
-      '开课学院:' + this.data.showResults[e.currentTarget.dataset.index]['kkxy'] + '\r\n' +
-      '备注:' + this.data.showResults[e.currentTarget.dataset.index]['bz'],
+      content: '学年:' + this.data.showResults[e.currentTarget.dataset.index]['xn'] + '\r\n' +
+        '学期:' + this.data.showResults[e.currentTarget.dataset.index]['xq'] + '\r\n' +
+        this.data.showResults[e.currentTarget.dataset.index]['kcmc'] + '\r\n' +
+        '成绩:' + this.data.showResults[e.currentTarget.dataset.index]['cj'] + '\r\n' +
+        '绩点:' + this.data.showResults[e.currentTarget.dataset.index]['jd'] + '\r\n' +
+        '补考成绩:' + this.data.showResults[e.currentTarget.dataset.index]['bkcj'] + '\r\n' +
+        '重修成绩:' + this.data.showResults[e.currentTarget.dataset.index]['cxcj'] + '\r\n' +
+        '学分:' + this.data.showResults[e.currentTarget.dataset.index]['xf'] + '\r\n' +
+        '辅修标记:' + this.data.showResults[e.currentTarget.dataset.index]['fxbj'] + '\r\n' +
+        '重修标记:' + this.data.showResults[e.currentTarget.dataset.index]['cxbj'] + '\r\n' +
+        '课程代码:' + this.data.showResults[e.currentTarget.dataset.index]['kcdm'] + '\r\n' +
+        '课程性质:' + this.data.showResults[e.currentTarget.dataset.index]['kcxz'] + '\r\n' +
+        '课程归属:' + this.data.showResults[e.currentTarget.dataset.index]['kxgs'] + '\r\n' +
+        '开课学院:' + this.data.showResults[e.currentTarget.dataset.index]['kkxy'] + '\r\n' +
+        '备注:' + this.data.showResults[e.currentTarget.dataset.index]['bz'],
       confirmText: '我知道了',
       showCancel: false
     })
@@ -109,8 +110,8 @@ Page({
       success(res) {
         app.globalData.results = [].concat(JSON.parse(res.data))
         that.setData({
-          results: [].concat(JSON.parse(res.data)),
-          showResults: [].concat(JSON.parse(res.data))
+          results: ([].concat(JSON.parse(res.data))),
+          showResults: ([].concat(JSON.parse(res.data)))
         })
       },
       fail(res) {
@@ -135,7 +136,30 @@ Page({
       results: app.globalData.results,
       showResults: app.globalData.results
     })
-
+    configDb.doc('xqxx').get().then(res => {
+      var jdsNum = 0.0 //非公共任选课程数量
+      var zyNum = 0.0 //非公共任选课程总成绩
+      for (var i = 0; i < app.globalData.results.length; i++) {
+        //如果 成绩 或 补考成绩 或 重修成绩 大于60分
+        if (parseFloat(app.globalData.results[i].cj) >= 60.0 || parseFloat(app.globalData.results[i].bkcj) >= 60.0 || parseFloat(app.globalData.results[i].cxcj) >= 60.0) {
+          if (app.globalData.results[i].xn === res.data.xn) { //本学年
+            if (app.globalData.results[i].kcxz != "公共任选课") {
+              zyNum = zyNum + parseFloat(app.globalData.results[i].cj) //总成绩
+              jdsNum++
+            }
+          }
+        }
+      }
+      var cjNum = (zyNum / jdsNum).toFixed(2)
+      console.log(cjNum)
+      if (cjNum >= 0) {
+        accountDb.doc(app.globalData._openid).update({
+          data: {
+            xfjd: cjNum //学分绩点和
+          }
+        })
+      }
+    })
     const xnsSet = new Set(); //创建一个数组用来存学年
     const xqsSet = new Set(); //创建一个数组用来存学期
     for (var i = 0; i < that.data.results.length; i++) {

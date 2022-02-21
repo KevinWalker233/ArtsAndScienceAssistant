@@ -15,7 +15,7 @@
 <swiper class="swiper" current="{{currentTab}}" bindchange="swiperChange" style="height:{{inform.length *150}}rpx;">
   <swiper-item>
     <view class="info">
-      <view class="cards" wx:for="{{inform}}" wx:if="{{item.type == 0}}" catchtap="clickInfo" data-index="{{index}}">
+      <view class="cards" wx:for="{{inform}}" wx:if="{{item.type == 1}}" catchtap="clickInfo" data-index="{{index}}">
         <view class="headView">
           <image class="headImg" src="{{item.headImg}}"></image>
         </view>
@@ -42,7 +42,7 @@
   </swiper-item>
   <swiper-item>
     <view class="info">
-      <view class="cards" wx:for="{{inform}}" wx:if="{{item.type == 1}}" catchtap="clickInfo" data-index="{{index}}">
+      <view class="cards" wx:for="{{inform}}" wx:if="{{item.type == 0}}" catchtap="clickInfo" data-index="{{index}}">
         <view class="headView">
           <image class="headImg" src="{{item.headImg}}"></image>
         </view>

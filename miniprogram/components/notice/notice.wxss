@@ -47,4 +47,3 @@
   justify-content: center;
   color: rgb(82, 82, 82);
 }
-@import 'notice-wxa-auto-dark.wxss'

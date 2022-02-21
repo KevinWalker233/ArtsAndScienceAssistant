@@ -133,5 +133,3 @@ page {
 .tui-countdown-bg {
   background-color: #DF0101;
 }
-
-@import 'holiday-wxa-auto-dark.wxss'

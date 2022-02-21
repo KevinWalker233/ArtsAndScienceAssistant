@@ -2,6 +2,8 @@
   "usingComponents": {
      "custom-swiper": "../../components/customSwiper/customSwiper",
      "notice": "../../components/notice/notice",
-     "functions":"../../components/customFunction/customFunction"
+     "functions":"../../components/customFunction/customFunction",
+     "mp-badge": "weui-miniprogram/badge/badge",
+     "mp-icon": "weui-miniprogram/icon/icon"
   }
 }

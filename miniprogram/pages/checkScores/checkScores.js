@@ -12,7 +12,8 @@ Page({
     jdNum: 0, //本学期所学课程数量
     xfJD: 0, //总绩点
     xfJDNum: 0, //平均绩点
-    xfNum: 0, //目前已修学分
+    xfNum: 0, //目前已修学分,
+    zhNum: 0, //本学期综合成绩
     ranking: []
   },
 
@@ -45,34 +46,45 @@ Page({
         xn: res.data.xn,
         xq: res.data.xq
       })
-      var jd = 0 //总绩点
-      var jdNum = 0 //课程数量
-      var num = 0 //总学分
-      var xfJDNum = 0 //学分绩点和
+      var jd = 0.0 //总绩点
+      var jdNum = 0.0 //课程数量
+      var jdsNum = 0.0 //非公共任选课程数量
+      var num = 0.0 //总学分
+      var xfJDNum = 0.0 //学分绩点和
+      var zyNum = 0.0
       for (var i = 0; i < app.globalData.results.length; i++) {
         //如果 成绩 或 补考成绩 或 重修成绩 大于60分
-        if (parseInt(app.globalData.results[i].cj) >= 60 || parseInt(app.globalData.results[i].bkcj) >= 60 || parseInt(app.globalData.results[i].cxcj) >= 60) {
+        if (parseFloat(app.globalData.results[i].cj) >= 60.0 || parseFloat(app.globalData.results[i].bkcj) >= 60.0 || parseFloat(app.globalData.results[i].cxcj) >= 60.0) {
           num = num + parseFloat(app.globalData.results[i].xf)
+          xfJDNum = xfJDNum + (parseFloat(app.globalData.results[i].xf) * parseFloat(app.globalData.results[i].jd)) //学分绩点总和
+          if (app.globalData.results[i].xn === that.data.xn) { //本学年
+            if (app.globalData.results[i].xq === that.data.xq) { //本学期
+              jd = jd + parseFloat(app.globalData.results[i].jd) //总绩点
+              jdNum++ //本学期所学课程数
+            }
+            if (app.globalData.results[i].kcxz != "公共任选课") {
+              zyNum = zyNum + parseFloat(app.globalData.results[i].cj) //总成绩
+              jdsNum++
+            }
+          }
         } else if (app.globalData.results[i].cj === '免修') { //如果为免修
           num = num + parseFloat(app.globalData.results[i].xf)
         }
-        xfJDNum = xfJDNum + (parseFloat(app.globalData.results[i].xf) * parseFloat(app.globalData.results[i].jd)) //学分绩点总和
-        if (app.globalData.results[i].xn === that.data.xn && app.globalData.results[i].xq === that.data.xq) {
-          jd = jd + parseFloat(app.globalData.results[i].jd) //总绩点
-          jdNum++ //本学期所学课程数
-        }
       }
       xfJDNum = xfJDNum.toFixed(2)
+      jd = jd.toFixed(2)
+      console.log(jd)
       that.setData({
         xfNum: num,
         jdNum: jdNum,
         xfJD: jd,
-        xfJDNum: xfJDNum
+        xfJDNum: xfJDNum,
+        zhNum: (zyNum / jdsNum).toFixed(2)
       })
       if (xfJDNum >= 0) {
         accountDb.doc(app.globalData._openid).update({
           data: {
-            xfjd: xfJDNum //学分绩点和
+            xfjd: (zyNum / jdsNum).toFixed(2) //学分绩点和
           }
         })
       }

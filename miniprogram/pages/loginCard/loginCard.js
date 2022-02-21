@@ -15,7 +15,7 @@ Page({
     loginB: false, //这个是登陆按钮loding动画的设置
     inputType: true //这个是用来判断明文暗文密码输入
   },
-  eye(res){
+  eye(res) {
     this.setData({
       inputType: !this.data.inputType
     })
@@ -34,6 +34,9 @@ Page({
   },
   //登陆按钮
   login(res) {
+    wx.showLoading({
+      title: '登陆中',
+    })
     var that = this
     that.setData({ //点击登陆设置按钮loding
       loginB: true
@@ -45,6 +48,15 @@ Page({
         password: that.data.password
       },
       success(res) {
+        wx.hideLoading({
+          success: (res) => {
+            wx.showToast({
+              title: '成功',
+              icon: 'success',
+              duration: 1000
+            })
+          },
+        })
         // console.log(res.result)
         that.setData({ //登陆成功返回内容
           loginB: false, //关闭登陆按钮loading

@@ -12,7 +12,7 @@ page {
 
 .headBox {
   width: 85%;
-  height: 410rpx;
+  height: 450rpx;
   margin: 0 auto;
   position: relative;
   top: 90rpx;
@@ -94,5 +94,3 @@ page {
   text-align: center;
   line-height: 60rpx;
 }
-
-@import 'checkScores-wxa-auto-dark.wxss'

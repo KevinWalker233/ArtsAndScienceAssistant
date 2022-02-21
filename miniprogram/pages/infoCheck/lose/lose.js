@@ -4,7 +4,7 @@ Page({
    */
   data: {
     inform: [],
-    navbar: ['拾取', '丢失'],
+    navbar: ['丢失', '拾取'],
     currentTab: 0,
     //搜索相关
     inputShowed: false,
@@ -25,7 +25,7 @@ Page({
   clickInfo(res) {
     var index = res.currentTarget.dataset.index
     wx.navigateTo({
-      url: '/pages/infoCheck/lose/loseInform/loseInform?inform=' + JSON.stringify(this.data.inform[index])
+      url: '/pages/infoCheck/lose/loseInform/loseInform?inform=' + JSON.stringify(this.data.inform[index]).replace(/&/g, "")
     })
   },
   add(res) {

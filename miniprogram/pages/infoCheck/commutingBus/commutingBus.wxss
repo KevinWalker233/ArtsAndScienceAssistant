@@ -40,5 +40,3 @@
   height: 120rpx;
   align-items: center;
 }
-
-@import 'commutingBus-wxa-auto-dark.wxss'

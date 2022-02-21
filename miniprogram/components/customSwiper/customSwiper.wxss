@@ -58,4 +58,3 @@ page{
 .bg-333{
   background-color: #333;
 }
-@import 'customSwiper-wxa-auto-dark.wxss'

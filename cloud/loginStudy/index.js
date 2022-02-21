@@ -81,10 +81,10 @@ function getClass(classHtml, event, user) {
   inform.push(success)
   inform.push(wlist)
   inform.push(user)
-  const openid = cloud.getWXContext().OPENID
-  db.collection("account").add({ //添加用户信息
+  var openid = cloud.getWXContext().OPENID
+  db.collection("account").doc(openid).set({ //添加用户信息
     data: {
-      _id: openid, //openid也存到id上，防止一个用户多次储存
+      // _id: openid, //openid也存到id上，防止一个用户多次储存
       _openid: openid, //以防万一
       account: event.account, //账号
       cardAccount: '', //卡务系统账号
@@ -98,9 +98,9 @@ function getClass(classHtml, event, user) {
       xfjd: 0 //学分绩点和
     }
   })
-  db.collection("accountX").add({ //添加用户信息
+  db.collection("accountX").doc(openid).set({ //添加用户信息
     data: {
-      _id: openid, //openid也存到id上，防止一个用户多次储存
+      // _id: openid, //openid也存到id上，防止一个用户多次储存
       _openid: openid, //以防万一
       account: event.account, //账号
       password: event.password, //密码
@@ -324,7 +324,7 @@ exports.main = async (event, context) => {
                 text: '登陆成功！'
               }
               inform.push(success)
-              inform.push(results)
+              inform.push(results.reverse())
               resolve(inform)
             })
           })

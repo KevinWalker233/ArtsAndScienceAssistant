@@ -62,4 +62,3 @@ page {
 .sview{
   height: 100%;
 }
-@import 'schoolTel-wxa-auto-dark.wxss'

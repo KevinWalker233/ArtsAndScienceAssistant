@@ -1,14 +1,18 @@
 <view>
   <view>
-    <view style="width:100%;height:300rpx;position:absolute;background-color:rgb(56,120,194);">
-      <view animation="{{welcomeAnimation}}" bindtap="welcomeClick" style="width:90%;margin:0 auto;text-align:center;color:white;font-size:36rpx;font-weight:bold;">{{welcome}}</view>
+    <view style="width:100%;height:300rpx;position:absolute;background-color:{{color}};">
+      <view animation="{{welcomeAnimation}}" bindtap="welcomeClick"
+        style="width:90%;margin:0 auto;text-align:center;color:white;font-size:36rpx;font-weight:bold;">{{welcome}}
+      </view>
     </view>
-    <view style="width:100%;height:180rpx;position:absolute;top:300rpx;background-color:rgb(56,120,194);border-bottom-left-radius:20%;border-bottom-right-radius:20%;">
+    <view
+      style="width:100%;height:180rpx;position:absolute;top:300rpx;background-color:{{color}};border-bottom-left-radius:20%;border-bottom-right-radius:20%;">
     </view>
     <view class="headContent">
-      <view class="head">
-        <open-data type="userAvatarUrl"></open-data>
-      </view>
+      <!-- <view class="head"> -->
+      <image class="head" src="{{headImage}}" bindtap="getUser"></image>
+      <!-- <open-data type="userAvatarUrl"></open-data> -->
+      <!-- </view> -->
       <view class="content">
         <text class="title" style="font-size:34rpx;font-weight:bold;">😊{{user[6]}}</text>
         <text class="title" style="font-size:20rpx;">✨学院：{{user[3]}}</text>
@@ -21,13 +25,13 @@
     <view animation="{{cardShow}}" class="bodyCard">
       <text class="title" style="font-size:34rpx;font-weight:bold;">😀用户账户</text>
       <text class="title" style="font-size:20rpx;line-height:10rpx;">受限于教务系统版本问题，更新数据需要再次登陆，敬请见谅</text>
-      <view class="viewContent" style="background-color:#1BA1E2;" bindtap="loginL">
+      <view class="viewContent" style="background-color:{{color}};" bindtap="loginL">
         <text style="width:80%;line-height:80rpx;font-weight:bold;color:white;">登陆教务系统更新数据</text>
         <view style="line-height:80rpx;">
           <mp-icon type="outline" icon="arrow" color="white" size="{{13}}"></mp-icon>
         </view>
       </view>
-      <view class="viewContent" style="background-color:#1BA1E2;" bindtap="loginCard">
+      <view class="viewContent" style="background-color:{{color}};" bindtap="loginCard">
         <text style="width:80%;line-height:80rpx;font-weight:bold;color:white;">登陆卡务系统</text>
         <view style="line-height:80rpx;">
           <mp-icon type="outline" icon="arrow" color="white" size="{{13}}"></mp-icon>
@@ -38,27 +42,29 @@
       <text class="title" style="font-size:34rpx;font-weight:bold;">😋消息提示</text>
       <view class="viewContent" style="color:black;">
         <text class="title" style="width:70%;line-height:80rpx;">是否开启上课提醒</text>
-        <switch checked="{{classTip}}" bindchange="changeClassTip" style="line-height:75rpx;" color="#1BA1E2"></switch>
+        <switch checked="{{classTip}}" bindchange="changeClassTip" style="line-height:75rpx;" color="{{color}}"></switch>
       </view>
       <view class="viewContent" style="color:black;">
         <text class="title" style="width:70%;line-height:80rpx;">是否开启每日打卡提醒</text>
-        <switch checked="{{clockTip}}" bindchange="changeClockTip" style="line-height:75rpx;" color="#1BA1E2"></switch>
+        <switch checked="{{clockTip}}" bindchange="changeClockTip" style="line-height:75rpx;" color="{{color}}"></switch>
       </view>
       <text class="title" style="font-size:17rpx;">😄关闭了即使订阅了也不会推送消息</text>
       <view class="viewContent">
-        <button style="width:100%;height:75rpx;background-color:#1BA1E2;color:white;margin-bottom:10rpx;" bindtap="addTip">授权上课提醒</button>
+        <button style="width:100%;height:75rpx;background-color:{{color}};color:white;margin-bottom:10rpx;"
+          bindtap="addTip">授权上课提醒</button>
       </view>
       <view class="viewContent">
-        <button style="width:100%;height:75rpx;background-color:#1BA1E2;color:white;" bindtap="addClockTip">授权打卡提醒</button>
+        <button style="width:100%;height:75rpx;background-color:{{color}};color:white;"
+          bindtap="addClockTip">授权打卡提醒</button>
       </view>
       <text class="title" style="font-size:17rpx;">点击授权一次，只能提醒一次（建议打开总是保持以上选项，不在询问）</text>
       <text class="title" style="font-size:17rpx;">需要提醒几次就点击订阅几次，需要提醒哪个订阅哪个</text>
     </view>
     <view animation="{{cardShow}}" class="bodyCard" style="height:350rpx;">
       <text class="title" style="font-size:34rpx;font-weight:bold;">😅一些功能</text>
+      <button style="width:90%;height:75rpx;background-color:#1BA1E2;color:white;" open-type="contact">联系客服</button>
+      <button style="width:90%;height:75rpx;background-color:#8CBF26;color:white;" bindtap="about">关于我们</button>
       <button style="width:90%;height:75rpx;background-color:#F09609;color:white;" open-type="feedback">提交意见</button>
-      <button style="width:90%;height:75rpx;background-color:#8CBF26;color:white;" open-type="contact">联系客服</button>
-      <button style="width:90%;height:75rpx;background-color:#1BA1E2;color:white;" bindtap="about">关于我们</button>
     </view>
   </view>
 </view>

@@ -27,5 +27,3 @@ page {
 .box {
   box-shadow: 0 2rpx 50rpx 2rpx rgb(243, 243, 243);
 }
-
-@import 'customFunction-wxa-auto-dark.wxss'

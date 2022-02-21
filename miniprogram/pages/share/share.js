@@ -38,22 +38,6 @@ Page({
       url: "/pages/share/shareCode/shareCode",
     })
   },
-  shareTextCode(res) {
-    // wx.navigateTo({
-    //   url: "/pages/share/shareTextCode/shareTextCode",
-    // })
-    wx.showModal({
-      title: '信息提示',
-      content: '后续更新，敬请期待😊......',
-      confirmText: '我知道了',
-      showCancel: false,
-      success: function (res) {
-        if (res.confirm) {
-          // console.log('我已阅读')
-        } else {}
-      }
-    })
-  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -68,7 +52,7 @@ Page({
 
     const ctx = wx.createCanvasContext('canvas')
     ctx.fillStyle = "white";
-    ctx.fillRect(0, 0, 400, 740);
+    ctx.fillRect(0, 0, 600, 800);
     this.drawHead(ctx, that.data.time, that.data.week, that.data.classes)
     this.drawTime(ctx)
     this.drawClass(ctx, JSON.parse(that.data.wlist))
@@ -106,7 +90,7 @@ Page({
   drawCode(ctx) {
     ctx.save()
     ctx.setFillStyle('#000000')
-    ctx.drawImage("/assets/classBg.png", 15, 640, 345, 90)
+    ctx.drawImage("/assets/classBg.png", 35, 690, 345, 90)
     ctx.restore()
   },
   drawHead(ctx, time, week, classes) {
@@ -115,15 +99,15 @@ Page({
     ctx.setFillStyle('#444')
     ctx.setFontSize(16)
     ctx.fillText(time, 15, 20)
-    ctx.fillText(week, 290, 20)
-    ctx.fillText(classes, 110, 640)
+    ctx.fillText(week, 310, 20)
+    ctx.fillText(classes, 110, 680)
     //绘制顶部周
     var weeks = ['一', '二', '三', '四', '五', '六', '日']
     for (var i = 0; i < 7; i++) {
       ctx.setFillStyle('#444')
       ctx.setFontSize(16)
-      ctx.fill
-      ctx.fillText("周" + weeks[i], 50 + i * 46, 45)
+      // ctx.fill
+      ctx.fillText("周" + weeks[i], 50 + i * 50, 45)
       ctx.restore()
     }
   },
@@ -174,22 +158,31 @@ Page({
       ctx.setFillStyle('#444')
       ctx.setFontSize(10)
       var time = times[i]['time'].split('-')
-      ctx.fillText(times[i]['jieCi'], 5, 65 + i * 60)
-      ctx.fillText(time[0], 5, 80 + i * 60)
+      ctx.fillText(times[i]['jieCi'], 20, 80 + i * 60)
+      ctx.fillText(time[0], 5, 100 + i * 60)
       if (time[1] != null)
-        ctx.fillText(time[1], 5, 95 + i * 60)
+        ctx.fillText(time[1], 5, 115 + i * 60)
     }
     ctx.restore()
   },
   drawClass(ctx, wlist) {
     ctx.save()
     var colors = ["#85B8CF", "#90C652", "#D8AA5A", "#FC9F9D", "#0A9A84", "#61BC69", "#12AEF3", "#E29AAD"]
-    var width = 48
-    var height = 112
+    var width = 50
+    var height = 120
     var left = 38
     var jieCis = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5]
     for (var i = 0; i < wlist.length; i++) {
-      this.roundRect(ctx, left + width * (parseInt(wlist[i]['weekTime']) - 1), 60 + height * jieCis[parseInt(wlist[i]['jieCi'])], width, height, 10, colors[i % 8], wlist[i]['courseName'], wlist[i]['address'])
+      if (wlist[i + 1] != null && wlist[i].weekTime == wlist[i + 1].weekTime && wlist[i].jieCi == wlist[i + 1].jieCi) {
+        // 如果该课表周次和节次跟下一个相等，则高度设为一半
+        this.roundRect(ctx, left + width * (parseInt(wlist[i]['weekTime']) - 1), 60 + height * jieCis[parseInt(wlist[i]['jieCi'])], width, height / 2, 10, colors[i % 8], wlist[i]['courseName'], wlist[i]['address'], wlist[i]['weeks'])
+      } else if (wlist[i - 1] != null && wlist[i].weekTime == wlist[i - 1].weekTime && wlist[i].jieCi == wlist[i - 1].jieCi) {
+        //如果该课表周次和节次跟上一个相等，则高度设为一半，并且下移一半的距离
+        this.roundRect(ctx, left + width * (parseInt(wlist[i]['weekTime']) - 1), 60 + height * jieCis[parseInt(wlist[i]['jieCi'])] + height / 2, width, height / 2, 10, colors[i % 8], wlist[i]['courseName'], wlist[i]['address'], wlist[i]['weeks'])
+      } else {
+        //如果该课表周次和节次跟上一个和下一个都不相等
+        this.roundRect(ctx, left + width * (parseInt(wlist[i]['weekTime']) - 1), 60 + height * jieCis[parseInt(wlist[i]['jieCi'])], width, height, 10, colors[i % 8], wlist[i]['courseName'], wlist[i]['address'], wlist[i]['weeks'])
+      }
     }
     ctx.restore()
   },
@@ -203,7 +196,7 @@ Page({
    * @param {number} r 圆角的半径
    * @param {string} color 课表矩形的颜色
    */
-  roundRect(ctx, x, y, w, h, r, color, classs, room) {
+  roundRect(ctx, x, y, w, h, r, color, classs, room, weeks) {
     ctx.save()
     if (w < 2 * r) {
       r = w / 2
@@ -226,6 +219,10 @@ Page({
     ctx.restore()
     ctx.setFillStyle('white')
     ctx.setFontSize(10.5)
+    if (weeks.indexOf("单")!=-1)
+      classs = "单|" + classs
+    else if (weeks.indexOf("双")!=-1)
+      classs = "双|" + classs
     this.drawText(ctx, classs, x + 4, y + 18, 232, w - 15, room)
   },
   drawText(ctx, str, leftWidth, initHeight, titleHeight, canvasWidth, room) {
@@ -235,7 +232,7 @@ Page({
     for (let i = 0; i < str.length; i++) {
       lineWidth += ctx.measureText(str[i]).width;
       if (lineWidth > canvasWidth) {
-        ctx.fillText(str.substring(lastSubStrIndex, i), leftWidth, initHeight); //绘制截取部分
+        ctx.fillText(str.substring(lastSubStrIndex, i + 1), leftWidth, initHeight); //绘制截取部分
         initHeight += 13;
         lineWidth = 0;
         lastSubStrIndex = i;
@@ -257,7 +254,7 @@ Page({
     for (let i = 0; i < str.length; i++) {
       lineWidth += ctx.measureText(str[i]).width;
       if (lineWidth > canvasWidth) {
-        ctx.fillText(str.substring(lastSubStrIndex, i), leftWidth, initHeight); //绘制截取部分
+        ctx.fillText(str.substring(lastSubStrIndex, i + 1), leftWidth, initHeight); //绘制截取部分
         initHeight += 13;
         lineWidth = 0;
         lastSubStrIndex = i;

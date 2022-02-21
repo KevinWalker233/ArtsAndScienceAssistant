@@ -1,7 +1,7 @@
 <mp-toptips msg="{{error.text}}" type="{{error.type}}" show="{{error.text}}" delay="2000"></mp-toptips>
 
 <view class="head">
-  <image class="headBg" style="z-index: -1;"> </image>
+  <!-- <image class="headBg" style="z-index: -1;"> </image> -->
   <view class="refresh" bindtap="refresh">
     <mp-icon icon="refresh" type="field" color="white" size="{{30}}"></mp-icon>
     更新余额
@@ -9,28 +9,79 @@
   <view class="cardContext">
     <view class="moneyCard">
       卡余额(元)
-      <view class="money">{{cardInform[0]}}</view>
+      <!-- <view class="money">{{cardInform[0]}}</view> -->
+      <view wx:if="{{cardInform[0]}}" class="money">{{cardInform[0]}}</view>
+      <view wx:else class="money">未知</view>
     </view>
     <view class="moneyCard" style="font-size: 20rpx;">
       当前过渡余额(元)
-      <view style="font-size: 30rpx;">{{cardInform[1]}}</view>
+      <!-- <view style="font-size: 30rpx;">{{cardInform[1]}}</view> -->
+      <view wx:if="{{cardInform[1]}}" style="font-size: 30rpx;">{{cardInform[1]}}</view>
+      <view wx:else style="font-size: 30rpx;">0.00</view>
     </view>
   </view>
-  <view class="cardStatus">
+  <view wx:if="{{cardInform[3]}}" class="cardStatus">
     <view class="card">{{cardInform[3]}}</view>
     <view class="card">{{cardInform[4]}}</view>
     <view class="card">{{cardInform[5]}}</view>
     <view class="card">{{cardInform[6]}}</view>
   </view>
-  <!-- <view class="image"> -->
-  <image src="/assets/logo.png" class="images"></image>
+  <view wx:else class="cardStatus">
+    <view class="card">卡片状态：未知</view>
+    <view class="card">挂失状态：未知</view>
+    <view class="card">冻结状态：未知</view>
+    <view class="card">检查状态：未知</view>
+  </view>
+  <view class="image">
+    <image src="/assets/logo.png" class="images"></image>
+  </view>
 </view>
-<view class="pay" bindtap="pay">
-  <mp-icon style="line-height:50rpx;" type="field" icon="photo-wall" color="white" size="{{22}}"></mp-icon>
-  饭卡充值
-</view>
+
 <view class="context">
+  <!-- 月份流水查询 -->
+  <view class="column">
+    <view class="searchButton box" style="background-color:rgb(7,193,96);">
+      <picker class="picker" header-text="选择查询月份" mode="selector" range="{{mouth}}" value="{{date}}"
+        bindchange="bindDateChange"
+        style="background-color:rgb(30,163,68);border-top-left-radius:10rpx;border-top-right-radius:10rpx;">
+        <view style="font-size:60rpx;line-height:130rpx;">{{date+1}}月</view>
+      </picker>
+      <view bindtap="getBill">月份流水查询</view>
+    </view>
+  </view>
+  <!-- 当日流水查询 -->
+  <view class="column">
+    <view class="searchButton box" bindtap="getBillDay">
+      <mp-icon style="line-height:120rpx;" type="field" icon="shop" color="white" size="{{50}}"></mp-icon>
+      <view>当日流水查询</view>
+    </view>
+  </view>
+  <!-- 饭卡充值 -->
+  <view class="column">
+    <view class="pay box" bindtap="pay">
+      <mp-icon style="line-height:120rpx;" type="field" icon="photo-wall" color="white" size="{{50}}"></mp-icon>
+      <view>饭卡充值</view>
+    </view>
+  </view>
+  <view class="inputTitle">卡务系统密码：</view>
   <input class="passwordInput" password="true" value="{{password}}" placeholder="请输入卡务系统密码" />
-  <button loading="{{guaShiBool}}" style="background-color:#3878C2;color:white;" bindtap="guaShi">持卡人挂失</button>
-  <button loading="{{jieGuaBool}}" style="background-color:#3878C2;color:white;" bindtap="jieGua">持卡人解挂</button>
+  <view style="width:100%;display:flex;justify-content:center;">
+    <view class="column" disabled="{{jieGuaBool}}" bindtap="jieGua">
+      <view class="pay box" style="background-color:#FF4500;">
+        <mp-icon style="line-height:120rpx;" type="field" icon="sticker" color="white" size="{{50}}"></mp-icon>
+        <view>持卡人解挂</view>
+      </view>
+    </view>
+    <view class="column" disabled="{{guaShiBool}}" bindtap="guaShi">
+      <view class="pay box" style="background-color:#444;">
+        <mp-icon style="line-height:120rpx;" type="field" icon="lock" color="white" size="{{50}}"></mp-icon>
+        <view>持卡人挂失</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- <button disabled="{{guaShiBool}}" loading="{{guaShiBool}}" style="background-color:#3878C2;color:white;"
+    bindtap="guaShi">持卡人挂失</button>
+  <button disabled="{{jieGuaBool}}" loading="{{jieGuaBool}}" style="background-color:#3878C2;color:white;"
+    bindtap="jieGua">持卡人解挂</button> -->
 </view>

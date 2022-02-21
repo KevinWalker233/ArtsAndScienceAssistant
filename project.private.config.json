@@ -13,22 +13,25 @@
     "miniprogram": {
       "list": [
         {
-          "name": "login",
-          "pathName": "pages/login/login",
+          "name": "pages/mapletter/mapletter",
+          "pathName": "pages/mapletter/mapletter",
           "query": "",
+          "launchMode": "default",
           "scene": null
         },
         {
           "name": "index",
-          "pathName": "pages/index/index",
+          "pathName": "pages/freeClass/freeClass",
           "query": "",
+          "launchMode": "default",
           "scene": null
         },
         {
           "name": "login",
-          "pathName": "pages/login/login",
+          "pathName": "pages/freeClass/searchClass/searchClass",
           "query": "",
-          "scene": null
+          "scene": null,
+          "launchMode": "default"
         },
         {
           "name": "login1",
@@ -63,7 +66,32 @@
         {
           "name": "pages/infoCheck/lose/lose",
           "pathName": "pages/infoCheck/lose/lose",
+          "query": "",
           "scene": null
+        },
+        {
+          "name": "bill",
+          "pathName": "pages/checkMoney/bill/bill",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/checkMoney/checkMoney",
+          "pathName": "pages/checkMoney/checkMoney",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "graduate",
+          "pathName": "pages/lifeService/graduate/graduate",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/index/index",
+          "pathName": "pages/index/index",
+          "query": "",
+          "scene": 1011
         }
       ]
     }

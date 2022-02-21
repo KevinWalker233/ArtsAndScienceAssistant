@@ -1,8 +1,9 @@
 /* pages/infoCheck/schoolMap/schoolMap.wxss */
 #mapp {
-	height:100vh;
-	width: 100%;
+  height: 100vh;
+  width: 100%;
 }
+
 .map_title {
   width: 80%;
   height: 130rpx;
@@ -16,6 +17,7 @@
   opacity: 0.8;
   border-radius: 75rpx;
 }
+
 .map_nav_content {
   width: 75%;
   height: 120rpx;
@@ -25,10 +27,12 @@
   align-self: center;
   justify-content: space-between;
 }
+
 .map_button {
   margin-top: 5rpx;
   /* border: 1rpx red solid; */
 }
+
 .map_button_icon {
   height: 60rpx;
   width: 60rpx;
@@ -36,12 +40,14 @@
   justify-content: center;
   align-self: center;
 }
+
 .map_center_button {
   position: relative;
   height: 150rpx;
   top: -20rpx;
   /* border: 1rpx red solid; */
 }
+
 .map_center_button_icon {
   position: relative;
   top: -20rpx;
@@ -50,20 +56,23 @@
   background-color: rgb(221, 218, 218);
   border-radius: 60rpx;
 }
+
 .map_button_text {
   font-size: 28rpx;
   font-weight: normal;
-  color:#1F93BE;
+  color: #1F93BE;
   text-align: center;
 }
+
 .map_center_text {
   position: relative;
   top: -30rpx;
   font-size: 28rpx;
   font-weight: normal;
-  color:#1F93BE;
+  color: #1F93BE;
   text-align: center;
 }
+
 .change_view {
   position: absolute;
   top: 120rpx;
@@ -71,27 +80,31 @@
   width: 80rpx;
   height: 85rpx;
 }
+
 .change_view_img {
   margin: 0 auto;
   width: 60rpx;
   height: 60rpx;
 }
+
 .change_Sate_text {
   margin-top: 5rpx;
   font-size: 20rpx;
   color: rgb(78, 78, 78);
   text-align: center;
 }
-.change_Inst_text{
+
+.change_Inst_text {
   margin-top: 5rpx;
   font-size: 20rpx;
   color: rgb(198, 199, 201);
   text-align: center;
 }
+
 /* 弹窗 */
 .map_dialog_mask {
   position: fixed;
-  top: 0; 
+  top: 0;
   left: 0;
   right: 0;
   bottom: 0;
@@ -100,8 +113,9 @@
   display: none;
   z-index: 1001
 }
+
 .map_dialog_container {
-  position: fixed; 
+  position: fixed;
   bottom: 0;
   width: 100%;
   left: 0;
@@ -111,7 +125,7 @@
   border-top-left-radius: 50rpx;
   box-shadow: darkgrey 0rpx 5rpx 15rpx 8rpx;
   z-index: 1003;
-  background: white; 
+  background: white;
   margin: 0 auto;
   transform: translateY(300%);
   transition: all 0.4s ease;
@@ -121,7 +135,10 @@
 .map_dialog_show .map_dialog_container {
   transform: translateY(0);
 }
-.map_dialog_show .map_dialog_mask {display: block;}
+
+.map_dialog_show .map_dialog_mask {
+  display: block;
+}
 
 .map_dialog_content {
   display: flex;
@@ -130,40 +147,47 @@
   justify-content: space-between;
   align-content: center;
 }
-.map_dialog_img{
+
+.map_dialog_img {
   margin-left: 30rpx;
   width: 380rpx;
   height: 250rpx;
   vertical-align: bottom;
   border-radius: 8rpx
 }
-.map_dialog_title{
+
+.map_dialog_title {
   display: flex;
   align-items: center;
   margin: 0 auto;
 }
+
 .map_dialog_title_icon {
-  height:60rpx;
-  width:60rpx;
+  height: 60rpx;
+  width: 60rpx;
 }
+
 .map_dialog_title_text {
   margin-left: 5rpx;
   font-size: 45rpx;
   font-weight: bold;
   text-align: center;
 }
+
 .map_dialog_line {
   width: 100%;
   height: 2rpx;
   margin: 0 auto;
   border-radius: 2rpx;
-  background-color:lemonchiffon;
+  background-color: lemonchiffon;
 }
+
 .map_dialog_info {
   height: 250rpx;
   margin: 10rpx auto;
   width: 95%;
 }
+
 /* 列表弹出层 */
 /*mask*/
 .drawer_screen {
@@ -177,6 +201,7 @@
   opacity: 0.5;
   overflow: hidden;
 }
+
 /*content*/
 .drawer_box {
   width: 86%;
@@ -189,13 +214,15 @@
   margin: -150px 50rpx 0 50rpx;
   border-radius: 30rpx;
 }
-.drawer_title{
-  padding:20rpx;
+
+.drawer_title {
+  padding: 20rpx;
   font: 20px "microsoft yahei";
   text-align: center;
 }
-.drawer_title_2{
-  padding:20rpx;
+
+.drawer_title_2 {
+  padding: 20rpx;
   font: 38rpx "microsoft yahei";
   text-align: center;
   display: flex;
@@ -204,6 +231,7 @@
   justify-content: center;
   align-content: center;
 }
+
 .drawer_title_2_icon {
   height: 45rpx;
   width: 45rpx;
@@ -212,36 +240,50 @@
   align-content: center;
   margin-right: 20rpx;
 }
+
 .drawer_content {
   height: 350px;
-  overflow-y: scroll; /*超出父盒子高度可滚动*/
+  overflow-y: scroll;
+  /*超出父盒子高度可滚动*/
 }
-.btn_ok{
+
+.btn_ok {
   padding: 10px;
   font: 20px "microsoft yahei";
   text-align: center;
   border-top: 1px solid #E8E8EA;
   color: #3CC51F;
 }
-.top{
-    padding-top:8px;
+
+.top {
+  padding-top: 8px;
 }
+
 .bottom {
-    padding-bottom:8px;
+  padding-bottom: 8px;
 }
+
 .title {
-    height: 30px;
-    line-height: 30px;
-    width: 250rpx;
-    text-align: center;
-    display: inline-block;
-    font: 300 28rpx/30px "microsoft yahei";
+  height: 30px;
+  line-height: 30px;
+  width: 250rpx;
+  text-align: center;
+  display: inline-block;
+  font: 300 28rpx/30px "microsoft yahei";
 }
+
 .drawer_content_text {
   margin-top: 5rpx;
   font-size: 28rpx;
   color: rgb(151, 75, 75);
 }
-.grid { display: -webkit-box; display: box; }
-.col-0 {-webkit-box-flex:0;box-flex:0;}
-@import 'schoolMap-wxa-auto-dark.wxss'
+
+.grid {
+  display: -webkit-box;
+  display: box;
+}
+
+.col-0 {
+  -webkit-box-flex: 0;
+  box-flex: 0;
+}

@@ -12,6 +12,7 @@ Page({
     wlist: [], // 课表色块数组
     leftClass: [], //左侧课表时间
     week: 0, //周次
+    dayWeek: 0, //当天是第几周
     weekPicker: ['全部', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], //周次
     month: 0, //顶部显示的月
     day: 0, //顶部显示的天
@@ -27,7 +28,8 @@ Page({
     showStudyDay: false, //是否展示放假天数
     studyDay: 0, //距离放假还有多少天
     hideNotice: true, //是否显示顶部公告栏
-    notice: '' //顶部公告栏内容
+    notice: '', //顶部公告栏内容
+    top: 0
   },
   changeWeek(res) { //选择周次
     wx.setStorage({
@@ -44,7 +46,28 @@ Page({
       url: "/pages/loginL/loginL?home=index",
     })
   },
+  edit(res) {
+    wx.navigateTo({
+      url: "/pages/edit/edit"
+    })
+  },
   share(res) {
+    // wx.cloud.callFunction({
+    //   name: "test",
+    //   success(res) {
+    //     console.log(res)
+    //   }
+    // })
+    // wx.cloud.callFunction({
+    //   name: "bookCollection",
+    //   success(res) {
+    //     console.log(res.result)
+    //   },
+    //   fail(err){
+    //     console.log(err)
+    //   }
+    // })
+
     var week = ''
     if (this.data.week > 0) week = '第' + this.data.week + '周'
     else week = '全部'
@@ -53,6 +76,10 @@ Page({
     wx.navigateTo({
       url: "/pages/share/share?week=" + week + '&time=' + time + '&classes=' + user[5] + '&wlist=' + JSON.stringify(this.data.wlist)
     })
+
+    // wx.navigateTo({
+    //   url: "/pages/head/head"
+    // })
   },
   //判断是否为闰年并返回月份的数组
   isOlympicYear: function (year) {
@@ -94,6 +121,14 @@ Page({
     }
   },
   onLoad() {
+    db3.doc('navigationBar').get({
+      success(res) {
+        wx.setNavigationBarColor({
+          frontColor: res.data.frontColor,
+          backgroundColor: res.data.backgroundColor
+        })
+      }
+    })
     var self = this;
 
     this.widget = this.selectComponent('.widget');
@@ -110,7 +145,8 @@ Page({
     self.setData({
       month: my_month + 1,
       day: my_day,
-      weekName: weekName[my_week]
+      weekName: weekName[my_week],
+      dayWeek: my_week
     })
 
     //每个月第一天是周几的数组
@@ -317,24 +353,25 @@ Page({
       key: 'week',
       success(res) {
         self.setData({
-          week: res.data
+          week: res.data,
+          wlist: self.wlistFactory(JSON.parse(wx.getStorageSync('wlist')), res.data)
         })
       }
     })
 
     //加载课表
-    wx.getStorage({ //获取本地课表
-      key: "wlist",
-      success(res) { //本地课表有数据，则显示课表
-        // console.log('[查询]本地课表获取结果：', res.data)
-        self.setData({ //设置课表
-          wlist: self.wlistFactory(JSON.parse(res.data), self.data.week)
-        })
-      },
-      fail(res) {
-        console.log(res)
-      }
-    })
+    // wx.getStorage({ //获取本地课表
+    //   key: "wlist",
+    //   success(res) { //本地课表有数据，则显示课表
+    //     // console.log('[查询]本地课表获取结果：', res.data) 
+    //     self.setData({ //设置课表
+    //       wlist: self.wlistFactory(JSON.parse(res.data), self.data.week)
+    //     })
+    //   },
+    //   fail(res) {
+    //     console.log(res)
+    //   }
+    // })
   },
   onReady() {
     var that = this;
@@ -427,19 +464,19 @@ Page({
   onShow() {
     var that = this
 
-    that.setData({ //设置课表
-      wlist: app.globalData.wlist
-    })
+    // that.setData({ //设置课表
+    //   wlist: app.globalData.wlist
+    // })
 
     that.setData({ //设置课表
       wlist: this.wlistFactory(app.globalData.wlist, that.data.week)
     })
 
-    setTimeout(function () {
-      that.setData({ //设置课表
-        wlist: that.wlistFactory(that.data.wlist, that.data.week)
-      })
-    }, 500)
+    // setTimeout(function () {
+    //   that.setData({ //设置课表
+    //     wlist: that.wlistFactory(that.data.wlist, that.data.week)
+    //   })
+    // }, 1000)
 
     //调用云函数获取用户openid
     wx.cloud.callFunction({
@@ -458,7 +495,22 @@ Page({
   onShareAppMessage: function () {
 
   },
+  onPageScroll: function (e) {
+    console.log(e)
+    if (e.scrollTop >= 550) {
+      this.setData({
+        top: -300
+      })
+    } else {
+      this.setData({
+        top: 0
+      })
+    }
+  },
   classClick(e) { //课表按钮被点击
+    wx.vibrateShort({
+      type: 'light'
+    })
     wx.showModal({
       title: '详细信息',
       content: this.data.wlist[e.currentTarget.dataset.index]['courseName'] + '\r\n' +

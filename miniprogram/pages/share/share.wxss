@@ -14,4 +14,3 @@
   position: absolute;
   left: 100vw;
 }
-@import 'share-wxa-auto-dark.wxss'

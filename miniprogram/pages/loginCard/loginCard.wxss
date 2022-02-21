@@ -104,5 +104,3 @@ page {
   color: white;
   background-color: rgba(27, 195, 184, 0.9);
 }
-
-/* @import 'loginCard-wxa-auto-dark.wxss' */

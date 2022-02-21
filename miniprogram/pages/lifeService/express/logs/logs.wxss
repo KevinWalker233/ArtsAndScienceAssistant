@@ -149,4 +149,3 @@ page{
   
   color: #027aff;
 }
-@import 'logs-wxa-auto-dark.wxss'

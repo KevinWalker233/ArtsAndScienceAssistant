@@ -48,6 +48,7 @@ page{
 .head {
   width: 200rpx;
   height: 200rpx;
+  background-color: #444;
 }
 
 .content {
@@ -76,5 +77,3 @@ page{
   border-radius: 10rpx;
   background-color: rgb(56, 120, 194);
 }
-
-@import 'wo-wxa-auto-dark.wxss'

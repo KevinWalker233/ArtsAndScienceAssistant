@@ -30,5 +30,3 @@
   font-size: 20rpx;
   text-indent:2em;
 }
-
-@import 'about-wxa-auto-dark.wxss'

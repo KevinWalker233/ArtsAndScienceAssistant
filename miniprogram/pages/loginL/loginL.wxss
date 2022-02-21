@@ -154,5 +154,3 @@ page {
     -webkit-transform: translateX(-100%);
   }
 }
-
-/* @import 'loginL-wxa-auto-dark.wxss' */

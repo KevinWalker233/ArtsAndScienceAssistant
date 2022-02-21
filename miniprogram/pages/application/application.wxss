@@ -2,6 +2,42 @@ page {
   background-color: rgb(234, 234, 234);
 }
 
+.mask {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-color: #444;
+  z-index: 9999;
+  opacity: 0.9;
+}
+
+.activity {
+  width: 500rpx;
+  height: 650rpx;
+  left: 0;
+  right: 0;
+  top: -200rpx;
+  bottom: 0;
+  margin: auto;
+  z-index: 10000;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+}
+
+.activityImg {
+  width: 500rpx;
+  height: 500rpx;
+}
+
+.time {
+  width: 500rpx;
+  height: 50rpx;
+  margin: auto;
+  text-align: center;
+  color: white;
+}
+
 .function {
   margin: 30rpx auto;
   width: 96%;
@@ -73,4 +109,8 @@ page {
   text-align: center;
 }
 
-@import 'application-wxa-auto-dark.wxss'
+.badge {
+  position: absolute;
+  margin-top: -30rpx;
+  margin-left: 65rpx;
+}

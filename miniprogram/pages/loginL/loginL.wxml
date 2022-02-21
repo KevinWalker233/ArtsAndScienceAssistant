@@ -1,12 +1,12 @@
 <mp-toptips msg="{{error.text}}" type="{{error.type}}" show="{{error.text}}" delay="1000"></mp-toptips>
 <view hidden='{{hideNotice}}' style="width:4%;height:60rpx;float:left;line-height:60rpx;background:#ffebda;">
-    <mp-icon type="field" icon="volume-down" color="#d09868" size="{{18}}"></mp-icon>
+  <mp-icon type="field" icon="volume-down" color="#d09868" size="{{18}}"></mp-icon>
+</view>
+<view class='notice-wrap' hidden='{{hideNotice}}'>
+  <view class='tongzhitext'>
+    <text class="tongzhi-text">{{notice}}</text>
   </view>
-  <view class='notice-wrap' hidden='{{hideNotice}}'>
-    <view class='tongzhitext'>
-      <text class="tongzhi-text">{{notice}}</text>
-    </view>
-  </view>
+</view>
 <view class="head" style="background-color:{{titleColor}};">
   <view class="headLogo">
     <image class="headImg" src="/assets/login/educational.png"></image>
@@ -32,33 +32,36 @@
       <view class="textHead">密码</view>
     </view>
     <view class="inputC">
-      <input value="{{password}}" password="{{inputType}}" placeholder="请输入密码" class="inputI"
-        bindinput="passwordInput"></input>
+      <input value="{{password}}" password="{{inputType}}" placeholder="请输入密码" class="inputI" bindinput="passwordInput"></input>
     </view>
     <view style="width:50rpx;background-color:white;border-top-right-radius: 20rpx;border-bottom-right-radius: 20rpx;">
-      <mp-icon wx:if="{{inputType}}" style="line-height: 100rpx;" type="outline" icon="eyes-off"
-        color="rgba(29,29,29,1)" size="20" bindtap="eye"></mp-icon>
-      <mp-icon wx:else style="line-height: 100rpx;" type="outline" icon="eyes-on" color="rgba(29,29,29,1)" size="20"
-        bindtap="eye"></mp-icon>
+      <mp-icon wx:if="{{inputType}}" style="line-height: 100rpx;" type="outline" icon="eyes-off" color="rgba(29,29,29,1)" size="20" bindtap="eye"></mp-icon>
+      <mp-icon wx:else style="line-height: 100rpx;" type="outline" icon="eyes-on" color="rgba(29,29,29,1)" size="20" bindtap="eye"></mp-icon>
     </view>
   </view>
   <view class="codeC input">
-    <input placeholder="验证码" style="width:320rpx;height:100rpx;text-align:center;font-size:40rpx;"
-      bindinput="codeInput"></input>
+    <input placeholder="验证码" style="width:320rpx;height:100rpx;text-align:center;font-size:40rpx;" value="{{codeInput}}" bindinput="codeInput"></input>
     <image bindtap="loginClick" style="width:220rpx;height:90rpx;margin:auto;" src="{{code}}"></image>
   </view>
   <view style="text-align:center;font-size:25rpx;">看不清，点击验证码刷新</view>
-  <view style="text-align:center;font-size:30rpx;font-weight:bold;color:#444;">{{serverPicker[chooseServer]}}</view>
-  <button class="loginButton" style="background-color:{{titleColor}};" loading="{{loginB}}"
-    bindtap="login">{{buttonName}}</button>
+  <view style="text-align:center;font-size:30rpx;font-weight:bold;color:#444;">{{codePicker[chooseCode]}}</view>
+  <!-- <view style="text-align:center;font-size:30rpx;font-weight:bold;color:#444;">{{serverPicker[chooseServer]}}</view> -->
+  <button class="loginButton" style="background-color:{{titleColor}};" loading="{{loginB}}" bindtap="login">{{buttonName}}</button>
 </view>
 <view style="text-align:center;font-size:20rpx;">（新生第一次登陆教务系统学号密码相同，记得要去网页版教务系统更改密码）</view>
 <view style="text-align:center;font-size:20rpx;">如遇验证码刷新过慢，登陆时间过长等问题，请检查手机网络及网页版教务系统是否正常运行</view>
 
 
-<picker header-text="选择服务器" mode="selector" range="{{serverPicker}}" bindchange="showServerList">
+<!-- <picker header-text="选择服务器" mode="selector" range="{{serverPicker}}" bindchange="showServerList">
   <view class="swap">
     <mp-icon type="field" icon="transfer2" color="white" size="{{20}}"></mp-icon>
     切换服务器
+  </view>
+</picker> -->
+
+<picker header-text="选择识别模式" mode="selector" range="{{codePicker}}" bindchange="showCodeList">
+  <view class="swap">
+    <mp-icon type="field" icon="transfer2" color="white" size="{{20}}"></mp-icon>
+    启用验证码识别
   </view>
 </picker>

@@ -1,4 +1,12 @@
-<!--pages/application/application.wxml-->
+<official-account></official-account>
+<view class="activity" wx-if="{{flag}}">
+  <view class="time">关闭倒计时:{{sec}}s</view>
+  <image class="activityImg" src="{{imgUrl}}" bindtap="activity"></image>
+  <view class="time" style="height:100rpx;" bindtap="closeActicity">
+    <mp-icon style="line-height:100rpx;" type="field" icon="close" color="white" size="{{40}}"></mp-icon>
+  </view>
+</view>
+<view class='mask' wx-if="{{flag}}"></view>
 <custom-swiper imgUrls="{{carouselImgUrls}}" />
 <!-- 公告 -->
 <!-- <notice></notice> -->
@@ -14,6 +22,7 @@
   <view class="function_centerLine"></view>
   <view class="function_content">
     <view style="width:100rpx;" wx:for="{{infoCheck}}" data-index="{{index}}" bindtap="infoCheckClick">
+      <mp-badge wx:if="{{item.info!='null'}}" class="badge" content="{{item.info}}" />
       <image src="{{item.image}}" class="function_content_icon"></image>
       <view class="function_content_text">{{item.name}}</view>
     </view>
@@ -28,6 +37,7 @@
   <view class="function_centerLine"></view>
   <view class="function_content">
     <view style="width:100rpx;" wx:for="{{lifeService}}" data-index="{{index}}" bindtap="lifeServiceClick">
+      <mp-badge wx:if="{{item.info!='null'}}" class="badge" content="{{item.info}}" />
       <image src="{{item.image}}" class="function_content_icon"></image>
       <view class="function_content_text">{{item.name}}</view>
     </view>

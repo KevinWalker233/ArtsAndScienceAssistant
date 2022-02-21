@@ -18,5 +18,3 @@
   position: absolute;
   font-size: 28rpx;
 }
-
-@import 'circle-wxa-auto-dark.wxss'

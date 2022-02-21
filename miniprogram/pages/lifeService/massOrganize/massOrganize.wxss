@@ -271,5 +271,3 @@ page {
   font-size: 25rpx;
   margin: auto;
 }
-
-@import 'massOrganize-wxa-auto-dark.wxss'

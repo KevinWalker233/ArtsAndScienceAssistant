@@ -1,4 +1,5 @@
 var app = getApp()
+const timeFormat = require('../../utils/time.js');
 
 Page({
   data: {
@@ -10,9 +11,87 @@ Page({
     },
     guaShiBool: false, //挂失按钮loading
     jieGuaBool: false, //解挂按钮loading
-    cardInform: [] //用户数据
+    cardInform: [], //用户数据
+    mouth: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    date: "",
+    year: "",
+    mouths: "",
+    day: ""
   },
-  pay(res) {
+  getBill(res) {
+    var that = this
+    wx.showLoading({
+      title: '加载中',
+    })
+    var mouth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    var datestart = that.data.year + "-" + (parseInt(that.data.date) + 1) + "-1"
+    var dateend = that.data.year + "-" + (parseInt(that.data.date) + 1) + "-" + mouth[that.data.date]
+    wx.cloud.callFunction({
+      name: 'getCardBill',
+      data: {
+        account: that.data.account,
+        password: that.data.password,
+        datestart: datestart,
+        dateend: dateend,
+        type: "1"
+      },
+      complete(res) {
+        console.log(res)
+        wx.hideLoading({
+          success: (res) => {
+            wx.showToast({
+              title: '成功',
+              icon: 'success',
+              duration: 1000
+            })
+          },
+        })
+        wx.navigateTo({
+          url: "/pages/checkMoney/bill/bill?bill=" + JSON.stringify(res.result)
+        })
+      }
+    })
+  },
+  getBillDay(res) {
+    var that = this
+    wx.showLoading({
+      title: '加载中',
+    })
+    var today = that.data.year + "-" + that.data.mouths + "-" + that.data.day
+    console.log(today)
+    wx.cloud.callFunction({
+      name: 'getCardBill',
+      data: {
+        account: that.data.account,
+        password: that.data.password,
+        datestart: today,
+        dateend: today,
+        type: "0"
+      },
+      complete(res) {
+        console.log(res)
+        wx.hideLoading({
+          success: (res) => {
+            wx.showToast({
+              title: '成功',
+              icon: 'success',
+              duration: 1000
+            })
+          },
+        })
+        wx.navigateTo({
+          url: "/pages/checkMoney/bill/bill?bill=" + JSON.stringify(res.result)
+        })
+      }
+    })
+  },
+  bindDateChange(res) {
+    console.log(res.detail.value)
+    this.setData({
+      date: parseInt(res.detail.value)
+    })
+  },
+  pay(res) { //充值
     wx.navigateTo({
       url: "/pages/application/textView/textView?url=https://mp.weixin.qq.com/s/mi_9bo7CTkAvQlIjSq8tHQ"
     })
@@ -31,11 +110,19 @@ Page({
     })
   },
   refresh(res) { //点击刷新按钮
-    wx.navigateTo({
-      url: "/pages/loginCard/loginCard",
-    })
+    var account = wx.getStorageSync('cardAccount')
+    if (account != "") {
+      this.updateCardInform();
+    } else {
+      wx.navigateTo({
+        url: "/pages/loginCard/loginCard",
+      })
+    }
   },
   guaShi(res) { //点击挂失按钮
+    wx.showLoading({
+      title: '加载中',
+    })
     var that = this
     that.setData({
       guaShiBool: true
@@ -62,6 +149,9 @@ Page({
     })
   },
   jieGua(res) { //点击解挂按钮
+    wx.showLoading({
+      title: '加载中',
+    })
     var that = this
     that.setData({
       jieGuaBool: true
@@ -88,6 +178,9 @@ Page({
     })
   },
   updateCardInform() { //更新用户数据
+    wx.showLoading({
+      title: '加载中',
+    })
     var that = this
     wx.cloud.callFunction({ //调用云函数登陆
       name: 'getCardInform',
@@ -104,6 +197,15 @@ Page({
         wx.setStorage({ //储存卡务数据到本地
           key: 'cardInform',
           data: cardInformString
+        })
+        wx.hideLoading({
+          success: (res) => {
+            wx.showToast({
+              title: '成功',
+              icon: 'success',
+              duration: 1000
+            })
+          },
         })
       }
     })
@@ -140,6 +242,15 @@ Page({
       fail(res) {
         console.log(res)
       }
+    })
+    var date = timeFormat.formatTime(new Date).split(" ")[0].split("\/")[1]
+    var year = timeFormat.formatTime(new Date).split(" ")[0].split("\/")[0]
+    var day = timeFormat.formatTime(new Date).split(" ")[0].split("\/")[2]
+    that.setData({
+      date: parseInt(date) - 1,
+      mouths: parseInt(date),
+      year: parseInt(year),
+      day: parseInt(day)
     })
   },
   /**
